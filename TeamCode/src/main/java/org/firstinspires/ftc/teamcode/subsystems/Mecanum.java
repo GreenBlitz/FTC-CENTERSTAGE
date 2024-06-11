@@ -1,0 +1,41 @@
+package org.firstinspires.ftc.teamcode.subsystems;
+
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+
+import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.arcrobotics.ftclib.drivebase.MecanumDrive;
+import com.arcrobotics.ftclib.hardware.RevIMU;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
+
+public class Mecanum extends SubsystemBase {
+
+    private final MecanumDrive mecanumDrive;
+
+    private final RevIMU imu;
+
+    public Mecanum() {
+        Motor fl = new Motor(hardwareMap, "fl");
+        Motor fr = new Motor(hardwareMap, "fr");
+        Motor bl = new Motor(hardwareMap, "bl");
+        Motor br = new Motor(hardwareMap, "br");
+
+        this.mecanumDrive = new MecanumDrive(fl, fr, bl, br);
+        this.imu = new RevIMU(hardwareMap);
+
+        imu.init();
+    }
+
+    public void fieldCentricDrive(double x, double y, double theta) {
+        mecanumDrive.driveFieldCentric(x, y, theta, imu.getRotation2d().getDegrees());
+    }
+
+    public void robotCentricDrive(double x, double y, double theta) {
+        mecanumDrive.driveRobotCentric(x, y, theta);
+    }
+
+    public void resetHeading(){
+        imu.reset();
+    }
+
+
+}
