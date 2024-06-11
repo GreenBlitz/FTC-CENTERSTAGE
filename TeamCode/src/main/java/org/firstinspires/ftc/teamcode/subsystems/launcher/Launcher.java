@@ -1,17 +1,11 @@
 package org.firstinspires.ftc.teamcode.subsystems.launcher;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
-
-import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.SimpleServo;
 
+import org.firstinspires.ftc.teamcode.RobotHardwareMap;
 
-public class Launcher extends SubsystemBase {
-
-    private ServoEx servoLauncher;
+public class Launcher { // todo - do CRServo
     private static Launcher instance;
-
 
     public static Launcher getInstance() {
         if (instance == null) {
@@ -20,29 +14,36 @@ public class Launcher extends SubsystemBase {
         return instance;
     }
 
+    private ServoEx servoLauncher;
+
     private Launcher() {
-        servoLauncher = new SimpleServo(
-                hardwareMap, LauncherConstants.SERVO_HARDWARE_NAME, LauncherConstants.MIN_DEGREE, LauncherConstants.MAX_DEGREE
-        );
+        ServoEx servoLauncher = RobotHardwareMap.getInstance().servoLauncher;
         servoLauncher.setPosition(LauncherConstants.START_POSITION_DEGREES);
     }
 
-    @Override
-    public void periodic() {
-        printServoDegrees();
+    // void launch
+    // double getPos
+    // boolean didLaunch
+
+    protected void rotateByAngle(double degrees) {
+        servoLauncher.rotateByAngle(degrees); // check tomorrow WHAT_WE_USE
     }
 
-    public void launch() {
-        servoLauncher.rotateByAngle(LauncherConstants.DEGREES_FOR_LAUNCH);
+    protected void rotateToPosition(int position) {
+        servoLauncher.rotateBy(position); // check tomorrow whatweuse
     }
 
-    public void printServoDegrees() {
-        System.out.println("Degrees of Launcher Servo = " + servoLauncher.getAngle());
+    protected double getAngle() {
+        return servoLauncher.getAngle(); // check tomorrow whatWeUse
     }
 
-//    public boolean isLaunched() {
-//    }
+    protected void stop() {
+        servoLauncher.rotateBy(0);
+    }
 
+    protected boolean isLaunched() {
+        return getAngle() > LauncherConstants.MIN_DEGREES_FOR_LAUNCH;
+    }
 
 }
 
