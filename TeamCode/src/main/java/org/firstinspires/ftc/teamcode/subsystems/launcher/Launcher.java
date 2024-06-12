@@ -17,8 +17,7 @@ public class Launcher {
     }
 
     protected void setPower(double power) {
-        RobotHardwareMap.getInstance().servoLauncher.setRunMode(Motor.RunMode.RawPower);
-        RobotHardwareMap.getInstance().servoLauncher.set(power);
+        RobotHardwareMap.getInstance().servoLauncher.setPower(power);
     }
 
     public void launch() {
@@ -26,25 +25,17 @@ public class Launcher {
         isLaunched = true;
     }
 
-    public void betterLaunchTest() {
-        isLaunched = true;
-    }
-
-    public void resetEncoder() {
-        RobotHardwareMap.getInstance().servoLauncher.resetEncoder();
-    }
-
     protected boolean isLaunched() {
-        // return RobotHardwareMap.getInstance().servoLauncher.getDistance() > LauncherConstants.MIN_DISTANCE_FOR_LAUNCH; // check tomorrow WHAT_WE_USE
+//        return RobotHardwareMap.getInstance().servoLauncher.getDistance() > LauncherConstants.MIN_DISTANCE_FOR_LAUNCH; // check tomorrow WHAT_WE_USE
     return isLaunched;
     }
 
-    public double getDistance() {
-        return RobotHardwareMap.getInstance().servoLauncher.getDistance(); // check tomorrow WHAT_WE_USE
-    }
+//    public double getDistance() {
+//        return RobotHardwareMap.getInstance().servoLauncher.getDistance(); // check tomorrow WHAT_WE_USE
+//    }
 
     protected void stop() {
-        RobotHardwareMap.getInstance().servoLauncher.stop();
+        setPower(0);
     }
 
 

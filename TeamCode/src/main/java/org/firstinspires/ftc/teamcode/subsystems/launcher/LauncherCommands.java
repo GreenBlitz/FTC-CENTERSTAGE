@@ -5,9 +5,8 @@ import com.arcrobotics.ftclib.command.FunctionalCommand;
 public class LauncherCommands {
     public static void launchCommand() {
         new FunctionalCommand(
-                () -> {
-                },
-                () -> Launcher.getInstance().setPower(LauncherConstants.LAUNCH_POWER),
+                () -> {},
+                () -> Launcher.getInstance().launch(),
                 interrupt -> Launcher.getInstance().stop(),
                 () -> Launcher.getInstance().isLaunched()
         );
