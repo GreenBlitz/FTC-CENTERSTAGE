@@ -11,11 +11,11 @@ public class Raz extends OpMode {
 
     @Override
     public void init() {
-
+        MecanumChassis.getInstance().setDefaultCommand(ChassisCommands.getMoveByGamepad(gamepad1));
     }
 
     @Override
     public void loop() {
-        ChassisCommands.getMoveByGamepad(gamepad1).schedule();
+
     }
 }

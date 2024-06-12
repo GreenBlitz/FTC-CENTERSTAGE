@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.subsystems.chassis;
 
+import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.drivebase.MecanumDrive;
 import com.arcrobotics.ftclib.hardware.RevIMU;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
@@ -7,7 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.RobotHardwareMap;
 
-public class MecanumChassis {
+public class MecanumChassis extends SubsystemBase {
     private static MecanumChassis instance;
 
     private static MecanumDrive mecanumDrive;
@@ -19,7 +20,7 @@ public class MecanumChassis {
         return instance;
     }
 
-    public static void init(){
+    public static void init() {
         if (instance == null) {
             instance = new MecanumChassis();
             initIMU();
@@ -46,6 +47,5 @@ public class MecanumChassis {
     public static void initIMU() {
         imu.init();
     }
-
 
 }
