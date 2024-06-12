@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.subsystems.launcher;
 
 import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.motors.CRServo;
 
 import org.firstinspires.ftc.teamcode.RobotHardwareMap;
 
@@ -14,36 +15,25 @@ public class Launcher { // todo - do CRServo
         return instance;
     }
 
-    private ServoEx servoLauncher;
+    private CRServo servoLauncher;
 
     private Launcher() {
-        ServoEx servoLauncher = RobotHardwareMap.getInstance().servoLauncher;
-        servoLauncher.setPosition(LauncherConstants.START_POSITION_DEGREES);
+        CRServo servoLauncher = RobotHardwareMap.getInstance().servoLauncher;
+        servoLauncher.resetEncoder();
     }
 
-    // void launch
-    // double getPos
-    // boolean didLaunch
-
-    protected void rotateByAngle(double degrees) {
-        servoLauncher.rotateByAngle(degrees); // check tomorrow WHAT_WE_USE
+    protected void setPower(double power) {
+        servoLauncher.set(LauncherConstants.LAUNCH_POWER);
     }
 
-    protected void rotateToPosition(int position) {
-        servoLauncher.rotateBy(position); // check tomorrow whatweuse
-    }
-
-    protected double getAngle() {
-        return servoLauncher.getAngle(); // check tomorrow whatWeUse
+    protected boolean isLaunched(double power) {
+        return servoLauncher.getDistance() > LauncherConstants.MIN_DISTANCE_FOR_LAUNCH; // check tomorrow WHAT_WE_USE
     }
 
     protected void stop() {
-        servoLauncher.rotateBy(0);
+        servoLauncher.stop();
     }
 
-    protected boolean isLaunched() {
-        return getAngle() > LauncherConstants.MIN_DEGREES_FOR_LAUNCH;
-    }
 
 }
 

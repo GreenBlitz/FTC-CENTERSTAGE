@@ -6,7 +6,7 @@ public class LauncherCommands {
     public static FunctionalCommand launchCommand() {
         return new FunctionalCommand(
                 () -> {},
-                () -> Launcher.getInstance().rotateByAngle(LauncherConstants.DEGREES_FOR_LAUNCH),
+                () -> Launcher.getInstance().setPower(LauncherConstants.LAUNCH_POWER),
                 interrupt -> Launcher.getInstance().stop(),
                 () -> Launcher.getInstance().isLaunched()
         );

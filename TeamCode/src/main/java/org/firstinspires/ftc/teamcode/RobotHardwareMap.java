@@ -4,6 +4,7 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.har
 
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.subsystems.launcher.Launcher;
@@ -27,12 +28,10 @@ public class RobotHardwareMap {
 
 
     //add hardware...
-    public ServoEx servoLauncher;
+    public CRServo servoLauncher;
     public void initHardware(HardwareMap hardwareMap) {
         // init all hardware...
-        servoLauncher = new SimpleServo(
-                hardwareMap, LauncherConstants.SERVO_HARDWARE_NAME, LauncherConstants.MIN_DEGREE, LauncherConstants.MAX_DEGREE
-        );
+        CRServo m_motor_1 = new CRServo(hardwareMap, LauncherConstants.SERVO_HARDWARE_NAME);
     }
 
 
