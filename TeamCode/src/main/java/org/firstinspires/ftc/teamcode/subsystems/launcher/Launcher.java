@@ -7,7 +7,6 @@ import org.firstinspires.ftc.teamcode.RobotHardwareMap;
 
 public class Launcher {
     private static Launcher instance;
-    boolean isLaunched = false;
 
     public static Launcher getInstance() {
         if (instance == null) {
@@ -17,25 +16,24 @@ public class Launcher {
     }
 
     protected void setPower(double power) {
-        RobotHardwareMap.getInstance().servoLauncher.setPower(power);
+        RobotHardwareMap.getInstance().servoLauncher.set(power);
     }
 
     public void launch() {
         setPower(LauncherConstants.LAUNCH_POWER);
-        isLaunched = true;
     }
 
     protected boolean isLaunched() {
-//        return RobotHardwareMap.getInstance().servoLauncher.getDistance() > LauncherConstants.MIN_DISTANCE_FOR_LAUNCH; // check tomorrow WHAT_WE_USE
-    return isLaunched;
+        return RobotHardwareMap.getInstance().servoLauncher.atTargetPosition();
+
     }
 
-//    public double getDistance() {
-//        return RobotHardwareMap.getInstance().servoLauncher.getDistance(); // check tomorrow WHAT_WE_USE
-//    }
+    public double getDistance() {
+        return RobotHardwareMap.getInstance().servoLauncher.getDistance(); // check tomorrow WHAT_WE_USE
+    }
 
     protected void stop() {
-        setPower(0);
+        RobotHardwareMap.getInstance().servoLauncher.stop();
     }
 
 
