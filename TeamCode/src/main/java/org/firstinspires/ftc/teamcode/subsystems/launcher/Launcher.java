@@ -17,16 +17,21 @@ public class Launcher { // todo - do CRServo
 
     private CRServo servoLauncher;
 
-    private Launcher() {
-        CRServo servoLauncher = RobotHardwareMap.getInstance().servoLauncher;
+    public Launcher() {
+//        CRServo servoLauncher = RobotHardwareMap.getInstance().servoLauncher;
         servoLauncher.resetEncoder();
     }
 
     protected void setPower(double power) {
-        servoLauncher.set(LauncherConstants.LAUNCH_POWER);
+        servoLauncher.set(power);
     }
 
-    protected boolean isLaunched(double power) {
+    public void launch() {
+        setPower(LauncherConstants.LAUNCH_POWER);
+    }
+
+
+    protected boolean isLaunched() {
         return servoLauncher.getDistance() > LauncherConstants.MIN_DISTANCE_FOR_LAUNCH; // check tomorrow WHAT_WE_USE
     }
 
