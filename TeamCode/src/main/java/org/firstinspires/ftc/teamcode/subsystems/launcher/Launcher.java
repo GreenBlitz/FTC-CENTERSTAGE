@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode.subsystems.launcher;
 
-import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.CRServo;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 
 import org.firstinspires.ftc.teamcode.RobotHardwareMap;
 
-public class Launcher { // todo - do CRServo
+public class Launcher {
     private static Launcher instance;
+    boolean isLaunched = false;
 
     public static Launcher getInstance() {
         if (instance == null) {
@@ -15,28 +16,35 @@ public class Launcher { // todo - do CRServo
         return instance;
     }
 
-    private CRServo servoLauncher;
-
-    public Launcher() {
-//        CRServo servoLauncher = RobotHardwareMap.getInstance().servoLauncher;
-        servoLauncher.resetEncoder();
-    }
-
     protected void setPower(double power) {
-        servoLauncher.set(power);
+        RobotHardwareMap.getInstance().servoLauncher.setRunMode(Motor.RunMode.RawPower);
+        RobotHardwareMap.getInstance().servoLauncher.set(power);
     }
 
     public void launch() {
         setPower(LauncherConstants.LAUNCH_POWER);
+        isLaunched = true;
     }
 
+    public void betterLaunchTest() {
+        isLaunched = true;
+    }
+
+    public void resetEncoder() {
+        RobotHardwareMap.getInstance().servoLauncher.resetEncoder();
+    }
 
     protected boolean isLaunched() {
-        return servoLauncher.getDistance() > LauncherConstants.MIN_DISTANCE_FOR_LAUNCH; // check tomorrow WHAT_WE_USE
+        // return RobotHardwareMap.getInstance().servoLauncher.getDistance() > LauncherConstants.MIN_DISTANCE_FOR_LAUNCH; // check tomorrow WHAT_WE_USE
+    return isLaunched;
+    }
+
+    public double getDistance() {
+        return RobotHardwareMap.getInstance().servoLauncher.getDistance(); // check tomorrow WHAT_WE_USE
     }
 
     protected void stop() {
-        servoLauncher.stop();
+        RobotHardwareMap.getInstance().servoLauncher.stop();
     }
 
 

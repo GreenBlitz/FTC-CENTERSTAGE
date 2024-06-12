@@ -24,9 +24,10 @@ public class RobotHardwareMap {
 
     //add hardware...
     public CRServo servoLauncher;
+
     public void initHardware(HardwareMap hardwareMap) {
         // init all hardware...
-        servoLauncher  = new CRServo(hardwareMap, LauncherConstants.SERVO_HARDWARE_NAME);
+        servoLauncher = new CRServo(hardwareMap, LauncherConstants.SERVO_HARDWARE_NAME);
     }
 
 

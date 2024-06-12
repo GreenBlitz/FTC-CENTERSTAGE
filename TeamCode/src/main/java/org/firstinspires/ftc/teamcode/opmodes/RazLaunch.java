@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
+import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -12,18 +13,19 @@ public class RazLaunch extends OpMode {
 
     @Override
     public void init() {
+        System.out.println(new CRServo(hardwareMap, "launcher_servo").get());
         RobotHardwareMap.init(hardwareMap);
-
     }
 
     @Override
     public void loop() {
+        Launcher.getInstance().launch();
 
         if (gamepad1.dpad_up){
             LauncherCommands.launchCommand();
         }
 
-        if (gamepad1.x){
+        if (gamepad1.cross){
             Launcher.getInstance().launch();
         }
 
