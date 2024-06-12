@@ -18,7 +18,7 @@ public class Launcher {
 
 
     protected static void setPosition(double position) {
-        RobotHardwareMap.getInstance().servoLauncher.setPosition(double);
+        RobotHardwareMap.getInstance().servoLauncher.setPosition(position);
     }
 
     protected static void resetPosition() {
