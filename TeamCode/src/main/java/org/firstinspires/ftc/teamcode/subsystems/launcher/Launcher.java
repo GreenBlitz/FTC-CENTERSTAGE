@@ -11,37 +11,27 @@ public class Launcher {
     public static Launcher getInstance() {
         if (instance == null) {
             instance = new Launcher();
+            resetPosition();
         }
         return instance;
     }
 
-    protected void setPower(double power) {
-        RobotHardwareMap.getInstance().servoLauncher.set(power);
+
+    protected static void setPosition(double position) {
+        RobotHardwareMap.getInstance().servoLauncher.setPosition(double);
+    }
+
+    protected static void resetPosition() {
+        setPosition(0);
     }
 
     public void launch() {
-        setPower(LauncherConstants.LAUNCH_POWER);
-        RobotHardwareMap.getInstance().servoLauncher.setTargetPosition(90);
-
+        setPosition(LauncherConstants.MAXIMUM_ANGLE);
     }
 
     protected boolean isLaunched() {
-        return RobotHardwareMap.getInstance().servoLauncher.atTargetPosition();
+        return RobotHardwareMap.getInstance().servoLauncher.getAngle() > LauncherConstants.MIN_DISTANCE_FOR_LAUNCH;
     }
-
-    protected boolean atTargetPosition() {
-        return RobotHardwareMap.getInstance().servoLauncher.atTargetPosition();
-    }
-
-    public double getDistance() {
-        return RobotHardwareMap.getInstance().servoLauncher.getDistance(); // check tomorrow WHAT_WE_USE
-    }
-
-    protected void stop() {
-        RobotHardwareMap.getInstance().servoLauncher.stop();
-    }
-
-
 }
 
 

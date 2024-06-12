@@ -7,8 +7,8 @@ public class LauncherCommands {
         return new FunctionalCommand(
                 () -> {},
                 () -> Launcher.getInstance().launch(),
-                interrupt -> Launcher.getInstance().stop(),
-                () -> Launcher.getInstance().atTargetPosition()//todo - fix
+                interrupt -> {},
+                () -> Launcher.getInstance().isLaunched() //todo - test
         );
     }
 }

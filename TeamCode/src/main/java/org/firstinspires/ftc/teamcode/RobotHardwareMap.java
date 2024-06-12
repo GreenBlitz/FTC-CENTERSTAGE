@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.arcrobotics.ftclib.hardware.motors.CRServo;
@@ -25,14 +27,13 @@ public class RobotHardwareMap {
 
 
     //add hardware...
-    public CRServo servoLauncher;
+    public ServoEx servoLauncher;
 
 
     public void initHardware(HardwareMap hardwareMap) {
         // init all hardware...
        //  servoLauncher = hardwareMap.crservo.get(LauncherConstants.SERVO_HARDWARE_NAME);
-        servoLauncher = new CRServo(hardwareMap, LauncherConstants.SERVO_HARDWARE_NAME);
-
+        servoLauncher = new SimpleServo(hardwareMap, LauncherConstants.SERVO_HARDWARE_NAME,LauncherConstants.MINIMUM_ANGLE,LauncherConstants.MAXIMUM_ANGLE);
     }
 
 
