@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import org.firstinspires.ftc.teamcode.RobotHardwareMap;
 
 public abstract class DefaultRaz extends OpMode {
+
     @Override
     public void init() {
         RobotHardwareMap.init(hardwareMap);
@@ -18,4 +19,5 @@ public abstract class DefaultRaz extends OpMode {
     }
 
     public abstract void configureBindings();
+
 }
