@@ -1,16 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
-
-import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.SimpleServo;
-import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.CRServoImpl;
-import com.qualcomm.robotcore.hardware.CRServoImplEx;
+import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.ServoController;
 
-import org.firstinspires.ftc.teamcode.subsystems.launcher.Launcher;
 import org.firstinspires.ftc.teamcode.subsystems.launcher.LauncherConstants;
 
 public class RobotHardwareMap {
@@ -34,8 +26,7 @@ public class RobotHardwareMap {
     public CRServo servoLauncher;
     public void initHardware(HardwareMap hardwareMap) {
         // init all hardware...
-        CRServo m_motor_1 = new CRServo() {
-        };
+        servoLauncher  = new CRServo(hardwareMap, LauncherConstants.SERVO_HARDWARE_NAME);
     }
 
 
