@@ -8,16 +8,22 @@ import org.firstinspires.ftc.teamcode.RobotHardwareMap;
 public abstract class DefaultRaz extends OpMode {
 
     @Override
-    public void init() {
+    public final void init() {
         RobotHardwareMap.init(hardwareMap);
         configureBindings();
+        initialize();
     }
 
     @Override
-    public void loop() {
+    public final void loop() {
         CommandScheduler.getInstance().run();
+        execute();
     }
 
+
+    public abstract void initialize();
+    public abstract void execute();
     public abstract void configureBindings();
+
 
 }
