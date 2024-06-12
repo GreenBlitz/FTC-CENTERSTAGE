@@ -21,11 +21,16 @@ public class Launcher {
 
     public void launch() {
         setPower(LauncherConstants.LAUNCH_POWER);
+        RobotHardwareMap.getInstance().servoLauncher.setTargetPosition(90);
+
     }
 
     protected boolean isLaunched() {
         return RobotHardwareMap.getInstance().servoLauncher.atTargetPosition();
+    }
 
+    protected boolean atTargetPosition() {
+        return RobotHardwareMap.getInstance().servoLauncher.atTargetPosition();
     }
 
     public double getDistance() {

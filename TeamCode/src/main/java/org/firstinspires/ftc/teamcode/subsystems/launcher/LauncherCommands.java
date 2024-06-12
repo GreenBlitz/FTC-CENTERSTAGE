@@ -8,7 +8,7 @@ public class LauncherCommands {
                 () -> {},
                 () -> Launcher.getInstance().launch(),
                 interrupt -> Launcher.getInstance().stop(),
-                () -> Launcher.getInstance().isLaunched()//todo - fix
+                () -> Launcher.getInstance().atTargetPosition()//todo - fix
         );
     }
 }
