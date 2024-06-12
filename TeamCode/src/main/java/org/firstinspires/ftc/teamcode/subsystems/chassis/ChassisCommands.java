@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 public class ChassisCommands {
 
     public static Command getMoveByGamepad(Gamepad usedGamepad) {
-        double rightSpeed = usedGamepad.left_stick_x;
+        double strafeSpeed = usedGamepad.left_stick_x;
         double forwardSpeed = -usedGamepad.left_stick_y;
         double theta = usedGamepad.right_stick_x;
 
@@ -16,7 +16,7 @@ public class ChassisCommands {
                 MecanumChassis.getInstance().resetHeading();
             }
 
-            MecanumChassis.getInstance().fieldCentricDrive(rightSpeed, forwardSpeed, theta);
+            MecanumChassis.getInstance().fieldCentricDrive(strafeSpeed, forwardSpeed, theta);
         });
     }
 }

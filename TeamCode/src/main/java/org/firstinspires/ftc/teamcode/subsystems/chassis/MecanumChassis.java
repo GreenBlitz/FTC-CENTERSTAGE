@@ -32,12 +32,12 @@ public class MecanumChassis extends SubsystemBase {
         imu = RobotHardwareMap.getInstance().imu;
     }
 
-    public void fieldCentricDrive(double rightSpeed, double forwardSpeed, double theta) {
-        mecanumDrive.driveFieldCentric(rightSpeed, forwardSpeed, theta, imu.getRotation2d().getDegrees());
+    public void fieldCentricDrive(double strafeSpeed, double forwardSpeed, double theta) {
+        mecanumDrive.driveFieldCentric(strafeSpeed, forwardSpeed, theta, imu.getRotation2d().getDegrees());
     }
 
-    public void robotCentricDrive(double rightSpeed, double forwardSpeed, double theta) {
-        mecanumDrive.driveRobotCentric(rightSpeed, forwardSpeed, theta);
+    public void robotCentricDrive(double strafeSpeed, double forwardSpeed, double theta) {
+        mecanumDrive.driveRobotCentric(strafeSpeed, forwardSpeed, theta);
     }
 
     public void resetHeading() {
