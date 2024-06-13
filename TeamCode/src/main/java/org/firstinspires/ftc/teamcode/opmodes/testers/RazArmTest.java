@@ -20,6 +20,6 @@ public class RazArmTest extends DefaultRaz {
 
     @Override
     public void configureBindings() {
-        Bindings.razArmBindings(gamepad1, gamepad2);
+        Bindings.razArmTestBindings(gamepad1, gamepad2);
     }
 }

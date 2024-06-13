@@ -4,7 +4,7 @@ public enum ArmState {
 
     PICK_UP(-2350),
     STARTING(0),
-    STOP(187),
+    STOP(777),
     SCORE(100);
 
     public final int ticks;
