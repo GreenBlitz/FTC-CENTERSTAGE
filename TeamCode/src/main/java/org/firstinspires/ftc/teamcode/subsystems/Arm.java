@@ -1,10 +1,8 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 import org.firstinspires.ftc.teamcode.RobotHardwareMap;
 
@@ -27,22 +25,30 @@ public class Arm extends SubsystemBase {
         this.motor = RobotHardwareMap.getInstance().armMotor;
         this.currentState = ArmState.STARTING;
         this.currentOutput = 0;
+        configMotor();
+    }
 
+    private void configMotor() {
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor.setTargetPositionTolerance(ArmConstants.POSITION_TOLERANCE_TICKS);
-        motor.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, new PIDFCoefficients(ArmConstants.KP, 0.0, 0.0, 0.0));
+        motor.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, ArmConstants.PID_COEFFICIENTS);
         motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     public void setState(ArmState targetState) {
         currentState = targetState;
-        if (targetState == ArmState.STOP) {
-            motor.setTargetPosition(motor.getCurrentPosition());
-        } else {
-            motor.setTargetPosition(targetState.ticks);
-        }
+        setTargetPositionByState();
+
         motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         currentOutput = motor.getPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION).p;
+    }
+
+    private void setTargetPositionByState() {
+        if (currentState == ArmState.STOP) {
+            motor.setTargetPosition(motor.getCurrentPosition());
+        } else {
+            motor.setTargetPosition(currentState.ticks);
+        }
     }
 
     public void setPower(double power) {
@@ -51,7 +57,9 @@ public class Arm extends SubsystemBase {
     }
 
     public boolean isAtState() {
-        return Math.abs(motor.getTargetPosition() - motor.getCurrentPosition()) < ArmConstants.POSITION_TOLERANCE_TICKS;
+        boolean isStopping = motor.getVelocity() <= ArmConstants.VELOCITY_DEADBAND_TICKS_PER_SECOND;
+        boolean isAtPosition = Math.abs(motor.getTargetPosition() - motor.getCurrentPosition()) <= ArmConstants.POSITION_TOLERANCE_TICKS;
+        return isAtPosition && isStopping;
     }
 
     @Override
