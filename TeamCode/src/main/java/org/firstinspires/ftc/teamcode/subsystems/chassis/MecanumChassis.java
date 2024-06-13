@@ -11,9 +11,9 @@ import org.firstinspires.ftc.teamcode.RobotHardwareMap;
 public class MecanumChassis extends SubsystemBase {
     private static MecanumChassis instance;
 
-    private static MecanumDrive mecanumDrive;
+    private final MecanumDrive mecanumDrive;
 
-    private static RevIMU imu;
+    private final RevIMU imu;
 
     public static MecanumChassis getInstance() {
         init();
@@ -23,7 +23,7 @@ public class MecanumChassis extends SubsystemBase {
     public static void init() {
         if (instance == null) {
             instance = new MecanumChassis();
-            initIMU();
+            instance.initIMU();
         }
     }
 
@@ -44,7 +44,7 @@ public class MecanumChassis extends SubsystemBase {
         imu.reset();
     }
 
-    public static void initIMU() {
+    public void initIMU() {
         imu.init();
     }
 

@@ -4,16 +4,17 @@ import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.RunCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
-import com.qualcomm.robotcore.hardware.Gamepad;
+
+import java.util.function.Supplier;
 
 public class ChassisCommands {
 
-    public static Command getMoveByGamepad(GamepadEx usedGamepad) {
+    public static Command getFieldCentricDrive(Supplier<Double> strafeSpeedSupplier, Supplier<Double> forwardSpeedSupplier, Supplier<Double> thetaSupplier) {
         return new RunCommand(
                 () -> {
-                    double strafeSpeed = usedGamepad.getLeftX();
-                    double forwardSpeed = -usedGamepad.getLeftY();
-                    double theta = usedGamepad.getRightX();
+                    double strafeSpeed = strafeSpeedSupplier.get();
+                    double forwardSpeed = forwardSpeedSupplier.get();
+                    double theta = thetaSupplier.get();
                     MecanumChassis.getInstance().fieldCentricDrive(strafeSpeed, forwardSpeed, theta);
                 },
                 MecanumChassis.getInstance()

@@ -17,7 +17,7 @@ public class Bindings {
         SECOND_GAMEPAD = new GamepadEx(gamepad2);
 
 
-        MecanumChassis.getInstance().setDefaultCommand(ChassisCommands.getMoveByGamepad(MAIN_GAMEPAD));
+        MecanumChassis.getInstance().setDefaultCommand(ChassisCommands.getFieldCentricDrive(() -> MAIN_GAMEPAD.getLeftX(), () -> -MAIN_GAMEPAD.getLeftY(), () -> -MAIN_GAMEPAD.getRightX()));
         MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.getResetHeading());
     }
 
