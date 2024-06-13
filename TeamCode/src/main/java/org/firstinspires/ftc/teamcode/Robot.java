@@ -6,7 +6,6 @@ public class Robot {
 
     private static Robot instance;
 
-
     public static void init(HardwareMap hardwareMap) {
         getInstance().initSubsystems(hardwareMap);
     }
@@ -18,12 +17,10 @@ public class Robot {
         return instance;
     }
 
-
     //add subsystems...
 
     public void initSubsystems(HardwareMap hardwareMap) {
         // init all subsystems...
     }
-
 
 }
