@@ -15,7 +15,7 @@ public class Wrist {
         return instance;
     }
 
-    private ServoEx servoWrist;
+    private final ServoEx servoWrist;
     public WristState currentState;
 
     private Wrist(){
@@ -27,8 +27,8 @@ public class Wrist {
         servoWrist.turnToAngle(currentState.positionDegrees);
     }
 
-    public boolean isAtTargetPosition(WristState targetPosition){
-        return Math.abs(targetPosition.positionDegrees - servoWrist.getAngle()) < WristConstants.POSITION_TOLERANCE;
+    public boolean isAtTargetState(WristState targetState){
+        return Math.abs(targetState.positionDegrees - servoWrist.getAngle()) < WristConstants.POSITION_TOLERANCE_DEGREES;
     }
 
     public void stop(){

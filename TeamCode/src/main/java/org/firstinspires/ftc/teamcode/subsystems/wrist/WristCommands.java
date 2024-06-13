@@ -1,19 +1,17 @@
 package org.firstinspires.ftc.teamcode.subsystems.wrist;
 
-import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.FunctionalCommand;
-import com.arcrobotics.ftclib.command.InstantCommand;
+import com.arcrobotics.ftclib.command.Subsystem;
 
 public class WristCommands {
 
-    public static Command getMoveToPositionCommand(WristState position){
-
+    public static FunctionalCommand getMoveToPositionCommand(WristState state){
         return new FunctionalCommand(
-                () -> Wrist.getInstance().setState(position),
+                () -> Wrist.getInstance().setState(state),
                 () -> {},
                 interrupt -> Wrist.getInstance().stop(),
-                () -> Wrist.getInstance().isAtTargetPosition(position),
-                null
+                () -> Wrist.getInstance().isAtTargetState(state),
+
         );
     }
 }
