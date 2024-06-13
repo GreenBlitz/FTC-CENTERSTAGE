@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.subsystems;
+package org.firstinspires.ftc.teamcode.subsystems.arm;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDController;
@@ -54,7 +54,7 @@ public class Arm extends SubsystemBase {
         motor.setPower(power);
     }
 
-    public void telemtry(Telemetry telemetry){
+    public void telemetry(Telemetry telemetry){
         telemetry.addData("Current Power", motor.getPower());
         telemetry.addData("Current State", currentState);
         telemetry.addData("Is At State", isAtState());

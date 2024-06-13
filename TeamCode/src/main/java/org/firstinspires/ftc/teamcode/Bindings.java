@@ -1,14 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.subsystems.ArmCommands;
-import org.firstinspires.ftc.teamcode.subsystems.ArmState;
-
-import kotlin.jvm.Throws;
+import org.firstinspires.ftc.teamcode.subsystems.arm.ArmCommands;
+import org.firstinspires.ftc.teamcode.subsystems.arm.ArmState;
 
 public class Bindings {
 
