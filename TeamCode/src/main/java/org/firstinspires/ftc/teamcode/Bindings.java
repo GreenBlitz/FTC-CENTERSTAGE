@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.teamcode.subsystems.launcher.Launcher;
 import org.firstinspires.ftc.teamcode.subsystems.launcher.LauncherCommands;
 
 
@@ -19,6 +20,8 @@ public class Bindings {
         SECOND_GAMEPAD = new GamepadEx(gamepad2);
 
         MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.A).whenPressed(LauncherCommands.launchCommand());
+
+
     }
 
 }

@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.subsystems.launcher;
 
-import com.arcrobotics.ftclib.hardware.motors.CRServo;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
+import com.arcrobotics.ftclib.command.Command;
 
 import org.firstinspires.ftc.teamcode.RobotHardwareMap;
 
@@ -21,82 +20,22 @@ public class Launcher {
         RobotHardwareMap.getInstance().servoLauncher.setPosition(position);
     }
 
-    protected static void resetPosition() {
-        setPosition(0);
+
+    public static void rotateByAngle(double degrees) {
+        RobotHardwareMap.getInstance().servoLauncher.rotateByAngle(degrees);
     }
 
-    public void launch() {
-        setPosition(LauncherConstants.MAXIMUM_ANGLE);
+    public static Command resetPosition() {
+        setPosition(0);
+        return null;
+    }
+
+    public static Command launch() {
+        setPosition(LauncherConstants.POSITION_FOR_LAUNCH);
+        return null;
     }
 
     protected boolean isLaunched() {
-        return RobotHardwareMap.getInstance().servoLauncher.getAngle() > LauncherConstants.MIN_DISTANCE_FOR_LAUNCH;
+        return RobotHardwareMap.getInstance().servoLauncher.getPosition() > LauncherConstants.MIN_POSITION_FOR_LAUNCH;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
