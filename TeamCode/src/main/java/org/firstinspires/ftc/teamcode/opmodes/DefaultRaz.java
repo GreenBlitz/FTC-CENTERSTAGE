@@ -4,13 +4,13 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.RobotHardwareMap;
+import org.firstinspires.ftc.teamcode.Robot;
 
 public abstract class DefaultRaz extends OpMode {
 
     @Override
     public final void init() {
-        RobotHardwareMap.init(hardwareMap);
+        Robot.init(hardwareMap);
         configureBindings();
         initialize();
     }

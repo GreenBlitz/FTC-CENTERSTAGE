@@ -1,9 +1,6 @@
 package org.firstinspires.ftc.teamcode.subsystems.claw;
 
-import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.qualcomm.robotcore.hardware.Servo;
-
-import org.firstinspires.ftc.teamcode.RobotHardwareMap;
 
 public class Finger {
     public boolean isOpen;
@@ -17,35 +14,29 @@ public class Finger {
         this.fingerClosePosition = fingerClosePosition;
     }
 
-    public void setPosition(double position) {
+    private void setPosition(double position) {
         fingerServo.setPosition(position);
     }
 
-    public void reverseClawDirection() {
-        fingerServo.setDirection(Servo.Direction.REVERSE);
-    }
-
-    public void openClaw() {
+    protected void openClaw() {
         setPosition(fingerOpenPosition);
         isOpen = true;
     }
 
-    public void closeClaw(
-    ) {
-        reverseClawDirection();
+    protected void closeClaw() {
         setPosition(fingerClosePosition);
         isOpen = false;
     }
 
     public void toggleClaw() {
-        if (isOpen == true) {
+        if (isOpen) {
             closeClaw();
         } else {
             openClaw();
         }
-
     }
- public void switchServo(Servo fingerServo, double fingerOpenPosition, double fingerClosePosition) {
+
+    public void switchServo(Servo fingerServo, double fingerOpenPosition, double fingerClosePosition) {
         this.fingerServo = fingerServo;
         this.fingerOpenPosition = fingerOpenPosition;
         this.fingerClosePosition = fingerClosePosition;
