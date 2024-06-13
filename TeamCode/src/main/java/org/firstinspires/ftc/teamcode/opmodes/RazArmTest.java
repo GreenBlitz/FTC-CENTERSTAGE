@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Bindings;
+import org.firstinspires.ftc.teamcode.Robot;
 
 @TeleOp(name = "RazArm")
 public class RazArmTest extends DefaultRaz {
@@ -13,7 +14,7 @@ public class RazArmTest extends DefaultRaz {
 
     @Override
     public void execute() {
-
+        Robot.getInstance().ARM.telemtry(telemetry);
     }
 
     @Override

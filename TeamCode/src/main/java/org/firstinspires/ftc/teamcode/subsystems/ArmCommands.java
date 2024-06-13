@@ -17,8 +17,4 @@ public class ArmCommands {
         );
     }
 
-    public static InstantCommand setPower(double power) {
-        return new InstantCommand(() -> Robot.getInstance().ARM.setPower(power));
-    }
-
 }

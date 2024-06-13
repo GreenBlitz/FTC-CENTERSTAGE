@@ -19,13 +19,9 @@ public class Bindings {
         MAIN_GAMEPAD = new GamepadEx(gamepad1);
 
         MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(ArmCommands.goToState(ArmState.STOP));
-        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whileHeld(ArmCommands.goToState(ArmState.SCORE).andThen(
-                new InstantCommand(() -> {
-                    throw new RuntimeException();
-                })
-        ));
-        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whileHeld(ArmCommands.goToState(ArmState.STARTING));
-        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.DPAD_UP).whileHeld(ArmCommands.goToState(ArmState.PICK_UP));
+        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(ArmCommands.goToState(ArmState.SCORE));
+        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(ArmCommands.goToState(ArmState.STARTING));
+        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(ArmCommands.goToState(ArmState.PICK_UP));
     }
 
 }

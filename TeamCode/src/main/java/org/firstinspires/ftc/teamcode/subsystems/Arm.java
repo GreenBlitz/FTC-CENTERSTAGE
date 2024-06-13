@@ -1,64 +1,65 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 public class Arm extends SubsystemBase {
     private final DcMotorEx motor;
+    private final PIDController pidController;
     private ArmState currentState;
-    private double currentOutput;
 
     public Arm(HardwareMap hardwareMap) {
         this.motor = hardwareMap.get(DcMotorEx.class, ArmConstants.ARM_MOTOR_ID);
         this.currentState = ArmState.STARTING;
-        this.currentOutput = 0;
+        this.pidController = ArmConstants.PID_CONTROLLER;
         configMotor();
+        configPidController();
+    }
+
+    private void configPidController(){
+        pidController.setTolerance(ArmConstants.POSITION_TOLERANCE_TICKS, ArmConstants.VELOCITY_DEADBAND_TICKS_PER_SECOND);
     }
 
     private void configMotor() {
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        motor.setTargetPositionTolerance(ArmConstants.POSITION_TOLERANCE_TICKS);
-        motor.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, ArmConstants.PID_COEFFICIENTS);
         motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     public void setState(ArmState targetState) {
         currentState = targetState;
-        setTargetPositionByState();
-
-        motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        currentOutput = motor.getPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION).p;
+        updateTargetByState();
     }
 
-    private void setTargetPositionByState() {
+    private void updateTargetByState() {
         if (currentState == ArmState.STOP) {
-            motor.setTargetPosition(motor.getCurrentPosition());
+            pidController.setSetPoint(motor.getCurrentPosition());
         } else {
-            motor.setTargetPosition(currentState.ticks);
+            pidController.setSetPoint(currentState.ticks);
         }
     }
 
-    public void setPower(double power) {
-        motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        currentOutput = power;
-    }
-
     public boolean isAtState() {
-        boolean isStopping = motor.getVelocity() <= ArmConstants.VELOCITY_DEADBAND_TICKS_PER_SECOND;
-        boolean isAtPosition = Math.abs(motor.getTargetPosition() - motor.getCurrentPosition()) <= ArmConstants.POSITION_TOLERANCE_TICKS;
-        return isAtPosition && isStopping;
+        return pidController.atSetPoint();
     }
 
     @Override
     public void periodic() {
-        if (motor.getMode() == DcMotor.RunMode.RUN_TO_POSITION) {
-            double sign = Math.signum(motor.getTargetPosition() - motor.getCurrentPosition());
-            double error = Math.abs(motor.getTargetPosition() - motor.getCurrentPosition());
-            motor.setPower(sign * error * currentOutput);
-        } else {
-            motor.setPower(currentOutput);
-        }
+        double power = pidController.calculate(motor.getCurrentPosition());
+        motor.setPower(power);
+    }
+
+    public void telemtry(Telemetry telemetry){
+        telemetry.addData("Current Power", motor.getPower());
+        telemetry.addData("Current State", currentState);
+        telemetry.addData("Is At State", isAtState());
+        telemetry.addData("ERROR", pidController.getPositionError());
+        telemetry.addData("Current Position", motor.getCurrentPosition());
+        telemetry.addData("Target Position", pidController.getSetPoint());
     }
 }
