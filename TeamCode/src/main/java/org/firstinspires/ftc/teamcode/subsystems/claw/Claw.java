@@ -6,6 +6,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Robot;
 
 public class Claw {
+
     private Finger rightFinger;
     private Finger leftFinger;
 

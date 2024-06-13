@@ -18,15 +18,10 @@ public abstract class DefaultRaz extends OpMode {
     public final void loop() {
         CommandScheduler.getInstance().run();
         execute();
-
     }
 
-
     public abstract void initialize();
-
     public abstract void execute();
-
     public abstract void configureBindings();
-
 
 }

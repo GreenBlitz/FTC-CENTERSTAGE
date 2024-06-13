@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.subsystems.claw;
 import com.qualcomm.robotcore.hardware.Servo;
 
 class Finger {
+
     private final double fingerOpenPosition;
     private final double fingerClosePosition;
     private final Servo fingerServo;
@@ -36,7 +37,7 @@ class Finger {
         }
     }
 
-    public boolean isOpen() {
+    protected boolean isOpen() {
         return isOpen;
     }
 }
