@@ -15,12 +15,10 @@ public class Bindings {
         MAIN_GAMEPAD = new GamepadEx(gamepad1);
         SECOND_GAMEPAD = new GamepadEx(gamepad2);
 
-        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.A).whenPressed(ClawCommands.toggleClawCommand);
-        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(ClawCommands.toggleRightFingerCommand);
-        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(ClawCommands.toggleLeftFingerCommand);
-        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ClawCommands.switchClawsCommand);
-
-
+        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.B).whenPressed(ClawCommands.toggleRightFingerCommand);
+        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.X).whenPressed(ClawCommands.toggleLeftFingerCommand);
+        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.A).whenPressed(ClawCommands.openBothFingersCommand);
+        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ClawCommands.closeBothFingersCommand);
     }
 
 }

@@ -35,10 +35,4 @@ public class Finger {
             openClaw();
         }
     }
-
-    public void switchServo(Servo fingerServo, double fingerOpenPosition, double fingerClosePosition) {
-        this.fingerServo = fingerServo;
-        this.fingerOpenPosition = fingerOpenPosition;
-        this.fingerClosePosition = fingerClosePosition;
-    }
 }
