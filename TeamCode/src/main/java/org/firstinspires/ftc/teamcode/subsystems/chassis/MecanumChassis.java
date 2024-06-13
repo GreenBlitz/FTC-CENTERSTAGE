@@ -3,47 +3,36 @@ package org.firstinspires.ftc.teamcode.subsystems.chassis;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.drivebase.MecanumDrive;
 import com.arcrobotics.ftclib.hardware.RevIMU;
-
-import org.firstinspires.ftc.teamcode.Robot;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class MecanumChassis extends SubsystemBase {
-    private static MecanumChassis instance;
 
     private final MecanumDrive mecanumDrive;
 
     private final RevIMU imu;
 
-    public static MecanumChassis getInstance() {
-        init();
-        return instance;
+    public MecanumChassis(HardwareMap hardwareMap) {
+        Motor frontLeft = new Motor(hardwareMap, ChassisConstants.FRONT_LEFT_ID);
+        Motor frontRight = new Motor(hardwareMap, ChassisConstants.FRONT_RIGHT_ID);
+        Motor backLeft = new Motor(hardwareMap, ChassisConstants.BACK_LEFT_ID);
+        Motor backRight = new Motor(hardwareMap, ChassisConstants.BACK_RIGHT_ID);
+
+        this.mecanumDrive = new MecanumDrive(frontLeft, frontRight, backLeft, backRight);
+        this.imu = new RevIMU(hardwareMap);
+        imu.init();
     }
 
-    public static void init() {
-        if (instance == null) {
-            instance = new MecanumChassis();
-            instance.initIMU();
-        }
+    public void fieldCentricDrive(double strafeSpeed, double forwardSpeed, double turnSpeed) {
+        mecanumDrive.driveFieldCentric(strafeSpeed, forwardSpeed, turnSpeed, imu.getRotation2d().getDegrees());
     }
 
-    private MecanumChassis() {
-        mecanumDrive = new MecanumDrive(Robot.getInstance().frontLeft, Robot.getInstance().frontRight, Robot.getInstance().backLeft, Robot.getInstance().backRight);
-        imu = Robot.getInstance().imu;
-    }
-
-    public void fieldCentricDrive(double strafeSpeed, double forwardSpeed, double theta) {
-        mecanumDrive.driveFieldCentric(strafeSpeed, forwardSpeed, theta, imu.getRotation2d().getDegrees());
-    }
-
-    public void robotCentricDrive(double strafeSpeed, double forwardSpeed, double theta) {
-        mecanumDrive.driveRobotCentric(strafeSpeed, forwardSpeed, theta);
+    public void robotCentricDrive(double strafeSpeed, double forwardSpeed, double turnSpeed) {
+        mecanumDrive.driveRobotCentric(strafeSpeed, forwardSpeed, turnSpeed);
     }
 
     public void resetHeading() {
         imu.reset();
-    }
-
-    public void initIMU() {
-        imu.init();
     }
 
 }

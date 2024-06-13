@@ -1,14 +1,11 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
-import com.arcrobotics.ftclib.command.CommandScheduler;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Bindings;
-import org.firstinspires.ftc.teamcode.RobotHardwareMap;
 
-@TeleOp(name = "Raz")
-public class Raz extends DefaultRaz {
+@TeleOp(name = "RazDrive")
+public class RazDrive extends DefaultRaz {
 
     @Override
     public void initialize() {
