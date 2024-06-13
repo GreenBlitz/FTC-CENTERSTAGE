@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Arm extends SubsystemBase {
+
     private final DcMotorEx motor;
     private final PIDController pidController;
     private ArmState currentState;
@@ -21,15 +22,16 @@ public class Arm extends SubsystemBase {
         configPidController();
     }
 
-    private void configPidController(){
-        pidController.setTolerance(ArmConstants.POSITION_TOLERANCE_TICKS, ArmConstants.VELOCITY_DEADBAND_TICKS_PER_SECOND);
-    }
-
     private void configMotor() {
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
+
+    private void configPidController() {
+        pidController.setTolerance(ArmConstants.POSITION_TOLERANCE_TICKS, ArmConstants.VELOCITY_DEADBAND_TICKS_PER_SECOND);
+    }
+
 
     public void setState(ArmState targetState) {
         currentState = targetState;
@@ -54,7 +56,7 @@ public class Arm extends SubsystemBase {
         motor.setPower(power);
     }
 
-    public void telemetry(Telemetry telemetry){
+    public void telemetry(Telemetry telemetry) {
         telemetry.addData("Current Power", motor.getPower());
         telemetry.addData("Current State", currentState);
         telemetry.addData("Is At State", isAtState());

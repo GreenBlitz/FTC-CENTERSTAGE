@@ -1,11 +1,12 @@
-package org.firstinspires.ftc.teamcode.opmodes;
+package org.firstinspires.ftc.teamcode.opmodes.testers;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Bindings;
 import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 
-@TeleOp(name = "RazArm")
+@TeleOp(name = "Raz Arm Test")
 public class RazArmTest extends DefaultRaz {
     @Override
     public void initialize() {
@@ -14,7 +15,7 @@ public class RazArmTest extends DefaultRaz {
 
     @Override
     public void execute() {
-        Robot.getInstance().ARM.telemetry(telemetry);
+        Robot.getInstance().ARM.telemetry(telemetry);//todo - use dashboard
     }
 
     @Override
