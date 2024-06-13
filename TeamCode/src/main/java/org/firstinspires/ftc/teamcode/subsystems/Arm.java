@@ -3,26 +3,15 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-
-import org.firstinspires.ftc.teamcode.RobotHardwareMap;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Arm extends SubsystemBase {
-
-    private static Arm instance;
-
-    public static Arm getInstance() {
-        if (instance == null) {
-            instance = new Arm();
-        }
-        return instance;
-    }
-
     private final DcMotorEx motor;
     private ArmState currentState;
     private double currentOutput;
 
-    private Arm() {
-        this.motor = RobotHardwareMap.getInstance().armMotor;
+    public Arm(HardwareMap hardwareMap) {
+        this.motor = hardwareMap.get(DcMotorEx.class, ArmConstants.ARM_MOTOR_ID);
         this.currentState = ArmState.STARTING;
         this.currentOutput = 0;
         configMotor();
