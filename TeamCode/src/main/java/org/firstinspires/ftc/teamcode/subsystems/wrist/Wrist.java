@@ -1,25 +1,22 @@
 package org.firstinspires.ftc.teamcode.subsystems.wrist;
 
+import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.SimpleServo;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.RobotHardwareMap;
-
-public class Wrist {
-
-    private static Wrist instance;
-
-    public static Wrist getInstance() {
-        if (instance == null) {
-            instance = new Wrist();
-        }
-        return instance;
-    }
+public class Wrist extends SubsystemBase {
 
     private final ServoEx servoWrist;
     public WristState currentState;
 
-    private Wrist(){
-        servoWrist = RobotHardwareMap.getInstance().servoWrist;
+    public Wrist(HardwareMap hardwareMap){
+        this.servoWrist = new SimpleServo(
+                hardwareMap,
+                WristConstants.SERVO_HARDWARE_NAME,
+                WristConstants.MIN_DEGREE,
+                WristConstants.MAX_DEGREE
+        );
     }
 
     public void setState(WristState state){
