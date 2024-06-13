@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
-import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
@@ -24,7 +23,9 @@ public abstract class DefaultRaz extends OpMode {
 
 
     public abstract void initialize();
+
     public abstract void execute();
+
     public abstract void configureBindings();
 
 

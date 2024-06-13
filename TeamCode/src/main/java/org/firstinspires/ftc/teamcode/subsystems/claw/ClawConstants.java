@@ -8,4 +8,5 @@ public class ClawConstants {
     public static final double RIGHT_GRIPPER_CLOSE = 0.52;
     public static final double LEFT_GRIPPER_OPEN = 0.93;
     public static final double LEFT_GRIPPER_CLOSE = 0.75;
+
 }

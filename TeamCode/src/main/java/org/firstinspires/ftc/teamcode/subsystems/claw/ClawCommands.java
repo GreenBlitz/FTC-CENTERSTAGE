@@ -6,10 +6,10 @@ import org.firstinspires.ftc.teamcode.Robot;
 
 public class ClawCommands {
 
-    public static final InstantCommand openBothFingersCommand = new InstantCommand(()-> Robot.getInstance().CLAW.openBothClaws());
-    public static final InstantCommand closeBothFingersCommand = new InstantCommand(()-> Robot.getInstance().CLAW.closeBothClaws());
-    public static final InstantCommand toggleRightFingerCommand = new InstantCommand(()-> Robot.getInstance().CLAW.toggleRightClaw());
-    public static final InstantCommand toggleLeftFingerCommand = new InstantCommand(()-> Robot.getInstance().CLAW.toggleLeftClaw());
-    public static final InstantCommand switchClawsCommand = new InstantCommand(()-> Robot.getInstance().CLAW.switchClaws());
+    public static final InstantCommand openBothFingers = new InstantCommand(() -> Robot.getInstance().CLAW.openBothClaws());
+    public static final InstantCommand closeBothFingers = new InstantCommand(() -> Robot.getInstance().CLAW.closeBothClaws());
+    public static final InstantCommand toggleRightFinger = new InstantCommand(() -> Robot.getInstance().CLAW.toggleRightClaw());
+    public static final InstantCommand toggleLeftFinger = new InstantCommand(() -> Robot.getInstance().CLAW.toggleLeftClaw());
+    public static final InstantCommand switchClaws = new InstantCommand(() -> Robot.getInstance().CLAW.switchClaws());
 
 }

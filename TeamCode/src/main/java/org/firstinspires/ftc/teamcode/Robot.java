@@ -19,7 +19,6 @@ public class Robot {
         return instance;
     }
 
-
     //add subsystems...
     public Claw CLAW;
 

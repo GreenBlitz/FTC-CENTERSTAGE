@@ -2,13 +2,13 @@ package org.firstinspires.ftc.teamcode.subsystems.claw;
 
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class Finger {
-    public boolean isOpen;
-    private double fingerOpenPosition;
-    private double fingerClosePosition;
-    private Servo fingerServo;
+class Finger {
+    private final double fingerOpenPosition;
+    private final double fingerClosePosition;
+    private final Servo fingerServo;
+    private boolean isOpen;
 
-    public Finger(Servo fingerServo, double fingerOpenPosition, double fingerClosePosition) {
+    protected Finger(Servo fingerServo, double fingerOpenPosition, double fingerClosePosition) {
         this.fingerServo = fingerServo;
         this.fingerOpenPosition = fingerOpenPosition;
         this.fingerClosePosition = fingerClosePosition;
@@ -28,11 +28,15 @@ public class Finger {
         isOpen = false;
     }
 
-    public void toggleClaw() {
+    protected void toggleClaw() {
         if (isOpen) {
             closeClaw();
         } else {
             openClaw();
         }
+    }
+
+    public boolean isOpen() {
+        return isOpen;
     }
 }
