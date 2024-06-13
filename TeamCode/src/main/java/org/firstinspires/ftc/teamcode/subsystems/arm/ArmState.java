@@ -9,8 +9,8 @@ public enum ArmState {
 
     public final int ticks;
 
-    ArmState(int angle){
-        this.ticks = angle;
+    ArmState(int ticks){
+        this.ticks = ticks;
     }
 
 }
