@@ -24,7 +24,7 @@ public class Robot {
 
     public void initSubsystems(HardwareMap hardwareMap) {
         // init all subsystems...
-        MECHANUM_CHASSIS = new MecanumChassis(hardwareMap);
+        this.MECHANUM_CHASSIS = new MecanumChassis(hardwareMap);
     }
 
 }

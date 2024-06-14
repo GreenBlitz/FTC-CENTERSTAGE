@@ -6,6 +6,8 @@ import com.arcrobotics.ftclib.hardware.RevIMU;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 public class MecanumChassis extends SubsystemBase {
 
     private final MecanumDrive mecanumDrive;
@@ -13,26 +15,36 @@ public class MecanumChassis extends SubsystemBase {
     private final RevIMU imu;
 
     public MecanumChassis(HardwareMap hardwareMap) {
-        Motor frontLeft = new Motor(hardwareMap, ChassisConstants.FRONT_LEFT_ID);
-        Motor frontRight = new Motor(hardwareMap, ChassisConstants.FRONT_RIGHT_ID);
-        Motor backLeft = new Motor(hardwareMap, ChassisConstants.BACK_LEFT_ID);
-        Motor backRight = new Motor(hardwareMap, ChassisConstants.BACK_RIGHT_ID);
+        Motor frontLeft = getCassisMotor(hardwareMap, ChassisConstants.FRONT_LEFT_ID);
+        Motor frontRight = getCassisMotor(hardwareMap, ChassisConstants.FRONT_RIGHT_ID);
+        Motor backLeft = getCassisMotor(hardwareMap, ChassisConstants.BACK_LEFT_ID);
+        Motor backRight = getCassisMotor(hardwareMap, ChassisConstants.BACK_RIGHT_ID);
 
         this.mecanumDrive = new MecanumDrive(frontLeft, frontRight, backLeft, backRight);
         this.imu = new RevIMU(hardwareMap);
         imu.init();
     }
 
-    public void fieldCentricDrive(double strafeSpeed, double forwardSpeed, double turnSpeed) {
+    private Motor getCassisMotor(HardwareMap hardwareMap, String id) {
+        Motor chassisMotor = new Motor(hardwareMap, id);
+        chassisMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        return chassisMotor;
+    }
+
+    protected void fieldCentricDrive(double strafeSpeed, double forwardSpeed, double turnSpeed) {
         mecanumDrive.driveFieldCentric(strafeSpeed, forwardSpeed, turnSpeed, imu.getRotation2d().getDegrees());
     }
 
-    public void robotCentricDrive(double strafeSpeed, double forwardSpeed, double turnSpeed) {
+    protected void robotCentricDrive(double strafeSpeed, double forwardSpeed, double turnSpeed) {
         mecanumDrive.driveRobotCentric(strafeSpeed, forwardSpeed, turnSpeed);
     }
 
-    public void resetHeading() {
+    protected void resetHeading() {
         imu.reset();
+    }
+
+    public void telemetry(Telemetry telemetry) {
+        telemetry.addData("angle degrees", imu.getRotation2d().getDegrees());
     }
 
 }
