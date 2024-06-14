@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode.subsystems.claw;
 
+import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class Claw {
+public class Claw extends SubsystemBase {
 
     private Finger rightFinger;
     private Finger leftFinger;
@@ -14,32 +15,32 @@ public class Claw {
         this.leftFinger = new Finger(hardwareMap.servo.get(ClawConstants.LEFT_SERVO_ID), ClawConstants.LEFT_GRIPPER_OPEN, ClawConstants.LEFT_GRIPPER_CLOSE);
     }
 
-    public void openBothClaws() {
-        rightFinger.openClaw();
-        leftFinger.openClaw();
+    public void openBothFingers() {
+        rightFinger.open();
+        leftFinger.open();
     }
 
-    public void closeBothClaws() {
-        rightFinger.closeClaw();
-        leftFinger.closeClaw();
+    public void closeBothFingers() {
+        rightFinger.close();
+        leftFinger.close();
     }
 
-    public void toggleRightClaw() {
+    public void toggleRightFinger() {
         rightFinger.toggleClaw();
     }
 
-    public void toggleLeftClaw() {
+    public void toggleLeftFinger() {
         leftFinger.toggleClaw();
     }
 
-    public void switchClaws() {
+    public void switchFingers() {
         Finger switchFinger = new Finger(rightFinger);
         rightFinger = leftFinger;
         leftFinger = switchFinger;
     }
 
     public void telemetry(Telemetry telemetry) {
-        telemetry.addData("RightClaw isOpen?: ", rightFinger.isOpen());
-        telemetry.addData("LeftClaw isOpen?: ", leftFinger.isOpen());
+        telemetry.addData("RightFinger isOpen?: ", rightFinger.isOpen());
+        telemetry.addData("LeftFinger isOpen?: ", leftFinger.isOpen());
     }
 }

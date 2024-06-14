@@ -20,7 +20,11 @@ public class Robot {
     }
 
     //add subsystems...
-    public Claw claw;
+    private Claw claw;
+
+    public Claw getClaw() {
+        return this.claw;
+    }
 
     public void initSubsystems(HardwareMap hardwareMap) {
         // init all subsystems...

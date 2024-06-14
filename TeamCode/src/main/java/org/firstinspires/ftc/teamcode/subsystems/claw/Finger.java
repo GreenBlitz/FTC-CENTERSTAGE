@@ -13,6 +13,7 @@ class Finger {
         this.servo = fingerServo;
         this.openPosition = fingerOpenPosition;
         this.closePosition = fingerClosePosition;
+        isOpen = true;  // todo- remember to change it, the finger might be open, we don't know yet
     }
 
     protected Finger(Finger other) {
@@ -25,15 +26,15 @@ class Finger {
         servo.setPosition(position);
     }
 
-    protected Servo getServo() {
+    private Servo getServo() {
         return this.servo;
     }
 
-    protected double getOpenPosition() {
+    private double getOpenPosition() {
         return this.openPosition;
     }
 
-    protected double getClosePosition() {
+    private double getClosePosition() {
         return this.closePosition;
     }
 
@@ -41,21 +42,21 @@ class Finger {
         return isOpen;
     }
 
-    protected void openClaw() {
+    protected void open() {
         setPosition(openPosition);
         isOpen = true;
     }
 
-    protected void closeClaw() {
+    protected void close() {
         setPosition(closePosition);
         isOpen = false;
     }
 
     protected void toggleClaw() {
         if (isOpen) {
-            closeClaw();
+            close();
         } else {
-            openClaw();
+            open();
         }
     }
 }
