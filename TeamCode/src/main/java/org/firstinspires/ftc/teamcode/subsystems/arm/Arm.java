@@ -33,7 +33,7 @@ public class Arm extends SubsystemBase {
     }
 
 
-    public void setState(ArmState targetState) {
+    protected void setState(ArmState targetState) {
         currentState = targetState;
         updateTargetByState();
     }
@@ -46,6 +46,10 @@ public class Arm extends SubsystemBase {
         }
     }
 
+    private void setPower(double power) {
+        motor.setPower(power);
+    }
+
     public boolean isAtState() {
         return pidController.atSetPoint();
     }
@@ -53,15 +57,15 @@ public class Arm extends SubsystemBase {
     @Override
     public void periodic() {
         double power = pidController.calculate(motor.getCurrentPosition());
-        motor.setPower(power);
+        setPower(power);
     }
 
     public void telemetry(Telemetry telemetry) {
-        telemetry.addData("Current Power", motor.getPower());
         telemetry.addData("Current State", currentState);
         telemetry.addData("Is At State", isAtState());
-        telemetry.addData("ERROR", pidController.getPositionError());
         telemetry.addData("Current Position", motor.getCurrentPosition());
         telemetry.addData("Target Position", pidController.getSetPoint());
+        telemetry.addData("ERROR", pidController.getPositionError());
+        telemetry.addData("Current Power", motor.getPower());
     }
 }

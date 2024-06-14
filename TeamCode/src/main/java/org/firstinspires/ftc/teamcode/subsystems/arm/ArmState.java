@@ -2,10 +2,10 @@ package org.firstinspires.ftc.teamcode.subsystems.arm;
 
 public enum ArmState {
 
-    PICK_UP(-2350),
-    STARTING(0),
-    STOP(777),
-    SCORE(100);
+    SCORE(ArmConstants.SCORE_TICKS),
+    PICK_UP(ArmConstants.PICK_UP_TICKS),
+    STARTING(ArmConstants.STARTING_TICKS),
+    STOP(777); // will not use number
 
     public final int ticks;
 
