@@ -13,7 +13,7 @@ class Finger {
         this.servo = fingerServo;
         this.openPosition = fingerOpenPosition;
         this.closePosition = fingerClosePosition;
-        this.isOpen = ClawConstants.FINGER_ISOPEN_AT_START;
+        this.isOpen = ClawConstants.FINGER_IS_OPEN_AT_START;
     }
 
     protected Finger(Finger other) {
