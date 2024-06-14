@@ -15,25 +15,25 @@ public class Claw extends SubsystemBase {
         this.leftFinger = new Finger(hardwareMap.servo.get(ClawConstants.LEFT_SERVO_ID), ClawConstants.LEFT_GRIPPER_OPEN_POSITION, ClawConstants.LEFT_GRIPPER_CLOSE_POSITION);
     }
 
-    public void openBothFingers() {
+    protected void openBothFingers() {
         rightFinger.open();
         leftFinger.open();
     }
 
-    public void closeBothFingers() {
+    protected void closeBothFingers() {
         rightFinger.close();
         leftFinger.close();
     }
 
-    public void toggleRightFinger() {
+    protected void toggleRightFinger() {
         rightFinger.toggleClaw();
     }
 
-    public void toggleLeftFinger() {
+    protected void toggleLeftFinger() {
         leftFinger.toggleClaw();
     }
 
-    public void switchFingers() {
+    protected void switchFingers() {
         Finger switchFinger = new Finger(rightFinger);
         rightFinger = leftFinger;
         leftFinger = switchFinger;
