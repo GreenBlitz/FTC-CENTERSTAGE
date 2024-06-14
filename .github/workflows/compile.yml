@@ -8,7 +8,7 @@ on:
       - reopened
 
 jobs:
-  build:
+  Compile:
 
     runs-on: ubuntu-latest
 
