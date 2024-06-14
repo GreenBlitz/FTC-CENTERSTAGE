@@ -1,33 +1,36 @@
-name: Compile
+name: Android CI
 
 on:
+  push:
+    branches:
+      - main
+      - master
   pull_request:
-    types:
-      - synchronize
-      - opened
-      - reopened
-      - converted_to_draft
-      - edited
+    branches:
+      - main
+      - master
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        api-level: [ 30 ]
-        target: [ default ]
-        flavor: [ none ]
-        build-tools: [ 30.0.3 ]
+        api-level: [30]
+        target: [default]
+        flavor: [none]
+        build-tools: [30.0.3]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up JDK 11
+      - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
-          java-version: '11'
+          java-version: '17'
 
       - name: Download and setup Android SDK
         uses: android-actions/setup-android@v2
@@ -52,3 +55,6 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
+
+      - name: Run unit tests
+        run: ./gradlew test
