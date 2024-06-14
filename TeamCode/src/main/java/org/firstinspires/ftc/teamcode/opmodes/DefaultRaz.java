@@ -11,7 +11,7 @@ public abstract class DefaultRaz extends OpMode {
     public final void init() {
         Robot.init(hardwareMap);
         configureBindings();
-        initialize()
+        initialize();
     }
 
     @Override
