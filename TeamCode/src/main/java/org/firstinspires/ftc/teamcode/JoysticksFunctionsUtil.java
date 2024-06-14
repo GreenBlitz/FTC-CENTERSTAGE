@@ -10,6 +10,15 @@ public class JoysticksFunctionsUtil {
     private static final double SENSITIVE_VALUE_POWER = 2;
     private static final double SQUARE_FACTOR = 1.4;
 
+
+    public static double getDeadZonedSensitiveSquaredValue(double value) {
+        return getSensitiveValue(getDeadZonedSquaredValue(value));
+    }
+
+    public static double getDeadZonedSquaredValue(double value) {
+        return getSquaredValue(getDeadZonedValue(value));
+    }
+
     public static double getDeadZonedValue(double value) {
         return getDeadZonedValue(value, DEAD_ZONE);
     }
@@ -59,14 +68,5 @@ public class JoysticksFunctionsUtil {
         double squaredAxisValue = value * SQUARE_FACTOR;
         return MathUtils.clamp(squaredAxisValue, -1, 1);
     }
-
-    public static double getDeadZonedSquaredValue(double value){
-        return getSquaredValue(getDeadZonedValue(value));
-    }
-
-    public static double getDeadZonedSensitiveSquaredValue(double value){
-        return getSensitiveValue(getDeadZonedSquaredValue(value));
-    }
-
 
 }
