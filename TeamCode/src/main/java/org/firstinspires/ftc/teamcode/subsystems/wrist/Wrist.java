@@ -4,18 +4,20 @@ import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 public class Wrist extends SubsystemBase {
 
     private final Servo wristServo;
-    private WristState currentState;
+    private WristState currentTargetState;
 
     public Wrist(HardwareMap hardwareMap){
         this.wristServo = hardwareMap.servo.get(WristConstants.SERVO_HARDWARE_NAME);
     }
 
     public void setState(WristState state){
-        currentState = state;
-        wristServo.setPosition(currentState.targetPosition);
+        currentTargetState = state;
+        wristServo.setPosition(currentTargetState.targetPosition);
     }
 
     public boolean isAtTargetState(WristState targetState){
@@ -24,6 +26,11 @@ public class Wrist extends SubsystemBase {
 
     public void stop(){
         wristServo.setPosition(wristServo.getPosition());
+    }
+
+    public void telemetry (Telemetry telemetry){
+        telemetry.addData("Wrist isAtTargetState?:", isAtTargetState(currentTargetState));
+        telemetry.addData("Wrist TargetState:", currentTargetState);
     }
 
 }
