@@ -15,11 +15,11 @@ public class RazDriveTest extends DefaultRaz {
 
     @Override
     public void execute() {
-        Robot.getInstance().MECHANUM_CHASSIS.telemetry(telemetry);
+        Robot.getInstance().MECANUM_CHASSIS.telemetry(telemetry);
     }
 
     @Override
     public void configureBindings() {
-        Bindings.razDriveBindings(gamepad1, gamepad2);
+        Bindings.razDriveTestBindings(gamepad1, gamepad2);
     }
 }

@@ -15,17 +15,17 @@ public class MecanumChassis extends SubsystemBase {
     private final RevIMU imu;
 
     public MecanumChassis(HardwareMap hardwareMap) {
-        Motor frontLeft = getCassisMotor(hardwareMap, ChassisConstants.FRONT_LEFT_ID);
-        Motor frontRight = getCassisMotor(hardwareMap, ChassisConstants.FRONT_RIGHT_ID);
-        Motor backLeft = getCassisMotor(hardwareMap, ChassisConstants.BACK_LEFT_ID);
-        Motor backRight = getCassisMotor(hardwareMap, ChassisConstants.BACK_RIGHT_ID);
+        Motor frontLeft = getChassisMotor(hardwareMap, ChassisConstants.FRONT_LEFT_ID);
+        Motor frontRight = getChassisMotor(hardwareMap, ChassisConstants.FRONT_RIGHT_ID);
+        Motor backLeft = getChassisMotor(hardwareMap, ChassisConstants.BACK_LEFT_ID);
+        Motor backRight = getChassisMotor(hardwareMap, ChassisConstants.BACK_RIGHT_ID);
 
         this.mecanumDrive = new MecanumDrive(frontLeft, frontRight, backLeft, backRight);
         this.imu = new RevIMU(hardwareMap);
         imu.init();
     }
 
-    private Motor getCassisMotor(HardwareMap hardwareMap, String id) {
+    private Motor getChassisMotor(HardwareMap hardwareMap, String id) {
         Motor chassisMotor = new Motor(hardwareMap, id);
         chassisMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         return chassisMotor;
@@ -44,7 +44,7 @@ public class MecanumChassis extends SubsystemBase {
     }
 
     public void telemetry(Telemetry telemetry) {
-        telemetry.addData("angle degrees", imu.getRotation2d().getDegrees());
+        telemetry.addData("Robot/Chassis angle degrees: ", imu.getRotation2d().getDegrees());
     }
 
 }

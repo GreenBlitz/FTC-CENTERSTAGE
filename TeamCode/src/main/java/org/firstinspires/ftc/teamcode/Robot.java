@@ -20,11 +20,11 @@ public class Robot {
     }
 
     //add subsystems...
-    public MecanumChassis MECHANUM_CHASSIS;
+    public MecanumChassis MECANUM_CHASSIS;
 
     public void initSubsystems(HardwareMap hardwareMap) {
         // init all subsystems...
-        this.MECHANUM_CHASSIS = new MecanumChassis(hardwareMap);
+        this.MECANUM_CHASSIS = new MecanumChassis(hardwareMap);
     }
 
 }

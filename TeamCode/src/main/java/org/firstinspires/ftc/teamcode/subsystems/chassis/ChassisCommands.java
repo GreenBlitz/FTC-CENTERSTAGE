@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.subsystems.chassis;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.RunCommand;
-import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
 import org.firstinspires.ftc.teamcode.Robot;
 
@@ -17,13 +16,13 @@ public class ChassisCommands {
                     double strafeSpeed = strafeSpeedSupplier.get();
                     double forwardSpeed = forwardSpeedSupplier.get();
                     double turnSpeed = turnSpeedSupplier.get();
-                    Robot.getInstance().MECHANUM_CHASSIS.fieldCentricDrive(strafeSpeed, forwardSpeed, turnSpeed);
+                    Robot.getInstance().MECANUM_CHASSIS.fieldCentricDrive(strafeSpeed, forwardSpeed, turnSpeed);
                 },
-                Robot.getInstance().MECHANUM_CHASSIS
+                Robot.getInstance().MECANUM_CHASSIS
         );
     }
 
     public static Command getResetHeading() {
-        return new InstantCommand(() -> Robot.getInstance().MECHANUM_CHASSIS.resetHeading(), Robot.getInstance().MECHANUM_CHASSIS);
+        return new InstantCommand(() -> Robot.getInstance().MECANUM_CHASSIS.resetHeading(), Robot.getInstance().MECANUM_CHASSIS);
     }
 }
