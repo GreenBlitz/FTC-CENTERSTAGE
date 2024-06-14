@@ -15,11 +15,11 @@ public class Wrist extends SubsystemBase {
 
     public void setState(WristState state){
         currentState = state;
-        wristServo.setPosition(currentState.positionZeroToOne);
+        wristServo.setPosition(currentState.targetPosition);
     }
 
     public boolean isAtTargetState(WristState targetState){
-        return Math.abs(targetState.positionZeroToOne - wristServo.getPosition()) < WristConstants.POSITION_TOLERANCE;
+        return Math.abs(targetState.targetPosition - wristServo.getPosition()) < WristConstants.POSITION_TOLERANCE;
     }
 
     public void stop(){

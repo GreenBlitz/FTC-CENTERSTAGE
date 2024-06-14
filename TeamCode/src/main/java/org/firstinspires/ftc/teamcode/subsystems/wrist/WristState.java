@@ -5,9 +5,9 @@ public enum WristState {
     INTAKE(WristConstants.INTAKE_POSITION),
     SCORE(WristConstants.SCORE_POSITION);
 
-    public final double positionZeroToOne;
-    WristState(double positionZeroToOne){
-        this.positionZeroToOne = positionZeroToOne;
+    public final double targetPosition;
+    WristState(double targetPosition){
+        this.targetPosition = targetPosition;
     }
 
 }
