@@ -65,7 +65,7 @@ public class Arm extends SubsystemBase {
         telemetry.addData("Is At State", isAtState());
         telemetry.addData("Current Position", motor.getCurrentPosition());
         telemetry.addData("Target Position", pidController.getSetPoint());
-        telemetry.addData("ERROR", pidController.getPositionError());
+        telemetry.addData("Pid Position Error", pidController.getPositionError());
         telemetry.addData("Current Power", motor.getPower());
     }
 }
