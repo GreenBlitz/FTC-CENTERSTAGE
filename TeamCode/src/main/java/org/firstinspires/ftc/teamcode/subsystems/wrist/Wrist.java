@@ -1,35 +1,29 @@
 package org.firstinspires.ftc.teamcode.subsystems.wrist;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
-import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class Wrist extends SubsystemBase {
 
-    private final ServoEx servoWrist;
+    private final Servo wristServo;
     private WristState currentState;
 
     public Wrist(HardwareMap hardwareMap){
-        this.servoWrist = new SimpleServo(
-                hardwareMap,
-                WristConstants.SERVO_HARDWARE_NAME,
-                WristConstants.MIN_DEGREE,
-                WristConstants.MAX_DEGREE
-        );
+        this.wristServo = hardwareMap.servo.get(WristConstants.SERVO_HARDWARE_NAME);
     }
 
     public void setState(WristState state){
         currentState = state;
-        servoWrist.turnToAngle(currentState.positionDegrees);
+        wristServo.setPosition(currentState.positionZeroToOne);
     }
 
     public boolean isAtTargetState(WristState targetState){
-        return Math.abs(targetState.positionDegrees - servoWrist.getAngle()) < WristConstants.POSITION_TOLERANCE_DEGREES;
+        return Math.abs(targetState.positionZeroToOne - wristServo.getPosition()) < WristConstants.POSITION_TOLERANCE;
     }
 
     public void stop(){
-        servoWrist.turnToAngle(servoWrist.getAngle());
+        wristServo.setPosition(wristServo.getPosition());
     }
 
 }
