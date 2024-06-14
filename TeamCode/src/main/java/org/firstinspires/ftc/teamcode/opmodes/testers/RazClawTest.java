@@ -16,7 +16,7 @@ public class RazClawTest extends DefaultRaz {
 
     @Override
     public void execute() {
-        Robot.getInstance().getClaw().telemetry(telemetry);
+        Robot.getInstance().claw.telemetry(telemetry);
     }
 
     @Override
