@@ -9,11 +9,10 @@ import org.firstinspires.ftc.teamcode.Robot;
 public class WristCommands {
 
     public static FunctionalCommand moveToStateCommand(WristState state){
-
         return new FunctionalCommand(
                 () -> Robot.getInstance().WRIST.setState(state),
                 () -> {},
-                interrupt -> Robot.getInstance().WRIST.stop(),
+                interrupt -> {},
                 () -> Robot.getInstance().WRIST.isAtTargetState(state),
                 Robot.getInstance().WRIST
         );

@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class Wrist extends SubsystemBase {
 
     private final ServoEx servoWrist;
-    public WristState currentState;
+    private WristState currentState;
 
     public Wrist(HardwareMap hardwareMap){
         this.servoWrist = new SimpleServo(
@@ -31,4 +31,5 @@ public class Wrist extends SubsystemBase {
     public void stop(){
         servoWrist.turnToAngle(servoWrist.getAngle());
     }
+
 }
