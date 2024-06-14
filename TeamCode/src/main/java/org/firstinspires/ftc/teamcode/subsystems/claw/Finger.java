@@ -4,28 +4,50 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 class Finger {
 
-    private final double fingerOpenPosition;
-    private final double fingerClosePosition;
-    private final Servo fingerServo;
+    private final double openPosition;
+    private final double closePosition;
+    private final Servo servo;
     private boolean isOpen;
 
     protected Finger(Servo fingerServo, double fingerOpenPosition, double fingerClosePosition) {
-        this.fingerServo = fingerServo;
-        this.fingerOpenPosition = fingerOpenPosition;
-        this.fingerClosePosition = fingerClosePosition;
+        this.servo = fingerServo;
+        this.openPosition = fingerOpenPosition;
+        this.closePosition = fingerClosePosition;
+    }
+
+    protected Finger(Finger other) {
+        this.servo = other.getServo();
+        this.openPosition = other.getOpenPosition();
+        this.closePosition = other.getClosePosition();
     }
 
     private void setPosition(double position) {
-        fingerServo.setPosition(position);
+        servo.setPosition(position);
+    }
+
+    protected Servo getServo() {
+        return this.servo;
+    }
+
+    protected double getOpenPosition() {
+        return this.openPosition;
+    }
+
+    protected double getClosePosition() {
+        return this.closePosition;
+    }
+
+    protected boolean isOpen() {
+        return isOpen;
     }
 
     protected void openClaw() {
-        setPosition(fingerOpenPosition);
+        setPosition(openPosition);
         isOpen = true;
     }
 
     protected void closeClaw() {
-        setPosition(fingerClosePosition);
+        setPosition(closePosition);
         isOpen = false;
     }
 
@@ -35,9 +57,5 @@ class Finger {
         } else {
             openClaw();
         }
-    }
-
-    protected boolean isOpen() {
-        return isOpen;
     }
 }

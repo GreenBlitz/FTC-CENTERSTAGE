@@ -20,11 +20,11 @@ public class Robot {
     }
 
     //add subsystems...
-    public Claw CLAW;
+    public Claw claw;
 
     public void initSubsystems(HardwareMap hardwareMap) {
         // init all subsystems...
-        this.CLAW = new Claw(hardwareMap);
+        this.claw = new Claw(hardwareMap);
     }
 
 }

@@ -33,7 +33,7 @@ public class Claw {
     }
 
     public void switchClaws() {
-        Finger switchFinger = rightFinger;
+        Finger switchFinger = new Finger(rightFinger);
         rightFinger = leftFinger;
         leftFinger = switchFinger;
     }
