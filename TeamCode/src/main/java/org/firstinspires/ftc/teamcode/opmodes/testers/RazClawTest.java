@@ -21,6 +21,6 @@ public class RazClawTest extends DefaultRaz {
 
     @Override
     public void configureBindings() {
-        Bindings.razClawBindings(gamepad1, gamepad2);
+        Bindings.razClawTestBindings(gamepad1, gamepad2);
     }
 }

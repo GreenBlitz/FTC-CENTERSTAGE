@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.subsystems.claw;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.Robot;
 
 public class Claw {
 
@@ -40,7 +39,7 @@ public class Claw {
     }
 
     public void telemetry(Telemetry telemetry) {
-        telemetry.addData("RightClaw isOpen?:", rightFinger.isOpen());
-        telemetry.addData("LeftClaw isOpen?:", leftFinger.isOpen());
+        telemetry.addData("RightClaw isOpen?: ", rightFinger.isOpen());
+        telemetry.addData("LeftClaw isOpen?: ", leftFinger.isOpen());
     }
 }

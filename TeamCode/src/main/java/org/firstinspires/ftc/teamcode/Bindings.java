@@ -11,7 +11,7 @@ public class Bindings {
     private static GamepadEx MAIN_GAMEPAD;
     private static GamepadEx SECOND_GAMEPAD;
 
-    public static void razClawBindings(Gamepad gamepad1, Gamepad gamepad2) {
+    public static void razClawTestBindings(Gamepad gamepad1, Gamepad gamepad2) {
         MAIN_GAMEPAD = new GamepadEx(gamepad1);
         SECOND_GAMEPAD = new GamepadEx(gamepad2);
 
