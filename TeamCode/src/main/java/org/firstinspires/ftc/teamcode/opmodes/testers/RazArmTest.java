@@ -15,7 +15,7 @@ public class RazArmTest extends DefaultRaz {
 
     @Override
     public void execute() {
-        Robot.getInstance().ARM.telemetry(telemetry);//todo - use dashboard
+        Robot.getInstance().ARM.telemetry(telemetry);
     }
 
     @Override
