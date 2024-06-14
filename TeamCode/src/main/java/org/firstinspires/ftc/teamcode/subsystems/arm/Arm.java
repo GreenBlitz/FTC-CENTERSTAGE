@@ -61,11 +61,11 @@ public class Arm extends SubsystemBase {
     }
 
     public void telemetry(Telemetry telemetry) {
-        telemetry.addData("Current State", currentState);
-        telemetry.addData("Is At State", isAtState());
-        telemetry.addData("Current Position", motor.getCurrentPosition());
-        telemetry.addData("Target Position", pidController.getSetPoint());
-        telemetry.addData("Pid Position Error", pidController.getPositionError());
-        telemetry.addData("Current Power", motor.getPower());
+        telemetry.addData("Arm Current State: ", currentState);
+        telemetry.addData("Arm Is At State: ", isAtState());
+        telemetry.addData("Arm Current Position: ", motor.getCurrentPosition());
+        telemetry.addData("Arm Target Position: ", pidController.getSetPoint());
+        telemetry.addData("Arm Pid Position Error: ", pidController.getPositionError());
+        telemetry.addData("Arm Current Power: ", motor.getPower());
     }
 }
