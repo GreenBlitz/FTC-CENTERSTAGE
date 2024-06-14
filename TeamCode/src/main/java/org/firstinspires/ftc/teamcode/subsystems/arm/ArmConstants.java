@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.subsystems.arm;
 
 import com.arcrobotics.ftclib.controller.PIDController;
-import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 class ArmConstants {
 
