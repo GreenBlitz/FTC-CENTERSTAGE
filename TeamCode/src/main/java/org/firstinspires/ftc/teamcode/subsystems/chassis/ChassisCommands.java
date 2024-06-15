@@ -22,6 +22,10 @@ public class ChassisCommands {
         );
     }
 
+    public static Command getStop() {
+        return new InstantCommand(() -> Robot.getInstance().MECANUM_CHASSIS.stop());
+    }
+
     public static Command getResetHeading() {
         return new InstantCommand(() -> Robot.getInstance().MECANUM_CHASSIS.resetHeading(), Robot.getInstance().MECANUM_CHASSIS);
     }

@@ -39,6 +39,10 @@ public class MecanumChassis extends SubsystemBase {
         mecanumDrive.driveRobotCentric(strafeSpeed, forwardSpeed, turnSpeed);
     }
 
+    protected void stop() {
+        mecanumDrive.stop();
+    }
+
     protected void resetHeading() {
         imu.reset();
     }
