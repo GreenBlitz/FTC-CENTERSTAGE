@@ -23,6 +23,7 @@ public class Arm extends SubsystemBase {
     }
 
     private void configMotor() {
+        motor.resetDeviceConfigurationForOpMode();
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -39,7 +40,7 @@ public class Arm extends SubsystemBase {
     }
 
     private void updateTargetByState() {
-        if (currentState == ArmState.STOP) {
+        if (currentState == ArmState.STAND_IN_PLACE) {
             pidController.setSetPoint(motor.getCurrentPosition());
         } else {
             pidController.setSetPoint(currentState.ticks);

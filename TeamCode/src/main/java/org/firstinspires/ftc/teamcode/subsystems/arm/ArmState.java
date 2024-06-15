@@ -5,7 +5,7 @@ public enum ArmState {
     SCORE(ArmConstants.SCORE_TICKS),
     PICK_UP(ArmConstants.PICK_UP_TICKS),
     STARTING(ArmConstants.STARTING_TICKS),
-    STOP(777); // will not use number
+    STAND_IN_PLACE(777); // will not use number
 
     public final int ticks;
 
