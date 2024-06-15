@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import org.firstinspires.ftc.teamcode.gamepads.GamepadWrapper;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -8,8 +9,8 @@ import org.firstinspires.ftc.teamcode.subsystems.chassis.ChassisCommands;
 
 public class Bindings {
 
-    private static GamepadEx MAIN_GAMEPAD;
-    private static GamepadEx SECOND_GAMEPAD;
+    private static GamepadWrapper mainGamepad;
+    private static GamepadWrapper secondGamepad;
 
     public static void razDriveTestBindings(Gamepad gamepad1, Gamepad gamepad2) {
         MAIN_GAMEPAD = new GamepadEx(gamepad1);
