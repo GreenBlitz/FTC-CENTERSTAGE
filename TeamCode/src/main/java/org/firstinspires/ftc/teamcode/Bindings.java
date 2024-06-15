@@ -16,7 +16,6 @@ public class Bindings {
     public static void razElevatorTest(Gamepad gamepad1, Gamepad gamepad2) {
         mainGamepad = new GamepadWrapper(gamepad1);
 
-        // Human Control
         mainGamepad.getTriggerAsButton(GamepadKeys.Trigger.LEFT_TRIGGER).whenActive(
                 ElevatorCommands.humanControl(() -> {
                             double triggerValue = mainGamepad.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER);
@@ -31,8 +30,6 @@ public class Bindings {
                         }
                 )
         );
-
-        // Pid Control
         mainGamepad.getGamepadButton(GamepadKeys.Button.A).whileHeld(ElevatorCommands.goToState(ElevatorState.SCORE));
         mainGamepad.getGamepadButton(GamepadKeys.Button.X).whileHeld(ElevatorCommands.goToState(ElevatorState.CLIMB));
         mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whileHeld(ElevatorCommands.goToState(ElevatorState.PICK_UP));

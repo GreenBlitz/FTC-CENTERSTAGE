@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.opmodes.testers;
 
 import org.firstinspires.ftc.teamcode.Bindings;
+import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 
 public class RazElevatorTest extends DefaultRaz {
@@ -11,7 +12,7 @@ public class RazElevatorTest extends DefaultRaz {
 
     @Override
     public void execute() {
-        // todo - add telemetry
+        Robot.getInstance().getElevator().telemetry(telemetry);
     }
 
     @Override

@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.subsystems.elevator;
 
 import com.arcrobotics.ftclib.controller.PIDController;
 
-public class ElevatorConstants {
+class ElevatorConstants {
 
     protected static final String RIGHT_MOTOR_ID = "motor1"; // todo- figure out if motor1 is right or left
     protected static final String LEFT_MOTOR_ID = "motor2"; // todo- same for motor2

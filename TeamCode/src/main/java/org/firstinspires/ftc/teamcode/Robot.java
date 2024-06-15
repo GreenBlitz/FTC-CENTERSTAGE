@@ -20,11 +20,14 @@ public class Robot {
     }
 
     //add subsystems...
-    public Elevator elevator;
+    private Elevator elevator;
 
     public void initSubsystems(HardwareMap hardwareMap) {
         // init all subsystems...
         this.elevator = new Elevator(hardwareMap);
     }
 
+    public Elevator getElevator() {
+        return elevator;
+    }
 }

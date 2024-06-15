@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.ControlMode;
 
 public class Elevator extends SubsystemBase {
@@ -99,6 +100,15 @@ public class Elevator extends SubsystemBase {
         }
     }
 
-    // todo - telemetry
+    public void telemetry(Telemetry telemetry) {
+        telemetry.addData("Elevator state: ", currentState);
+        telemetry.addData("Elevator control mode: ", currentControlMode);
+        telemetry.addData("Elevator right motor position: ", rightMotor.getCurrentPosition());
+        telemetry.addData("Elevator left motor position: ", leftMotor.getCurrentPosition());
+        telemetry.addData("Elevator right motor power: ", rightMotor.getPower());
+        telemetry.addData("Elevator left motor power: ", leftMotor.getPower());
+        telemetry.addData("Elevator pid set point: ", pidController.getSetPoint());
+        telemetry.addData("Elevator pid error: ", pidController.getPositionError());
+    }
 
 }
