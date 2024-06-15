@@ -26,11 +26,11 @@ public class Claw extends SubsystemBase {
     }
 
     protected void toggleRightFinger() {
-        rightFinger.toggleClaw();
+        rightFinger.toggleFinger();
     }
 
     protected void toggleLeftFinger() {
-        leftFinger.toggleClaw();
+        leftFinger.toggleFinger();
     }
 
     protected void switchFingers() {
@@ -43,4 +43,5 @@ public class Claw extends SubsystemBase {
         telemetry.addData("RightFinger isOpen?: ", rightFinger.isOpen());
         telemetry.addData("LeftFinger isOpen?: ", leftFinger.isOpen());
     }
+
 }

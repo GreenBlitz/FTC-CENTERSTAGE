@@ -34,11 +34,12 @@ class Finger {
         isOpen = false;
     }
 
-    protected void toggleClaw() {
+    protected void toggleFinger() {
         if (isOpen) {
             close();
         } else {
             open();
         }
     }
+
 }

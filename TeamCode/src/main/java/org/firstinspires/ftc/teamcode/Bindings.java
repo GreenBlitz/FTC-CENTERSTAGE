@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
@@ -12,7 +11,7 @@ public class Bindings {
     private static GamepadWrapper mainGamepad;
     private static GamepadWrapper secondGamepad;
 
-    public static void razClawTestBindings(Gamepad gamepad1, Gamepad gamepad2) {
+    public static void razClawTest(Gamepad gamepad1, Gamepad gamepad2) {
         mainGamepad = new GamepadWrapper(gamepad1);
         secondGamepad = new GamepadWrapper(gamepad2);
 

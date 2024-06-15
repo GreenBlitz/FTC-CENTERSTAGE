@@ -22,12 +22,13 @@ public class Robot {
     //add subsystems...
     private Claw claw;
 
-    public Claw getClaw() {
-        return this.claw;
-    }
     public void initSubsystems(HardwareMap hardwareMap) {
         // init all subsystems...
         this.claw = new Claw(hardwareMap);
+    }
+
+    public Claw getClaw() {
+        return this.claw;
     }
 
 }
