@@ -29,7 +29,7 @@ public class MecanumChassis extends SubsystemBase {
     }
 
     protected void fieldCentricDrive(double strafeSpeed, double forwardSpeed, double turnSpeed) {
-        fieldCentricDrive(strafeSpeed, forwardSpeed, turnSpeed, imu.getRotation2d().getDegrees());
+        fieldCentricDrive(strafeSpeed, forwardSpeed, turnSpeed, imu.getRotation2d().getRadians());
     }
 
     protected void fieldCentricDrive(double strafeSpeed, double forwardSpeed, double turnSpeed, double gyroAngle) {
@@ -43,8 +43,8 @@ public class MecanumChassis extends SubsystemBase {
 
         wheelSpeeds[ChassisConstants.FRONT_LEFT_INDEX] = forwardSpeed + strafeSpeed + turnSpeed;
         wheelSpeeds[ChassisConstants.FRONT_RIGHT_INDEX] = forwardSpeed - strafeSpeed - turnSpeed;
-        wheelSpeeds[ChassisConstants.BACK_LEFT_INDEX] = (forwardSpeed - strafeSpeed + turnSpeed);
-        wheelSpeeds[ChassisConstants.BACK_RIGHT_INDEX] = (forwardSpeed + strafeSpeed - turnSpeed);
+        wheelSpeeds[ChassisConstants.BACK_LEFT_INDEX] = forwardSpeed - strafeSpeed + turnSpeed;
+        wheelSpeeds[ChassisConstants.BACK_RIGHT_INDEX] = forwardSpeed + strafeSpeed - turnSpeed;
 
         clampOutOfRangeSpeeds(wheelSpeeds);
 
