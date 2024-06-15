@@ -20,11 +20,11 @@ public class Launcher extends SubsystemBase {
     }
 
     protected void launchPlane() {
-        servo.setPosition(LauncherConstants.LAUNCHED_POSITION);
+        servo.setPosition(LauncherConstants.LAUNCH_POSITION);
     }
 
     public boolean isPlaneLaunched() {
-        return getPosition() == LauncherConstants.LAUNCHED_POSITION;
+        return getPosition() == LauncherConstants.LAUNCH_POSITION;
     }
 
     public boolean isPlaneHeld() {
@@ -32,9 +32,9 @@ public class Launcher extends SubsystemBase {
     }
 
     public void telemetry(Telemetry telemetry) {
-        telemetry.addData("launcher servo currentPos: ", getPosition());
-        telemetry.addData("is launcher fully released: ", isPlaneLaunched());
-        telemetry.addData("is launcher closed: ", isPlaneHeld());
+        telemetry.addData("launcher position: ", getPosition());
+        telemetry.addData("Is plane launched: ", isPlaneLaunched());
+        telemetry.addData("Is plane held: ", isPlaneHeld());
     }
 
 }
