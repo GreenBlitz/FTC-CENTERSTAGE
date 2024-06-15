@@ -23,7 +23,7 @@ public class Elevator extends SubsystemBase {
         this.leftMotor = hardwareMap.dcMotor.get(ElevatorConstants.LEFT_MOTOR_ID);
         this.pidController = ElevatorConstants.PID_CONTROLLER;
         this.scoreTicks = ElevatorConstants.DEFAULT_SCORE_TICKS;
-        this.currentState = ElevatorState.PICK_UP;
+        this.currentState = ElevatorState.INTAKE;
         this.currentControlMode = ControlMode.PID_CONTROL;
 
         configRightMotor();
@@ -73,8 +73,8 @@ public class Elevator extends SubsystemBase {
 
     private void updateTargetByState() {
         switch (currentState) {
-            case PICK_UP:
-                pidController.setSetPoint(ElevatorConstants.PICK_UP_TICKS);
+            case INTAKE:
+                pidController.setSetPoint(ElevatorConstants.INTAKE_TICKS);
                 break;
             case SCORE:
                 pidController.setSetPoint(scoreTicks);
