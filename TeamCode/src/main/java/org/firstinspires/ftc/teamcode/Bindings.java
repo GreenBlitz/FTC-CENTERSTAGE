@@ -12,19 +12,18 @@ public class Bindings {
     private static GamepadWrapper mainGamepad;
     private static GamepadWrapper secondGamepad;
 
-    public static void razDriveTestBindings(Gamepad gamepad1, Gamepad gamepad2) {
-        MAIN_GAMEPAD = new GamepadEx(gamepad1);
-        SECOND_GAMEPAD = new GamepadEx(gamepad2);
+    public static void razDriveTestBindings(Gamepad gamepad1) {
+        mainGamepad = new GamepadWrapper(gamepad1);
 
 
         Robot.getInstance().chassis.setDefaultCommand(
                 ChassisCommands.fieldCentricDrive(
-                        () -> -MAIN_GAMEPAD.getLeftX(),
-                        () -> -MAIN_GAMEPAD.getLeftY(),
-                        () -> -MAIN_GAMEPAD.getRightX()
+                        () -> -mainGamepad.getLeftX(),
+                        () -> -mainGamepad.getLeftY(),
+                        () -> -mainGamepad.getRightX()
                 )
         );
-        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());
+        mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());
     }
 
 }
