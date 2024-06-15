@@ -15,6 +15,7 @@ public class Launcher extends SubsystemBase {
                 LauncherConstants.MIN_ANGLE,
                 LauncherConstants.MAX_ANGLE
         );
+        servo.setPosition(LauncherConstants.CLOSED_POSITION);
     }
 
     private double getPosition() {

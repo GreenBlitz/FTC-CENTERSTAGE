@@ -6,7 +6,7 @@ import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "Raz Launch")
+@TeleOp(name = "Raz Launch Test")
 public class RazLauncherTest extends DefaultRaz {
     @Override
     public void initialize() {
