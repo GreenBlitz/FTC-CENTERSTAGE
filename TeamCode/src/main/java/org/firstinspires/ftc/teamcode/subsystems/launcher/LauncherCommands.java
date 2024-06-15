@@ -10,4 +10,5 @@ public class LauncherCommands {
     public static Command launchPlane() {
         return new InstantCommand(() -> Robot.getInstance().getLauncher().launchPlane(),Robot.getInstance().getLauncher());
     }
+
 }

@@ -7,11 +7,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Launcher extends SubsystemBase {
+
     private final Servo servo;
 
     public Launcher(HardwareMap hardwareMap) {
         this.servo = hardwareMap.servo.get(LauncherConstants.SERVO_ID);
-        servo.setPosition(LauncherConstants.CLOSED_POSITION);
+        servo.setPosition(LauncherConstants.HELD_POSITION);
     }
 
     private double getPosition() {
@@ -19,20 +20,21 @@ public class Launcher extends SubsystemBase {
     }
 
     protected void launchPlane() {
-        servo.setPosition(LauncherConstants.RELEASED_POSITION);
+        servo.setPosition(LauncherConstants.LAUNCHED_POSITION);
     }
 
     public boolean isPlaneLaunched() {
-        return getPosition() == LauncherConstants.RELEASED_POSITION;
+        return getPosition() == LauncherConstants.LAUNCHED_POSITION;
     }
 
-    public boolean isClosed() {
-        return getPosition() == LauncherConstants.CLOSED_POSITION;
+    public boolean isPlaneHeld() {
+        return getPosition() == LauncherConstants.HELD_POSITION;
     }
 
     public void telemetry(Telemetry telemetry) {
         telemetry.addData("launcher servo currentPos: ", getPosition());
         telemetry.addData("is launcher fully released: ", isPlaneLaunched());
-        telemetry.addData("is launcher closed: ", isClosed());
+        telemetry.addData("is launcher closed: ", isPlaneHeld());
     }
+
 }
