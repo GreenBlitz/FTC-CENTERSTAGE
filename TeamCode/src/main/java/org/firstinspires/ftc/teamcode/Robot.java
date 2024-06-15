@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.subsystems.launcher.Launcher;
+
 public class Robot {
 
     private static Robot instance;
@@ -18,9 +20,11 @@ public class Robot {
     }
 
     //add subsystems...
+    public Launcher launcher;
 
     public void initSubsystems(HardwareMap hardwareMap) {
         // init all subsystems...
+        this.launcher = new Launcher(hardwareMap);
     }
 
 }
