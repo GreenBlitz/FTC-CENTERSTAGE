@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.subsystems.elevator.Elevator;
+import org.firstinspires.ftc.teamcode.subsystems.arm.Arm;
 
 public class Robot {
 
@@ -19,15 +20,22 @@ public class Robot {
         return instance;
     }
 
-    //add subsystems...
+
+    private Arm arm;
     private Elevator elevator;
 
     public void initSubsystems(HardwareMap hardwareMap) {
-        // init all subsystems...
+        this.arm = new Arm(hardwareMap);
         this.elevator = new Elevator(hardwareMap);
+    }
+
+    public Arm getArm() {
+        return arm;
     }
 
     public Elevator getElevator() {
         return elevator;
     }
+
+
 }
