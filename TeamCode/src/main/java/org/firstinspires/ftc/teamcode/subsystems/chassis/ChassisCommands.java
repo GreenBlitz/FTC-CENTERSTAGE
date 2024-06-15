@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 
 public class ChassisCommands {
 
-    public static Command getFieldCentricDrive(Supplier<Double> strafeSpeedSupplier, Supplier<Double> forwardSpeedSupplier, Supplier<Double> turnSpeedSupplier) {
+    public static Command fieldCentricDrive(Supplier<Double> strafeSpeedSupplier, Supplier<Double> forwardSpeedSupplier, Supplier<Double> turnSpeedSupplier) {
         return new RunCommand(
                 () -> {
                     double strafeSpeed = strafeSpeedSupplier.get();
@@ -22,7 +22,11 @@ public class ChassisCommands {
         );
     }
 
-    public static Command getResetHeading() {
+    public static Command stop() {
+        return new InstantCommand(() -> Robot.getInstance().chassis.stop());
+    }
+
+    public static Command resetHeading() {
         return new InstantCommand(() -> Robot.getInstance().chassis.resetHeading(), Robot.getInstance().chassis);
     }
 }
