@@ -23,7 +23,7 @@ public class GamepadFunctions {
     }
 
     public static double getDeadZonedValue(double value, double deadzone) {
-        if (value < deadzone) {
+        if (Math.abs(value) < deadzone) {
             return 0;
         }
         return Math.signum(value) * (Math.abs(value) - deadzone) / (1 - deadzone);
