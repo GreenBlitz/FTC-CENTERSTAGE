@@ -11,21 +11,21 @@ public class ElevatorCommands {
 
     public static Command goToState(ElevatorState elevatorState) {
         return new FunctionalCommand(
-                () -> Robot.getInstance().elevator.setState(elevatorState),
+                () -> Robot.getInstance().getElevator().setState(elevatorState),
                 () -> {},
-                interrupt -> Robot.getInstance().elevator.setState(ElevatorState.STAND_IN_PLACE),
-                () -> Robot.getInstance().elevator.isAtState(),
-                Robot.getInstance().elevator
+                interrupt -> Robot.getInstance().getElevator().setState(ElevatorState.STAND_IN_PLACE),
+                () -> Robot.getInstance().getElevator().isAtState(),
+                Robot.getInstance().getElevator()
         );
     }
 
-    public static Command humanControl(Supplier<Double> triggerValue) { //todo- ask herman to explain Supplier and generic object
+    public static Command humanControl(Supplier<Double> triggerValue) {
         return new FunctionalCommand(
-                () -> Robot.getInstance().elevator.startHumanControl(),
-                () -> Robot.getInstance().elevator.setPower(triggerValue.get()),
-                interrupt -> Robot.getInstance().elevator.endHumanControl(),
+                () -> Robot.getInstance().getElevator().startHumanControl(),
+                () -> Robot.getInstance().getElevator().setPower(triggerValue.get()),
+                interrupt -> Robot.getInstance().getElevator().endHumanControl(),
                 () -> false,
-                Robot.getInstance().elevator
+                Robot.getInstance().getElevator()
         );
     }
 }

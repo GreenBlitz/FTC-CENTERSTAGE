@@ -1,10 +1,13 @@
 package org.firstinspires.ftc.teamcode.opmodes.testers;
 
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
 import org.firstinspires.ftc.teamcode.Bindings;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
-
+@TeleOp(name = "Raz Elevator Test")
 public class RazElevatorTest extends DefaultRaz {
+
     @Override
     public void initialize() {
 
@@ -19,4 +22,5 @@ public class RazElevatorTest extends DefaultRaz {
     public void configureBindings() {
         Bindings.razElevatorTest(gamepad1, gamepad2);
     }
+
 }
