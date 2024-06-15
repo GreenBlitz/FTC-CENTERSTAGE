@@ -3,9 +3,6 @@ package org.firstinspires.ftc.teamcode.gamepads;
 
 import androidx.core.math.MathUtils;
 
-import org.opencv.core.Mat;
-
-
 public class GamepadFunctions {
 
     public static double getDeadZonedSensitiveSquaredValue(double value) {
