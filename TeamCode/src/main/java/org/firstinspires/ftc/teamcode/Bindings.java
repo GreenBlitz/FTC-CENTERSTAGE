@@ -17,13 +17,13 @@ public class Bindings {
 
 
         Robot.getInstance().MECANUM_CHASSIS.setDefaultCommand(
-                ChassisCommands.getFieldCentricDrive(
+                ChassisCommands.fieldCentricDrive(
                         () -> -MAIN_GAMEPAD.getLeftX(),
                         () -> -MAIN_GAMEPAD.getLeftY(),
                         () -> -MAIN_GAMEPAD.getRightX()
                 )
         );
-        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.getResetHeading());
+        MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());
     }
 
 }
