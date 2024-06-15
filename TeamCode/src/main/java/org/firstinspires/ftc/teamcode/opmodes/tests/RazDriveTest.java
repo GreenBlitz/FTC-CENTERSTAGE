@@ -15,7 +15,7 @@ public class RazDriveTest extends DefaultRaz {
 
     @Override
     public void execute() {
-        Robot.getInstance().chassis.telemetry(telemetry);
+        Robot.getInstance().getChassis().telemetry(telemetry);
     }
 
     @Override

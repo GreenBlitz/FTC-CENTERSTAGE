@@ -16,17 +16,17 @@ public class ChassisCommands {
                     double strafeSpeed = strafeSpeedSupplier.get();
                     double forwardSpeed = forwardSpeedSupplier.get();
                     double turnSpeed = turnSpeedSupplier.get();
-                    Robot.getInstance().chassis.fieldCentricDrive(strafeSpeed, forwardSpeed, turnSpeed);
+                    Robot.getInstance().getChassis().fieldCentricDrive(strafeSpeed, forwardSpeed, turnSpeed);
                 },
-                Robot.getInstance().chassis
+                Robot.getInstance().getChassis()
         );
     }
 
     public static Command stop() {
-        return new InstantCommand(() -> Robot.getInstance().chassis.stop());
+        return new InstantCommand(() -> Robot.getInstance().getChassis().stop());
     }
 
     public static Command resetHeading() {
-        return new InstantCommand(() -> Robot.getInstance().chassis.resetHeading(), Robot.getInstance().chassis);
+        return new InstantCommand(() -> Robot.getInstance().getChassis().resetHeading(), Robot.getInstance().getChassis());
     }
 }

@@ -1,7 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.roadrunner.drive.MecanumDrive;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.chassis.MecanumChassis;
 
 public class Robot {
@@ -20,11 +22,14 @@ public class Robot {
     }
 
     //add subsystems...
-    public MecanumChassis chassis;
+    private MecanumChassis chassis;
 
     public void initSubsystems(HardwareMap hardwareMap) {
         // init all subsystems...
         chassis = new MecanumChassis(hardwareMap);
     }
 
+    public MecanumChassis getChassis() {
+        return chassis;
+    }
 }

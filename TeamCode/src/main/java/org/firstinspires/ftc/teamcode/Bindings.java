@@ -16,7 +16,7 @@ public class Bindings {
         mainGamepad = new GamepadWrapper(gamepad1);
 
 
-        Robot.getInstance().chassis.setDefaultCommand(
+        Robot.getInstance().getChassis().setDefaultCommand(
                 ChassisCommands.fieldCentricDrive(
                         () -> -mainGamepad.getLeftX(),
                         () -> -mainGamepad.getLeftY(),
