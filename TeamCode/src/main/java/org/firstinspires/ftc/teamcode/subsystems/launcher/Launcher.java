@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.subsystems.launcher;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -18,11 +17,11 @@ public class Launcher extends SubsystemBase {
         );
     }
 
-    public double getPosition() {
+    private double getPosition() {
         return servo.getPosition();
     }
 
-    public void release() {
+    protected void launchPlane() {
         servo.setPosition(LauncherConstants.RELEASED_POSITION);
     }
 
@@ -34,14 +33,9 @@ public class Launcher extends SubsystemBase {
         return getPosition() == LauncherConstants.CLOSED_POSITION;
     }
 
-    public double getCurrentAngle() {
-        return getPosition() * (LauncherConstants.MAX_ANGLE - LauncherConstants.MIN_ANGLE) + LauncherConstants.MIN_ANGLE;
-    }
-
     public void telemetry(Telemetry telemetry) {
         telemetry.addData("launcher servo currentPos: ", getPosition());
         telemetry.addData("is launcher fully released: ", isFullyReleased());
         telemetry.addData("is launcher closed: ", isClosed());
-        telemetry.addData("launcher servo current angle: ", getCurrentAngle());
     }
 }

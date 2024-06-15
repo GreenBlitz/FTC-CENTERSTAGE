@@ -20,11 +20,15 @@ public class Robot {
     }
 
     //add subsystems...
-    public Launcher launcher;
+    private Launcher launcher;
 
     public void initSubsystems(HardwareMap hardwareMap) {
         // init all subsystems...
         this.launcher = new Launcher(hardwareMap);
+    }
+
+    public Launcher getLauncher() {
+        return launcher;
     }
 
 }

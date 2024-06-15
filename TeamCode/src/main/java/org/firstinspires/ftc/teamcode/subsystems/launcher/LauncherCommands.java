@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.Robot;
 
 public class LauncherCommands {
 
-    public static Command launchFromLauncher() {
-        return new InstantCommand(() -> Robot.getInstance().launcher.release(),Robot.getInstance().launcher);
+    public static Command launchPlane() {
+        return new InstantCommand(() -> Robot.getInstance().getLauncher().launchPlane(),Robot.getInstance().getLauncher());
     }
 }
