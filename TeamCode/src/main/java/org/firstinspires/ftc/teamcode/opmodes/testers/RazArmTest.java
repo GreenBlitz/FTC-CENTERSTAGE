@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 
 @TeleOp(name = "Raz Arm Test")
 public class RazArmTest extends DefaultRaz {
+
     @Override
     public void initialize() {
 
@@ -22,4 +23,5 @@ public class RazArmTest extends DefaultRaz {
     public void configureBindings() {
         Bindings.razArmTestBindings(gamepad1, gamepad2);
     }
+
 }
