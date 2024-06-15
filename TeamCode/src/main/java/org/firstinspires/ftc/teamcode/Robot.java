@@ -20,11 +20,11 @@ public class Robot {
     }
 
     // add subsystems...
-    public Arm ARM;
+    public Arm arm;
 
     public void initSubsystems(HardwareMap hardwareMap) {
         // init all subsystems...
-        this.ARM = new Arm(hardwareMap);
+        this.arm = new Arm(hardwareMap);
     }
 
 }

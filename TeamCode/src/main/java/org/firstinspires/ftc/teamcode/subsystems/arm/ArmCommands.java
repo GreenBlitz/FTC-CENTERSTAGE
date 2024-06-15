@@ -9,11 +9,11 @@ public class ArmCommands {
 
     public static Command goToState(ArmState armState) {
         return new FunctionalCommand(
-                () -> Robot.getInstance().ARM.setState(armState),
+                () -> Robot.getInstance().arm.setState(armState),
                 () -> {},
                 interrupt -> {},
-                () -> Robot.getInstance().ARM.isAtState(),
-                Robot.getInstance().ARM
+                () -> Robot.getInstance().arm.isAtState(),
+                Robot.getInstance().arm
         );
     }
 
