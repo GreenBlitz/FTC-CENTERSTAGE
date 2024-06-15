@@ -5,7 +5,6 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.subsystems.chassis.ChassisCommands;
-import org.firstinspires.ftc.teamcode.subsystems.chassis.MecanumChassis;
 
 public class Bindings {
 
@@ -17,7 +16,7 @@ public class Bindings {
         SECOND_GAMEPAD = new GamepadEx(gamepad2);
 
 
-        Robot.getInstance().MECHANUM_CHASSIS.setDefaultCommand(ChassisCommands.getFieldCentricDrive(() -> -MAIN_GAMEPAD.getLeftX(), () -> -MAIN_GAMEPAD.getLeftY(), () -> -MAIN_GAMEPAD.getRightX()));
+        Robot.getInstance().chassis.setDefaultCommand(ChassisCommands.getFieldCentricDrive(() -> -MAIN_GAMEPAD.getLeftX(), () -> -MAIN_GAMEPAD.getLeftY(), () -> -MAIN_GAMEPAD.getRightX()));
         MAIN_GAMEPAD.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.getResetHeading());
     }
 
