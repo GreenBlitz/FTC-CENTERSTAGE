@@ -1,15 +1,10 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.gamepads;
 
 
 import androidx.core.math.MathUtils;
 
 
-public class JoysticksFunctionsUtil {
-
-    private static final double DEAD_ZONE = 0.05;
-    private static final double SENSITIVE_VALUE_POWER = 2;
-    private static final double SQUARE_FACTOR = 1.4;
-
+public class GamepadFunctions {
 
     public static double getDeadZonedSensitiveSquaredValue(double value) {
         return getSensitiveValue(getDeadZonedSquaredValue(value));
@@ -19,8 +14,12 @@ public class JoysticksFunctionsUtil {
         return getSquaredValue(getDeadZonedValue(value));
     }
 
+    public static double getDeadZonedSensitiveValue(double value) {
+        return getSensitiveValue(getDeadZonedValue(value));
+    }
+
     public static double getDeadZonedValue(double value) {
-        return getDeadZonedValue(value, DEAD_ZONE);
+        return getDeadZonedValue(value, GamepadConstants.DEAD_ZONE);
     }
 
     public static double getDeadZonedValue(double value, double deadzone) {
@@ -31,7 +30,7 @@ public class JoysticksFunctionsUtil {
     }
 
     public static double getSensitiveValue(double value) {
-        return getSensitiveValue(value, SENSITIVE_VALUE_POWER);
+        return getSensitiveValue(value, GamepadConstants.SENSITIVE_VALUE_POWER);
     }
 
     public static double getSensitiveValue(double value, double power) {
@@ -65,7 +64,7 @@ public class JoysticksFunctionsUtil {
      * </p>
      */
     public static double getSquaredValue(double value) {
-        double squaredAxisValue = value * SQUARE_FACTOR;
+        double squaredAxisValue = value * GamepadConstants.SQUARE_FACTOR;
         return MathUtils.clamp(squaredAxisValue, -1, 1);
     }
 
