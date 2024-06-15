@@ -11,12 +11,11 @@ public class RazClawTest extends DefaultRaz {
 
     @Override
     public void initialize() {
-
     }
 
     @Override
     public void execute() {
-        Robot.getInstance().claw.telemetry(telemetry);
+        Robot.getInstance().getClaw().telemetry(telemetry);
     }
 
     @Override

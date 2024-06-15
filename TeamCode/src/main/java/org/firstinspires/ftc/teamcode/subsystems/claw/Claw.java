@@ -34,7 +34,7 @@ public class Claw extends SubsystemBase {
     }
 
     protected void switchFingers() {
-        Finger switchFinger = new Finger(rightFinger);
+        Finger switchFinger = rightFinger;
         rightFinger = leftFinger;
         leftFinger = switchFinger;
     }

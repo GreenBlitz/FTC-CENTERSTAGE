@@ -16,26 +16,8 @@ class Finger {
         this.isOpen = ClawConstants.FINGER_IS_OPEN_AT_START;
     }
 
-    protected Finger(Finger other) {
-        this.servo = other.getServo();
-        this.openPosition = other.getOpenPosition();
-        this.closePosition = other.getClosePosition();
-    }
-
     private void setPosition(double position) {
         servo.setPosition(position);
-    }
-
-    private Servo getServo() {
-        return this.servo;
-    }
-
-    private double getOpenPosition() {
-        return this.openPosition;
-    }
-
-    private double getClosePosition() {
-        return this.closePosition;
     }
 
     protected boolean isOpen() {
