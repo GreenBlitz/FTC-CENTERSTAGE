@@ -73,14 +73,14 @@ public class Elevator extends SubsystemBase {
 
     private void updateTargetByState() {
         switch (currentState) {
-            case INTAKE:
-                pidController.setSetPoint(ElevatorConstants.INTAKE_TICKS);
-                break;
             case SCORE:
                 pidController.setSetPoint(scoreTicks);
                 break;
             case CLIMB:
                 pidController.setSetPoint(ElevatorConstants.CLIMB_TICKS);
+                break;
+            case INTAKE:
+                pidController.setSetPoint(ElevatorConstants.INTAKE_TICKS);
                 break;
             case STAND_IN_PLACE:
                 pidController.setSetPoint(rightMotor.getCurrentPosition());
