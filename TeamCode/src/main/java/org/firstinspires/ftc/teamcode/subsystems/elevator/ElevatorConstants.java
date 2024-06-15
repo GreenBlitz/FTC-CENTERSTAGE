@@ -13,7 +13,6 @@ public class ElevatorConstants {
     protected static final int MINIMUM_TICKS = 0; // todo- calibrate
     protected static final int MAXIMUM_TICKS = 0; // todo- calibrate
 
-
     protected static final int POSITION_TOLERANCE_TICKS = 15; //todo - calibrate better
     protected static final int VELOCITY_DEADBAND_TICKS_PER_SECOND = 10; //todo - calibrate better
 

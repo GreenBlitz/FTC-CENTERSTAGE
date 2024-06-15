@@ -4,8 +4,7 @@ public enum ElevatorState {
 
     PICK_UP,
     SCORE,
-    HUMAN_CONTROL,
     CLIMB,
-    STOP;
+    STAND_IN_PLACE;
 
 }
