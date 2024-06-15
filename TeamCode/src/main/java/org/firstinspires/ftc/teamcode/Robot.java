@@ -28,7 +28,7 @@ public class Robot {
     }
 
     public Claw getClaw() {
-        return this.claw;
+        return claw;
     }
 
 }
