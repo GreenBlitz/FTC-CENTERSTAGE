@@ -7,7 +7,7 @@ class ArmConstants {
     protected static final String ARM_MOTOR_ID = "arm_motor";
 
     protected static final int SCORE_TICKS = 100;
-    protected static final int PICK_UP_TICKS = -1900;
+    protected static final int INTAKE_TICKS = -1900;
     protected static final int STARTING_TICKS = 0;
 
     protected static final int POSITION_TOLERANCE_TICKS = 4;

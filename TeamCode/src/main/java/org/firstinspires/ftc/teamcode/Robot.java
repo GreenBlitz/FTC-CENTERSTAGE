@@ -19,11 +19,9 @@ public class Robot {
         return instance;
     }
 
-    // add subsystems...
     private Arm arm;
 
     public void initSubsystems(HardwareMap hardwareMap) {
-        // init all subsystems...
         this.arm = new Arm(hardwareMap);
     }
 
