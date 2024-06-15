@@ -11,7 +11,7 @@ public class ArmCommands {
         return new FunctionalCommand(
                 () -> Robot.getInstance().arm.setState(armState),
                 () -> {},
-                interrupt -> {},
+                interrupt -> Robot.getInstance().arm.setState(ArmState.STAND_IN_PLACE),
                 () -> Robot.getInstance().arm.isAtState(),
                 Robot.getInstance().arm
         );
