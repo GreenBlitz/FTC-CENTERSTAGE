@@ -8,5 +8,4 @@ class GamepadConstants {
 
     protected static final double SQUARE_FACTOR = 1.4;
 
-
 }
