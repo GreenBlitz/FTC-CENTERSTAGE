@@ -1,10 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import org.firstinspires.ftc.teamcode.gamepads.GamepadWrapper;
 
 public class Bindings {
 
-    private static GamepadEx MAIN_GAMEPAD;
-    private static GamepadEx SECOND_GAMEPAD;
+    private static GamepadWrapper mainGamepad;
+    private static GamepadWrapper secondGamepad;
 
 }
