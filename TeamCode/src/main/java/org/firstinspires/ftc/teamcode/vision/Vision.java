@@ -1,64 +1,76 @@
 package org.firstinspires.ftc.teamcode.vision;
 
-import android.graphics.Canvas;
+import android.util.Pair;
 import android.util.Size;
-
 import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.arcrobotics.ftclib.geometry.Vector2d;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
 import org.firstinspires.ftc.vision.VisionPortal;
-import org.firstinspires.ftc.vision.VisionProcessor;
+import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
+import org.firstinspires.ftc.vision.apriltag.AprilTagPoseFtc;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
-import org.opencv.core.Mat;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Vision extends SubsystemBase implements VisionProcessor {
+public class Vision extends SubsystemBase {
 
     private VisionPortal visionPortal;
+    private AprilTagProcessor aprilTagProcessor;
+    private TfodProcessor tfodProcessor;
+    private List<AprilTagDetection> aprilTagDetections;
 
     public Vision(HardwareMap hardwareMap) {
 
-        AprilTagProcessor.Builder aprilTagProcessorBuilder = new AprilTagProcessor.Builder()
+        aprilTagDetections = new ArrayList<>();
+
+        this.aprilTagProcessor = new AprilTagProcessor.Builder()
                 .setDrawTagID(true)
                 .setDrawTagOutline(true)
                 .setDrawAxes(true)
-                .setDrawCubeProjection(true);
+                .setDrawCubeProjection(true)
+                .build();
 
-        AprilTagProcessor aprilTagProcessor = aprilTagProcessorBuilder.build();
-
-        TfodProcessor.Builder tfodProcessorBuilder = new TfodProcessor.Builder()
+        this.tfodProcessor = new TfodProcessor.Builder()
                 .setMaxNumRecognitions(VisionConstant.MAX_NUM_RECOGNITIONS)
                 .setUseObjectTracker(true)
                 .setTrackerMaxOverlap(VisionConstant.TRACKER_MAX_OVERLAP)
-                .setTrackerMinSize(VisionConstant.TRACKER_MIN_SIZE);
+                .setTrackerMinSize(VisionConstant.TRACKER_MIN_SIZE)
+                .build();
 
-        TfodProcessor tfodProcessor = tfodProcessorBuilder.build();
-
-        VisionPortal.Builder visionPortalBuilder = new VisionPortal.Builder()
+        this.visionPortal = new VisionPortal.Builder()
                 .setCamera(hardwareMap.get(WebcamName.class, VisionConstant.CAMERA_ID))
-                .addProcessors(aprilTagProcessor,tfodProcessor)
-                .setCameraResolution(new Size(VisionConstant.CAMERA_RESOLUTION_WIDTH,VisionConstant.CAMERA_RESOLUTION_HEIGHT))
+                .addProcessors(aprilTagProcessor, tfodProcessor)
+                .setCameraResolution(new Size(VisionConstant.CAMERA_RESOLUTION_WIDTH, VisionConstant.CAMERA_RESOLUTION_HEIGHT))
                 .setStreamFormat(VisionConstant.STREAM_FORMAT)
                 .enableLiveView(true)
-                .setAutoStopLiveView(true);
-
-        visionPortal = visionPortalBuilder.build();
+                .setAutoStopLiveView(true)
+                .build();
     }
 
     @Override
-    public void init(int width, int height, CameraCalibration calibration) {
+    public void periodic() {
+
+        aprilTagDetections = aprilTagProcessor.getDetections();
 
     }
 
-    @Override
-    public Object processFrame(Mat frame, long captureTimeNanos) {
-        return null;
+    public List<AprilTagDetection> getTagsDetections() {
+        return aprilTagDetections;
+    }
+    public List<Pair<AprilTagPoseFtc,Integer>> getTagsPoses() {
+        List<Pair<AprilTagPoseFtc,Integer>> poses = new ArrayList<>();
+        for(AprilTagDetection detection : getTagsDetections())
+            if(detection.metadata != null)
+                poses.add(new Pair<>(detection.ftcPose,detection.id));
+        return poses;
     }
 
-    @Override
-    public void onDrawFrame(Canvas canvas, int onscreenWidth, int onscreenHeight, float scaleBmpPxToCanvasPx, float scaleCanvasDensity, Object userContext) {
-
+    public void telemetry(Telemetry telemetry) {
+        telemetry.addData("first tag x: ", getTagsPoses().get(0).first.x);
     }
+
 }
