@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.gamepads.GamepadWrapper;
+import org.firstinspires.ftc.teamcode.subsystems.chassis.ChassisCommands;
 import org.firstinspires.ftc.teamcode.subsystems.launcher.LauncherCommands;
 import org.firstinspires.ftc.teamcode.subsystems.arm.ArmCommands;
 import org.firstinspires.ftc.teamcode.subsystems.arm.ArmState;
@@ -51,6 +52,21 @@ public class Bindings {
                         }
                 )
         );
+    }
+
+    public static void razDriveTest(Gamepad gamepad1) {
+        mainGamepad = new GamepadWrapper(gamepad1);
+
+
+        Robot.getInstance().getChassis().setDefaultCommand(
+                ChassisCommands.fieldCentricDrive(
+                        () -> -mainGamepad.getLeftX(),
+                        () -> -mainGamepad.getLeftY(),
+                        () -> -mainGamepad.getRightX()
+                )
+        );
+        mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());
+        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(ChassisCommands.stop());
     }
 
 }
