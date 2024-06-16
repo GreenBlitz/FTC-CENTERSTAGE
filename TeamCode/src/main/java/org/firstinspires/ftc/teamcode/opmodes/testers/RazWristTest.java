@@ -6,7 +6,7 @@ import org.firstinspires.ftc.teamcode.Bindings;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 
-@TeleOp(name = "Wrist Test")
+@TeleOp(name = "Raz Wrist Test")
 public class RazWristTest extends DefaultRaz {
     @Override
     public void initialize() {
