@@ -29,12 +29,7 @@ public class Wrist extends SubsystemBase {
         setPosition(targetState.targetPosition);
     }
 
-    public boolean isAtTargetState(WristState targetState){
-        return Math.abs(targetState.targetPosition - getPosition()) < WristConstants.POSITION_TOLERANCE;
-    }
-
     public void telemetry (Telemetry telemetry){
-        telemetry.addData("Wrist IsAtTargetState?: ", isAtTargetState(targetState));
         telemetry.addData("Wrist TargetState: ", targetState);
         telemetry.addData("Wrist CurrentPosition: ", getPosition());
     }

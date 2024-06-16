@@ -20,18 +20,18 @@ public class Robot {
         return instance;
     }
 
-    private Wrist WRIST;
+    private Wrist wrist;
     private Arm arm;
     private Elevator elevator;
 
     public void initSubsystems(HardwareMap hardwareMap) {
-        this.WRIST = new Wrist(hardwareMap);
+        this.wrist = new Wrist(hardwareMap);
         this.arm = new Arm(hardwareMap);
         this.elevator = new Elevator(hardwareMap);
     }
 
     public Wrist getWrist(){
-        return WRIST;
+        return wrist;
     }
 
     public Arm getArm() {

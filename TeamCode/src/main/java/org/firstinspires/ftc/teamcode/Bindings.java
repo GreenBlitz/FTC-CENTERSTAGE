@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import org.firstinspires.ftc.teamcode.subsystems.wrist.WristCommands;
@@ -52,8 +51,8 @@ public class Bindings {
         mainGamepad = new GamepadWrapper(gamepad1);
         secondGamepad = new GamepadWrapper(gamepad2);
 
-        mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(WristCommands.moveToStateCommand(WristState.SCORE));
-        mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(WristCommands.moveToStateCommand(WristState.INTAKE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(WristCommands.moveToState(WristState.SCORE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(WristCommands.moveToState(WristState.INTAKE));
     }
 
 }
