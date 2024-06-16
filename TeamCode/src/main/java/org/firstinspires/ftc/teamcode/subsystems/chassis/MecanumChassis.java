@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.subsystems.chassis;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.arcrobotics.ftclib.geometry.Rotation2d;
 import com.arcrobotics.ftclib.geometry.Vector2d;
 import com.arcrobotics.ftclib.hardware.RevIMU;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
@@ -28,6 +29,10 @@ public class MecanumChassis extends SubsystemBase {
         return chassisMotor;
     }
 
+    public Rotation2d getRotation2d() {
+        return imu.getRotation2d();
+    }
+
     protected void fieldCentricDrive(double strafeSpeed, double forwardSpeed, double turnSpeed) {
         fieldCentricDrive(strafeSpeed, forwardSpeed, turnSpeed, imu.getRotation2d().getRadians());
     }
@@ -46,9 +51,9 @@ public class MecanumChassis extends SubsystemBase {
         double[] wheelSpeeds = new double[4];
 
         wheelSpeeds[ChassisConstants.FRONT_LEFT_INDEX] = Math.sin(theta + Math.PI / 4);;
-        wheelSpeeds[ChassisConstants.FRONT_RIGHT_INDEX] = -Math.sin(theta - Math.PI / 4);
+        wheelSpeeds[ChassisConstants.FRONT_RIGHT_INDEX] = Math.sin(theta - Math.PI / 4);
         wheelSpeeds[ChassisConstants.BACK_LEFT_INDEX] = Math.sin(theta - Math.PI / 4);
-        wheelSpeeds[ChassisConstants.BACK_RIGHT_INDEX] = -Math.sin(theta + Math.PI / 4);
+        wheelSpeeds[ChassisConstants.BACK_RIGHT_INDEX] = Math.sin(theta + Math.PI / 4);
 
         normalize(wheelSpeeds, input.magnitude());
 
@@ -62,8 +67,8 @@ public class MecanumChassis extends SubsystemBase {
         mecanumDrive.setMotorPowers(
                 wheelSpeeds[ChassisConstants.FRONT_LEFT_INDEX],
                 wheelSpeeds[ChassisConstants.BACK_LEFT_INDEX],
-                wheelSpeeds[ChassisConstants.BACK_RIGHT_INDEX],
-                wheelSpeeds[ChassisConstants.FRONT_RIGHT_INDEX]
+                -wheelSpeeds[ChassisConstants.BACK_RIGHT_INDEX],
+                -wheelSpeeds[ChassisConstants.FRONT_RIGHT_INDEX]
         );
 
     }
