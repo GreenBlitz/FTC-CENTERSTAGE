@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.teamcode.subsystems.wrist.WristCommands;
+import org.firstinspires.ftc.teamcode.subsystems.wrist.WristState;
 import org.firstinspires.ftc.teamcode.gamepads.GamepadWrapper;
 import org.firstinspires.ftc.teamcode.subsystems.chassis.ChassisCommands;
 import org.firstinspires.ftc.teamcode.subsystems.launcher.LauncherCommands;
@@ -52,6 +54,14 @@ public class Bindings {
                         }
                 )
         );
+    }
+
+    public static void razWristTest(Gamepad gamepad1, Gamepad gamepad2) {
+        mainGamepad = new GamepadWrapper(gamepad1);
+        secondGamepad = new GamepadWrapper(gamepad2);
+
+        mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(WristCommands.moveToState(WristState.SCORE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(WristCommands.moveToState(WristState.INTAKE));
     }
 
     public static void razDriveTest(Gamepad gamepad1) {
