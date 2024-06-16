@@ -11,6 +11,7 @@ public class RazClawTest extends DefaultRaz {
 
     @Override
     public void initialize() {
+        Robot.getInstance().getClaw().openBothFingers();
     }
 
     @Override
