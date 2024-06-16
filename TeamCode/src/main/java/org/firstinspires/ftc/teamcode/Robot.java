@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.subsystems.launcher.Launcher;
 import org.firstinspires.ftc.teamcode.subsystems.elevator.Elevator;
 import org.firstinspires.ftc.teamcode.subsystems.arm.Arm;
+import org.firstinspires.ftc.teamcode.vision.Vision;
 
 public class Robot {
 
@@ -25,11 +26,13 @@ public class Robot {
     private Arm arm;
     private Elevator elevator;
     private Launcher launcher;
+    private Vision vision;
 
     public void initSubsystems(HardwareMap hardwareMap) {
         this.arm = new Arm(hardwareMap);
         this.elevator = new Elevator(hardwareMap);
         this.launcher = new Launcher(hardwareMap);
+        this.vision = new Vision(hardwareMap);
     }
 
 
