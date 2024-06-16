@@ -23,7 +23,6 @@ public class MecanumChassis extends SubsystemBase {
         this.mecanumDrive = new SampleMecanumDrive(hardwareMap);
         this.imu = new RevIMU(hardwareMap);
         imu.init();
-        MecanumDrive
     }
 
     private Motor getChassisMotor(HardwareMap hardwareMap, String id) {
