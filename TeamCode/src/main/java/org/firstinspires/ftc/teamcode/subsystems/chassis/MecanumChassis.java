@@ -46,9 +46,9 @@ public class MecanumChassis extends SubsystemBase {
         double[] wheelSpeeds = new double[4];
 
         wheelSpeeds[ChassisConstants.FRONT_LEFT_INDEX] = Math.sin(theta + Math.PI / 4);;
-        wheelSpeeds[ChassisConstants.FRONT_RIGHT_INDEX] = Math.sin(theta - Math.PI / 4);
+        wheelSpeeds[ChassisConstants.FRONT_RIGHT_INDEX] = -Math.sin(theta - Math.PI / 4);
         wheelSpeeds[ChassisConstants.BACK_LEFT_INDEX] = Math.sin(theta - Math.PI / 4);
-        wheelSpeeds[ChassisConstants.BACK_RIGHT_INDEX] = Math.sin(theta + Math.PI / 4);
+        wheelSpeeds[ChassisConstants.BACK_RIGHT_INDEX] = -Math.sin(theta + Math.PI / 4);
 
         normalize(wheelSpeeds, input.magnitude());
 
