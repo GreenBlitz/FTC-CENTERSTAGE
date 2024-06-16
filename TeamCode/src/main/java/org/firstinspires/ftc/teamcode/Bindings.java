@@ -8,6 +8,10 @@ import org.firstinspires.ftc.teamcode.gamepads.GamepadWrapper;
 import org.firstinspires.ftc.teamcode.subsystems.arm.ArmCommands;
 import org.firstinspires.ftc.teamcode.subsystems.arm.ArmState;
 import org.firstinspires.ftc.teamcode.subsystems.claw.ClawCommands;
+import org.firstinspires.ftc.teamcode.subsystems.wrist.WristCommands;
+import org.firstinspires.ftc.teamcode.subsystems.wrist.WristState;
+import org.firstinspires.ftc.teamcode.subsystems.chassis.ChassisCommands;
+import org.firstinspires.ftc.teamcode.subsystems.launcher.LauncherCommands;
 import org.firstinspires.ftc.teamcode.subsystems.elevator.ElevatorCommands;
 import org.firstinspires.ftc.teamcode.subsystems.elevator.ElevatorState;
 
@@ -16,9 +20,8 @@ public class Bindings {
     private static GamepadWrapper mainGamepad;
     private static GamepadWrapper secondGamepad;
 
-    public static void razClawTest(Gamepad gamepad1, Gamepad gamepad2) {
-        mainGamepad = new GamepadWrapper(gamepad1);
-        secondGamepad = new GamepadWrapper(gamepad2);
+    public static void razClawTest(Gamepad gamepad) {
+        mainGamepad = new GamepadWrapper(gamepad);
 
         mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(ClawCommands.toggleRightFinger());
         mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(ClawCommands.toggleLeftFinger());
@@ -26,9 +29,14 @@ public class Bindings {
         mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ClawCommands.closeBothFingers());
     }
 
-    public static void razArmTest(Gamepad gamepad1, Gamepad gamepad2) {
-        mainGamepad = new GamepadWrapper(gamepad1);
-        secondGamepad = new GamepadWrapper(gamepad2);
+    public static void razLauncherTest(Gamepad gamepad) {
+        mainGamepad = new GamepadWrapper(gamepad);
+
+        mainGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(LauncherCommands.launchPlane());
+    }
+
+    public static void razArmTest(Gamepad gamepad) {
+        mainGamepad = new GamepadWrapper(gamepad);
 
         mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(ArmCommands.goToState(ArmState.SCORE));
         mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(ArmCommands.goToState(ArmState.INTAKE));
@@ -36,9 +44,8 @@ public class Bindings {
         mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(ArmCommands.goToState(ArmState.STAND_IN_PLACE));
     }
 
-    public static void razElevatorTest(Gamepad gamepad1, Gamepad gamepad2) {
-        mainGamepad = new GamepadWrapper(gamepad1);
-        secondGamepad = new GamepadWrapper(gamepad2);
+    public static void razElevatorTest(Gamepad gamepad) {
+        mainGamepad = new GamepadWrapper(gamepad);
 
         mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(ElevatorCommands.goToState(ElevatorState.SCORE));
         mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ElevatorCommands.goToState(ElevatorState.CLIMB));
@@ -58,4 +65,26 @@ public class Bindings {
                 )
         );
     }
+
+    public static void razWristTest(Gamepad gamepad) {
+        mainGamepad = new GamepadWrapper(gamepad);
+
+        mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(WristCommands.moveToState(WristState.SCORE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(WristCommands.moveToState(WristState.INTAKE));
+    }
+
+    public static void razChassisTest(Gamepad gamepad) {
+        mainGamepad = new GamepadWrapper(gamepad);
+
+        Robot.getInstance().getChassis().setDefaultCommand(
+                ChassisCommands.fieldCentricDrive(
+                        () -> -mainGamepad.getLeftX(),
+                        () -> -mainGamepad.getLeftY(),
+                        () -> -mainGamepad.getRightX()
+                )
+        );
+        mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());
+        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(ChassisCommands.stop());
+    }
+
 }

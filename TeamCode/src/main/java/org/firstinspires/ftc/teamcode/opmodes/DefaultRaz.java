@@ -25,3 +25,4 @@ public abstract class DefaultRaz extends OpMode {
     public abstract void configureBindings();
 
 }
+

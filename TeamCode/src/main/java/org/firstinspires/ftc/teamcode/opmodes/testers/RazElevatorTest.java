@@ -21,7 +21,7 @@ public class RazElevatorTest extends DefaultRaz {
 
     @Override
     public void configureBindings() {
-        Bindings.razElevatorTest(gamepad1, gamepad2);
+        Bindings.razElevatorTest(gamepad1);
     }
 
 }
