@@ -11,25 +11,25 @@ public class Wrist extends SubsystemBase {
     private final Servo servo;
     private WristState targetState;
 
-    public Wrist(HardwareMap hardwareMap){
+    public Wrist(HardwareMap hardwareMap) {
         this.servo = hardwareMap.servo.get(WristConstants.SERVO_HARDWARE_NAME);
         this.targetState = WristState.INTAKE;
     }
 
-    private void setPosition(double position){
+    private void setPosition(double position) {
         servo.setPosition(position);
     }
 
-    private double getPosition(){
+    private double getPosition() {
         return servo.getPosition();
     }
 
-    protected void setState(WristState state){
+    protected void setState(WristState state) {
         targetState = state;
         setPosition(targetState.targetPosition);
     }
 
-    public void telemetry (Telemetry telemetry){
+    public void telemetry(Telemetry telemetry) {
         telemetry.addData("Wrist TargetState: ", targetState);
         telemetry.addData("Wrist CurrentPosition: ", getPosition());
     }
