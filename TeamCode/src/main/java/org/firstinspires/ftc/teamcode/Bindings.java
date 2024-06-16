@@ -12,7 +12,7 @@ public class Bindings {
     private static GamepadEx MAIN_GAMEPAD;
     private static GamepadEx SECOND_GAMEPAD;
 
-    public static void wristBindings(Gamepad gamepad1, Gamepad gamepad2){
+    public static void razWristTest(Gamepad gamepad1, Gamepad gamepad2){
         MAIN_GAMEPAD = new GamepadEx(gamepad1);
         SECOND_GAMEPAD = new GamepadEx(gamepad2);
 

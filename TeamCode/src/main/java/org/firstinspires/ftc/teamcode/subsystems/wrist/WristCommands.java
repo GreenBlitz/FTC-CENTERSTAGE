@@ -10,11 +10,11 @@ public class WristCommands {
 
     public static FunctionalCommand moveToStateCommand(WristState state){
         return new FunctionalCommand(
-                () -> Robot.getInstance().WRIST.setState(state),
+                () -> Robot.getInstance().getWrist().setState(state),
                 () -> {},
                 interrupt -> {},
-                () -> Robot.getInstance().WRIST.isAtTargetState(state),
-                Robot.getInstance().WRIST
+                () -> Robot.getInstance().getWrist().isAtTargetState(state),
+                Robot.getInstance().getWrist()
         );
     }
 

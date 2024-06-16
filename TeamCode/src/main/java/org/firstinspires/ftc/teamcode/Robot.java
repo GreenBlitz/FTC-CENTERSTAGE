@@ -20,11 +20,15 @@ public class Robot {
     }
 
     //add subsystems...
-    public Wrist WRIST;
+    private Wrist WRIST;
 
     public void initSubsystems(HardwareMap hardwareMap) {
         // init all subsystems...
         this.WRIST = new Wrist(hardwareMap);
+    }
+
+    public Wrist getWrist(){
+        return WRIST;
     }
 
 }

@@ -8,25 +8,25 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Wrist extends SubsystemBase {
 
-    private final Servo wristServo;
-    private WristState currentTargetState;
+    private final Servo servo;
+    private WristState targetState;
 
     public Wrist(HardwareMap hardwareMap){
-        this.wristServo = hardwareMap.servo.get(WristConstants.SERVO_HARDWARE_NAME);
-        currentTargetState = WristState.INTAKE;
+        this.servo = hardwareMap.servo.get(WristConstants.SERVO_HARDWARE_NAME);
+        this.targetState = WristState.INTAKE;
     }
 
     private void setPosition(double position){
-        wristServo.setPosition(position);
+        servo.setPosition(position);
     }
 
     private double getPosition(){
-        return wristServo.getPosition();
+        return servo.getPosition();
     }
 
-    public void setState(WristState state){
-        currentTargetState = state;
-        setPosition(currentTargetState.targetPosition);
+    protected void setState(WristState state){
+        targetState = state;
+        setPosition(targetState.targetPosition);
     }
 
     public boolean isAtTargetState(WristState targetState){
@@ -34,8 +34,9 @@ public class Wrist extends SubsystemBase {
     }
 
     public void telemetry (Telemetry telemetry){
-        telemetry.addData("Wrist isAtTargetState?:", isAtTargetState(currentTargetState));
-        telemetry.addData("Wrist TargetState:", currentTargetState);
+        telemetry.addData("Wrist IsAtTargetState?: ", isAtTargetState(targetState));
+        telemetry.addData("Wrist TargetState: ", targetState);
+        telemetry.addData("Wrist CurrentPosition: ", getPosition());
     }
 
 }
