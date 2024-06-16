@@ -12,7 +12,7 @@ public class Wrist extends SubsystemBase {
     private WristState targetState;
 
     public Wrist(HardwareMap hardwareMap) {
-        this.servo = hardwareMap.servo.get(WristConstants.SERVO_HARDWARE_NAME);
+        this.servo = hardwareMap.servo.get(WristConstants.SERVO_HARDWARE_ID);
         this.targetState = WristState.INTAKE;
     }
 
