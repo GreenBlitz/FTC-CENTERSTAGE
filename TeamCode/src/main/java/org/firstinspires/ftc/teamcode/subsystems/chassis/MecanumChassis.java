@@ -43,7 +43,7 @@ public class MecanumChassis extends SubsystemBase {
         mecanumDrive.stop();
     }
 
-    public void resetHeading() {
+    protected void resetHeading() {
         imu.reset();
     }
 
