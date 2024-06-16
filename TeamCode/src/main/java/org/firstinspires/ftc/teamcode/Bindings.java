@@ -20,10 +20,10 @@ public class Bindings {
         mainGamepad = new GamepadWrapper(gamepad1);
         secondGamepad = new GamepadWrapper(gamepad2);
 
-        mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(ClawCommands.toggleRightFinger);
-        mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(ClawCommands.toggleLeftFinger);
-        mainGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(ClawCommands.openBothFingers);
-        mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ClawCommands.closeBothFingers);
+        mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(ClawCommands.toggleRightFinger());
+        mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(ClawCommands.toggleLeftFinger());
+        mainGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(ClawCommands.openBothFingers());
+        mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ClawCommands.closeBothFingers());
     }
 
     public static void razArmTest(Gamepad gamepad1, Gamepad gamepad2) {
