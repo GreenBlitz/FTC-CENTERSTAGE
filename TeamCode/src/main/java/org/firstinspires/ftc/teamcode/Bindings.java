@@ -2,11 +2,14 @@ package org.firstinspires.ftc.teamcode;
 
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
+
 import org.firstinspires.ftc.teamcode.subsystems.wrist.WristCommands;
 import org.firstinspires.ftc.teamcode.subsystems.wrist.WristState;
+import org.firstinspires.ftc.teamcode.gamepads.GamepadWrapper;
+import org.firstinspires.ftc.teamcode.subsystems.chassis.ChassisCommands;
+import org.firstinspires.ftc.teamcode.subsystems.launcher.LauncherCommands;
 import org.firstinspires.ftc.teamcode.subsystems.arm.ArmCommands;
 import org.firstinspires.ftc.teamcode.subsystems.arm.ArmState;
-import org.firstinspires.ftc.teamcode.gamepads.GamepadWrapper;
 import org.firstinspires.ftc.teamcode.gamepads.GamepadFunctions;
 import org.firstinspires.ftc.teamcode.subsystems.elevator.ElevatorCommands;
 import org.firstinspires.ftc.teamcode.subsystems.elevator.ElevatorState;
@@ -15,6 +18,12 @@ public class Bindings {
 
     private static GamepadWrapper mainGamepad;
     private static GamepadWrapper secondGamepad;
+
+    public static void razLauncherTest(Gamepad gamepad1, Gamepad gamepad2) {
+        mainGamepad = new GamepadWrapper(gamepad1);
+
+        mainGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(LauncherCommands.launchPlane());
+    }
 
     public static void razArmTest(Gamepad gamepad1, Gamepad gamepad2) {
         mainGamepad = new GamepadWrapper(gamepad1);
@@ -47,12 +56,27 @@ public class Bindings {
         );
     }
 
-    public static void razWristTest(Gamepad gamepad1, Gamepad gamepad2){
+    public static void razWristTest(Gamepad gamepad1, Gamepad gamepad2) {
         mainGamepad = new GamepadWrapper(gamepad1);
         secondGamepad = new GamepadWrapper(gamepad2);
 
         mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(WristCommands.moveToState(WristState.SCORE));
         mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(WristCommands.moveToState(WristState.INTAKE));
+    }
+
+    public static void razDriveTest(Gamepad gamepad1) {
+        mainGamepad = new GamepadWrapper(gamepad1);
+
+
+        Robot.getInstance().getChassis().setDefaultCommand(
+                ChassisCommands.fieldCentricDrive(
+                        () -> -mainGamepad.getLeftX(),
+                        () -> -mainGamepad.getLeftY(),
+                        () -> -mainGamepad.getRightX()
+                )
+        );
+        mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());
+        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(ChassisCommands.stop());
     }
 
 }
