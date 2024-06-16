@@ -28,6 +28,6 @@ public class ChassisCommands {
     }
 
     public static Command resetHeading() {
-        return new InstantCommand(() -> Robot.getInstance().getChassis(), Robot.getInstance().getChassis());
+        return new InstantCommand(() -> Robot.getInstance().getChassis().resetHeading(), Robot.getInstance().getChassis());
     }
 }
