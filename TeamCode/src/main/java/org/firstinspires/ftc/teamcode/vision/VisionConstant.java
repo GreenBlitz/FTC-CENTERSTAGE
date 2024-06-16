@@ -5,7 +5,7 @@ import org.openftc.easyopencv.OpenCvWebcam;
 
 public class VisionConstant {
 
-    protected static final String CAMERA_ID = "Camera - 1";
+    protected static final String CAMERA_ID = "Webcam1";
 
     protected static final int CAMERA_RESOLUTION_WIDTH = 640;
     protected static final int CAMERA_RESOLUTION_HEIGHT = 480;
