@@ -6,8 +6,8 @@ import org.firstinspires.ftc.teamcode.Bindings;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 
-@TeleOp(name = "Raz Arm Test")
-public class RazArmTest extends DefaultRaz {
+@TeleOp(name = "Raz Elevator Test")
+public class RazElevatorTest extends DefaultRaz {
 
     @Override
     public void initialize() {
@@ -16,12 +16,12 @@ public class RazArmTest extends DefaultRaz {
 
     @Override
     public void execute() {
-        Robot.getInstance().getArm().telemetry(telemetry);
+        Robot.getInstance().getElevator().telemetry(telemetry);
     }
 
     @Override
     public void configureBindings() {
-        Bindings.razArmTest(gamepad1, gamepad2);
+        Bindings.razElevatorTest(gamepad1, gamepad2);
     }
 
 }
