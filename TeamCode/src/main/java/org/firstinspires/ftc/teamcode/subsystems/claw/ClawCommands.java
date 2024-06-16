@@ -26,4 +26,5 @@ public class ClawCommands {
     public static Command switchFingers() {
         return new InstantCommand(() -> Robot.getInstance().getClaw().switchFingers());
     }
+
 }

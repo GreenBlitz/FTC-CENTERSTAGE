@@ -11,6 +11,6 @@ class ClawConstants {
     protected static final double RIGHT_GRIPPER_CLOSE_POSITION = 0.6; //BFC's Original 0.52
 
     protected static final double LEFT_GRIPPER_OPEN_POSITION = 0.93;
-    protected static final double LEFT_GRIPPER_CLOSE_POSITION = 0.65     ; //BFC's Original 0.75
+    protected static final double LEFT_GRIPPER_CLOSE_POSITION = 0.65; //BFC's Original 0.75
 
 }
