@@ -3,9 +3,10 @@ package org.firstinspires.ftc.teamcode;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.teamcode.gamepads.GamepadWrapper;
+import org.firstinspires.ftc.teamcode.subsystems.launcher.LauncherCommands;
 import org.firstinspires.ftc.teamcode.subsystems.arm.ArmCommands;
 import org.firstinspires.ftc.teamcode.subsystems.arm.ArmState;
-import org.firstinspires.ftc.teamcode.gamepads.GamepadWrapper;
 import org.firstinspires.ftc.teamcode.gamepads.GamepadFunctions;
 import org.firstinspires.ftc.teamcode.subsystems.elevator.ElevatorCommands;
 import org.firstinspires.ftc.teamcode.subsystems.elevator.ElevatorState;
@@ -14,6 +15,12 @@ public class Bindings {
 
     private static GamepadWrapper mainGamepad;
     private static GamepadWrapper secondGamepad;
+
+    public static void razLauncherTest(Gamepad gamepad1, Gamepad gamepad2) {
+        mainGamepad = new GamepadWrapper(gamepad1);
+
+        mainGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(LauncherCommands.launchPlane());
+    }
 
     public static void razArmTest(Gamepad gamepad1, Gamepad gamepad2) {
         mainGamepad = new GamepadWrapper(gamepad1);
