@@ -11,14 +11,13 @@ import java.util.function.Supplier;
 
 public class ChassisCommands {
 
-    public static Command fieldCentricDrive(Supplier<Double> strafeSpeedSupplier, Supplier<Double> forwardSpeedSupplier, Supplier<Double> turnSpeedSupplier, Supplier<Rotation2d> gyroAngleSupplier) {
+    public static Command fieldCentricDrive(Supplier<Double> strafeSpeedSupplier, Supplier<Double> forwardSpeedSupplier, Supplier<Double> turnSpeedSupplier) {
         return new RunCommand(
                 () -> {
                     double strafeSpeed = strafeSpeedSupplier.get();
                     double forwardSpeed = forwardSpeedSupplier.get();
                     double turnSpeed = turnSpeedSupplier.get();
-                    double gyroAngle = gyroAngleSupplier.get().getDegrees();
-                    Robot.getInstance().getChassis().fieldCentricDrive(strafeSpeed, forwardSpeed, turnSpeed, gyroAngle);
+                    Robot.getInstance().getChassis().fieldCentricDrive(strafeSpeed, forwardSpeed, turnSpeed);
                 },
                 Robot.getInstance().getChassis()
         );
@@ -29,6 +28,6 @@ public class ChassisCommands {
     }
 
     public static Command resetHeading() {
-        return new InstantCommand(() -> Robot.getInstance().getChassis().resetHeading(), Robot.getInstance().getChassis());
+        return new InstantCommand(() -> Robot.getInstance().getChassis(), Robot.getInstance().getChassis());
     }
 }
