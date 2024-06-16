@@ -17,12 +17,13 @@ public class Bindings {
 
         Robot.getInstance().getChassis().setDefaultCommand(
                 ChassisCommands.fieldCentricDrive(
-                        () -> -mainGamepad.getLeftX(),
-                        () -> -mainGamepad.getLeftY(),
-                        () -> -mainGamepad.getRightX()
+                        () -> mainGamepad.getLeftX(),
+                        () -> mainGamepad.getLeftY(),
+                        () -> mainGamepad.getRightX()
                 )
         );
         mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());
+        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(ChassisCommands.stop());
     }
 
 }

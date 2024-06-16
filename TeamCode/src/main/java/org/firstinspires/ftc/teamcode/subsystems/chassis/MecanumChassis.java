@@ -1,15 +1,12 @@
 package org.firstinspires.ftc.teamcode.subsystems.chassis;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
-import com.arcrobotics.ftclib.drivebase.MecanumDrive;
-import com.arcrobotics.ftclib.drivebase.RobotDrive;
 import com.arcrobotics.ftclib.geometry.Vector2d;
 import com.arcrobotics.ftclib.hardware.RevIMU;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
 
-import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleMecanumDrive;
 
@@ -93,7 +90,7 @@ public class MecanumChassis extends SubsystemBase {
                 maxMagnitude = temp;
             }
         }
-        if (maxMagnitude > 1) {
+        if (maxMagnitude > ChassisConstants.MAX_SPEED_POSSIBLE_VALUE) {
             for (int i = 0; i < wheelSpeeds.length; i++) {
                 wheelSpeeds[i] = (wheelSpeeds[i] / maxMagnitude);
             }
