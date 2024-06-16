@@ -2,7 +2,9 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.subsystems.arm.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.claw.Claw;
+import org.firstinspires.ftc.teamcode.subsystems.elevator.Elevator;
 
 public class Robot {
 
@@ -19,16 +21,25 @@ public class Robot {
         return instance;
     }
 
-    //add subsystems...
+    private Arm arm;
+    private Elevator elevator;
     private Claw claw;
 
     public void initSubsystems(HardwareMap hardwareMap) {
-        // init all subsystems...
+        this.arm = new Arm(hardwareMap);
+        this.elevator = new Elevator(hardwareMap);
         this.claw = new Claw(hardwareMap);
+    }
+
+    public Arm getArm() {
+        return arm;
+    }
+
+    public Elevator getElevator() {
+        return elevator;
     }
 
     public Claw getClaw() {
         return claw;
     }
-
 }

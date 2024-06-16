@@ -19,4 +19,5 @@ public class GamepadWrapper extends GamepadEx {
     public Trigger getTriggerAsButton(GamepadKeys.Trigger trigger) {
         return trigger == GamepadKeys.Trigger.LEFT_TRIGGER ? leftTriggerButton : rightTriggerButton;
     }
+
 }

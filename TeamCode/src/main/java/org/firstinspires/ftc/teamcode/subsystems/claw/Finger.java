@@ -20,6 +20,10 @@ class Finger {
         servo.setPosition(position);
     }
 
+    protected double getPosition() {
+        return servo.getPosition();
+    }
+
     protected boolean isOpen() {
         return isOpen;
     }
@@ -41,5 +45,4 @@ class Finger {
             open();
         }
     }
-
 }
