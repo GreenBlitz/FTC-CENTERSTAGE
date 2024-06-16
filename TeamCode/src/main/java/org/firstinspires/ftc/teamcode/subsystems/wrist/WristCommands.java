@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.Robot;
 public class WristCommands {
 
     public static InstantCommand moveToState(WristState state){
-        return new InstantCommand(() -> Robot.getInstance().getWrist().setState(state));
+        return new InstantCommand(() -> Robot.getInstance().getWrist().setState(state), Robot.getInstance().getWrist());
     }
 
 }
