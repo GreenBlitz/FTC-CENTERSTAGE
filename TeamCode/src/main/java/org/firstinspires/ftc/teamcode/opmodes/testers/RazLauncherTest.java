@@ -21,7 +21,7 @@ public class RazLauncherTest extends DefaultRaz {
 
     @Override
     public void configureBindings() {
-        Bindings.razLauncherTest(gamepad1, gamepad2);
+        Bindings.razLauncherTest(gamepad1);
     }
 
 }

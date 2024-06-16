@@ -6,22 +6,22 @@ import org.firstinspires.ftc.teamcode.Bindings;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 
-@TeleOp(name = "Raz Arm Test")
-public class RazArmTest extends DefaultRaz {
+@TeleOp(name = "Raz Claw Test")
+public class RazClawTest extends DefaultRaz {
 
     @Override
     public void initialize() {
-
+        Robot.getInstance().getClaw().openBothFingers();
     }
 
     @Override
     public void execute() {
-        Robot.getInstance().getArm().telemetry(telemetry);
+        Robot.getInstance().getClaw().telemetry(telemetry);
     }
 
     @Override
     public void configureBindings() {
-        Bindings.razArmTest(gamepad1);
+        Bindings.razClawTest(gamepad1);
     }
 
 }
