@@ -24,7 +24,7 @@ public class ChassisCommands {
     }
 
     public static Command stop() {
-        return new InstantCommand(() -> Robot.getInstance().getChassis().stop());
+        return new InstantCommand(() -> Robot.getInstance().getChassis().stop(), Robot.getInstance().getChassis());
     }
 
     public static Command resetHeading() {

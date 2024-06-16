@@ -20,6 +20,7 @@ public class RazDriveTest extends DefaultRaz {
 
     @Override
     public void configureBindings() {
-        Bindings.razDriveTestBindings(gamepad1);
+        Bindings.razDriveTest(gamepad1);
     }
+
 }

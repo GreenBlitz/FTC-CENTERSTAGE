@@ -11,7 +11,7 @@ public class Bindings {
     private static GamepadWrapper mainGamepad;
     private static GamepadWrapper secondGamepad;
 
-    public static void razDriveTestBindings(Gamepad gamepad1) {
+    public static void razDriveTest(Gamepad gamepad1) {
         mainGamepad = new GamepadWrapper(gamepad1);
 
 
