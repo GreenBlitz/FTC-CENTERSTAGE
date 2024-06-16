@@ -71,12 +71,12 @@ public class DriveVelocityPIDTuner extends LinearOpMode {
 
         Mode mode = Mode.TUNING_MODE;
 
-        double lastKp = DriveConstants.MOTOR_VELOCITY_PID.p;
-        double lastKi = DriveConstants.MOTOR_VELOCITY_PID.i;
-        double lastKd = DriveConstants.MOTOR_VELOCITY_PID.d;
-        double lastKf = DriveConstants.MOTOR_VELOCITY_PID.f;
+        double lastKp = DriveConstants.MOTOR_VELO_PID.p;
+        double lastKi = DriveConstants.MOTOR_VELO_PID.i;
+        double lastKd = DriveConstants.MOTOR_VELO_PID.d;
+        double lastKf = DriveConstants.MOTOR_VELO_PID.f;
 
-        drive.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, DriveConstants.MOTOR_VELOCITY_PID);
+        drive.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, DriveConstants.MOTOR_VELO_PID);
 
         NanoClock clock = NanoClock.system();
 
@@ -149,14 +149,14 @@ public class DriveVelocityPIDTuner extends LinearOpMode {
                     break;
             }
 
-            if (lastKp != DriveConstants.MOTOR_VELOCITY_PID.p || lastKd != DriveConstants.MOTOR_VELOCITY_PID.d
-                    || lastKi != DriveConstants.MOTOR_VELOCITY_PID.i || lastKf != DriveConstants.MOTOR_VELOCITY_PID.f) {
-                drive.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, DriveConstants.MOTOR_VELOCITY_PID);
+            if (lastKp != DriveConstants.MOTOR_VELO_PID.p || lastKd != DriveConstants.MOTOR_VELO_PID.d
+                    || lastKi != DriveConstants.MOTOR_VELO_PID.i || lastKf != DriveConstants.MOTOR_VELO_PID.f) {
+                drive.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, DriveConstants.MOTOR_VELO_PID);
 
-                lastKp = DriveConstants.MOTOR_VELOCITY_PID.p;
-                lastKi = DriveConstants.MOTOR_VELOCITY_PID.i;
-                lastKd = DriveConstants.MOTOR_VELOCITY_PID.d;
-                lastKf = DriveConstants.MOTOR_VELOCITY_PID.f;
+                lastKp = DriveConstants.MOTOR_VELO_PID.p;
+                lastKi = DriveConstants.MOTOR_VELO_PID.i;
+                lastKd = DriveConstants.MOTOR_VELO_PID.d;
+                lastKf = DriveConstants.MOTOR_VELO_PID.f;
             }
 
             telemetry.update();
