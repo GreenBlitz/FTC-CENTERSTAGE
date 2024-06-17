@@ -1,61 +1,20 @@
 package org.firstinspires.ftc.teamcode.subsystems.vision;
 
 import android.graphics.Canvas;
-
 import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
+import org.firstinspires.ftc.teamcode.Alliance;
+import org.firstinspires.ftc.teamcode.RobotConstants;
 import org.firstinspires.ftc.vision.VisionProcessor;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
 
 public class ObjectProcessor implements VisionProcessor {
 
-    private boolean isBlueAlliance;
-    private TeamObjectDetection objectDetection;
-
-    public ObjectProcessor(boolean isBlueAlliance) {
-        this.isBlueAlliance = isBlueAlliance;
-    }
-
-    private boolean isPixelOfObject(double[] pixel) {
-        if(pixel == null || pixel.length < 3) {
-            return false;
-        }
-        if(isBlueAlliance) {
-            return pixel[0]*VisionConstant.PERCENTAGE_OF_ALLIANCE_COLOR < pixel[2] &&
-                   pixel[1]*VisionConstant.PERCENTAGE_OF_ALLIANCE_COLOR < pixel[2];
-        }
-        else {
-            return pixel[2]*VisionConstant.PERCENTAGE_OF_ALLIANCE_COLOR < pixel[0] &&
-                   pixel[1]*VisionConstant.PERCENTAGE_OF_ALLIANCE_COLOR < pixel[0];
-        }
-    }
-
-    private int[] getObjectCoords(Mat frame) {
-        int avgX = 0;
-        int avgY = 0;
-        int pixelCount = 0;
-
-        for(int i = 0; i < frame.width(); i+=2)
-            for(int j = 0; j < frame.height(); j+=2)
-                if(isPixelOfObject(frame.get(i,j))) {
-                    avgX += i;
-                    avgY += j;
-                    pixelCount++;
-                }
-
-        if(pixelCount != 0) {
-            avgX /= pixelCount;
-            avgY /= pixelCount;
-            return new int[]{avgX,avgY};
-        }
-        else {
-            return null;
-        }
-
-    }
-
-    public TeamObjectDetection getLastDetection() {
-        return objectDetection;
-    }
+    private Location location;
 
     @Override
     public void init(int width, int height, CameraCalibration calibration) {
@@ -64,18 +23,54 @@ public class ObjectProcessor implements VisionProcessor {
 
     @Override
     public Object processFrame(Mat frame, long captureTimeNanos) {
+        Rect leftZoneArea;
+        Rect centerZoneArea;
 
-        int[] coordinates = getObjectCoords(frame);
-
-        if(coordinates != null) {
-            this.objectDetection = new TeamObjectDetection(coordinates[0],coordinates[1], frame.width(), frame.height());
-            return objectDetection;
+        if (RobotConstants.ALLIANCE == Alliance.RED && RobotConstants.SIDE == Location.FAR || RobotConstants.ALLIANCE == Alliance.BLUE && RobotConstants.SIDE == Location.CLOSE) {
+            leftZoneArea = VisionConstant.RED_LEFT_ZONE_AREA;
+            centerZoneArea = VisionConstant.RED_CENTER_ZONE_AREA;
+        } else {
+            leftZoneArea = VisionConstant.BLUE_LEFT_ZONE_AREA;
+            centerZoneArea = VisionConstant.BLUE_CENTER_ZONE_AREA;
         }
+
+        Mat leftZone = frame.submat(leftZoneArea);
+        Mat centerZone = frame.submat(centerZoneArea);
+
+        Imgproc.blur(leftZone, leftZone, new Size(5, 5));
+        Imgproc.blur(centerZone, centerZone, new Size(5, 5));
+
+        Scalar left = Core.mean(leftZone);
+        Scalar center = Core.mean(centerZone);
+
+        double threshold = RobotConstants.ALLIANCE == Alliance.RED ? VisionConstant.RED_THRESHOLD : VisionConstant.BLUE_THRESHOLD;
+        int idx = RobotConstants.ALLIANCE == Alliance.RED ? 0 : 2;
+
+        double leftColor = left.val[idx];
+        double centerColor = center.val[idx];
+
+        if (leftColor > threshold && (left.val[0] + left.val[1] + left.val[2] - left.val[idx] < left.val[idx])) {
+            this.location = Location.LEFT;
+            Imgproc.rectangle(frame, leftZoneArea, new Scalar(255, 255, 255), 10);
+        } else if (centerColor > threshold && (center.val[0] + center.val[1] + center.val[2] - center.val[idx] < center.val[idx])) {
+            this.location = Location.CENTER;
+            Imgproc.rectangle(frame, centerZoneArea, new Scalar(255, 255, 255), 10);
+        } else {
+            this.location = Location.RIGHT;
+        }
+
+        leftZone.release();
+        centerZone.release();
+
         return null;
     }
 
     @Override
     public void onDrawFrame(Canvas canvas, int onscreenWidth, int onscreenHeight, float scaleBmpPxToCanvasPx, float scaleCanvasDensity, Object userContext) {
 
+    }
+
+    public Location getLocation() {
+        return location;
     }
 }
