@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.vision;
+package org.firstinspires.ftc.teamcode.subsystems.vision;
 
 import android.util.Pair;
 import android.util.Size;
@@ -70,9 +70,13 @@ public class Vision extends SubsystemBase {
 
     public void telemetry(Telemetry telemetry) {
         List<Pair<AprilTagPoseFtc,Integer>> poses = getTagsPoses();
-        telemetry.addData("first tag x: ", poses.isEmpty()? "null" : poses.get(0).first.x);
-        telemetry.addData("first tag y: ", poses.isEmpty()? "null" : poses.get(0).first.y);
-        telemetry.addData("first tag z: ", poses.isEmpty()? "null" : poses.get(0).first.z);
+        if(!poses.isEmpty()) {
+            telemetry.addData("detected: ", poses.size() + " AprilTags");
+            telemetry.addData("the first tag is: ", poses.get(0).second);
+            telemetry.addData("first tag x: ", poses.get(0).first.x);
+            telemetry.addData("first tag y: ", poses.get(0).first.y);
+            telemetry.addData("first tag z: ", poses.get(0).first.z);
+        }
     }
 
 }
