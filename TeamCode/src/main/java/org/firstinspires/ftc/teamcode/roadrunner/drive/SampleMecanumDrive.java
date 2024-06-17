@@ -32,6 +32,7 @@ import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySe
 import org.firstinspires.ftc.teamcode.roadrunner.util.AxisDirection;
 import org.firstinspires.ftc.teamcode.roadrunner.util.BNO055IMUUtil;
 import org.firstinspires.ftc.teamcode.roadrunner.util.LynxModuleUtil;
+import org.firstinspires.ftc.teamcode.subsystems.chassis.ChassisConstants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +41,7 @@ import java.util.List;
 import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.MAX_ACCELERATION;
 import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.MAX_ANGULAR_ACCELERATION;
 import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.MAX_ANGULAR_VELOCITY;
+import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.MAX_BATTERY_VOLTAGE;
 import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.MAX_VELOCITY;
 import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.MOTOR_VELOCITY_PID;
 import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.RUN_USING_ENCODER;
@@ -67,6 +69,8 @@ public class SampleMecanumDrive extends MecanumDrive {
 
     private static final TrajectoryVelocityConstraint VEL_CONSTRAINT = getVelocityConstraint(MAX_VELOCITY, MAX_ANGULAR_VELOCITY, TRACK_WIDTH);
     private static final TrajectoryAccelerationConstraint ACCEL_CONSTRAINT = getAccelerationConstraint(MAX_ACCELERATION);
+
+    private static final double ACHIEVABLE_MAX_MOTOR_RPM_FRACTION = 1.0;
 
     private TrajectoryFollower follower;
 
@@ -119,16 +123,16 @@ public class SampleMecanumDrive extends MecanumDrive {
         // For example, if +Y in this diagram faces downwards, you would use AxisDirection.NEG_Y.
         // BNO055IMUUtil.remapZAxis(imu, AxisDirection.NEG_Y);
 
-        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-        leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
-        rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
-        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+        leftFront = hardwareMap.get(DcMotorEx.class, ChassisConstants.FRONT_LEFT_ID);
+        leftRear = hardwareMap.get(DcMotorEx.class, ChassisConstants.BACK_LEFT_ID);
+        rightRear = hardwareMap.get(DcMotorEx.class, ChassisConstants.BACK_RIGHT_ID);
+        rightFront = hardwareMap.get(DcMotorEx.class, ChassisConstants.FRONT_RIGHT_ID);
 
         motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
 
         for (DcMotorEx motor : motors) {
             MotorConfigurationType motorConfigurationType = motor.getMotorType().clone();
-            motorConfigurationType.setAchieveableMaxRPMFraction(1.0);
+            motorConfigurationType.setAchieveableMaxRPMFraction(ACHIEVABLE_MAX_MOTOR_RPM_FRACTION);
             motor.setMotorType(motorConfigurationType);
         }
 
@@ -239,7 +243,7 @@ public class SampleMecanumDrive extends MecanumDrive {
     public void setPIDFCoefficients(DcMotor.RunMode runMode, PIDFCoefficients coefficients) {
         PIDFCoefficients compensatedCoefficients = new PIDFCoefficients(
                 coefficients.p, coefficients.i, coefficients.d,
-                coefficients.f * 12 / batteryVoltageSensor.getVoltage()
+                coefficients.f * MAX_BATTERY_VOLTAGE / batteryVoltageSensor.getVoltage()
         );
 
         for (DcMotorEx motor : motors) {

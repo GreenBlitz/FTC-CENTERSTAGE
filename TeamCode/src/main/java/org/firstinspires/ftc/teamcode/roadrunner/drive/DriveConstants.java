@@ -69,6 +69,8 @@ public class DriveConstants {
     public static double MAX_ANGULAR_VELOCITY = Math.toRadians(60);
     public static double MAX_ANGULAR_ACCELERATION = Math.toRadians(60);
 
+    public static double MAX_BATTERY_VOLTAGE = 12;
+
 
     public static double encoderTicksToInches(double ticks) {
         return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REVOLUTION;
