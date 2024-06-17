@@ -47,5 +47,8 @@ public class Robot {
     public Launcher getLauncher() {
         return launcher;
     }
+    public Vision getVision() {
+        return vision;
+    }
 
 }

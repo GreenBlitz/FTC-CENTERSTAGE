@@ -3,9 +3,7 @@ package org.firstinspires.ftc.teamcode.vision;
 import android.util.Pair;
 import android.util.Size;
 import com.arcrobotics.ftclib.command.SubsystemBase;
-import com.arcrobotics.ftclib.geometry.Vector2d;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.vision.VisionPortal;
@@ -62,15 +60,19 @@ public class Vision extends SubsystemBase {
         return aprilTagDetections;
     }
     public List<Pair<AprilTagPoseFtc,Integer>> getTagsPoses() {
+        List<AprilTagDetection> temp = getTagsDetections();
         List<Pair<AprilTagPoseFtc,Integer>> poses = new ArrayList<>();
-        for(AprilTagDetection detection : getTagsDetections())
+        for(AprilTagDetection detection : temp)
             if(detection.metadata != null)
                 poses.add(new Pair<>(detection.ftcPose,detection.id));
         return poses;
     }
 
     public void telemetry(Telemetry telemetry) {
-        telemetry.addData("first tag x: ", getTagsPoses().get(0).first.x);
+        List<Pair<AprilTagPoseFtc,Integer>> poses = getTagsPoses();
+        telemetry.addData("first tag x: ", poses.isEmpty()? "null" : poses.get(0).first.x);
+        telemetry.addData("first tag y: ", poses.isEmpty()? "null" : poses.get(0).first.y);
+        telemetry.addData("first tag z: ", poses.isEmpty()? "null" : poses.get(0).first.z);
     }
 
 }
