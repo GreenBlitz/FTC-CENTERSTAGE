@@ -11,7 +11,7 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
-public class ObjectProcessor implements VisionProcessor {
+public class PropProcessor implements VisionProcessor {
 
     private Location location;
 

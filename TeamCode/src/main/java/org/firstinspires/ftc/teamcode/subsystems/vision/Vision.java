@@ -19,7 +19,7 @@ public class Vision extends SubsystemBase {
 
     private AprilTagProcessor aprilTagProcessor;
     private TfodProcessor tfodProcessor;
-    private ObjectProcessor propProcessor;
+    private PropProcessor propProcessor;
     private VisionPortal visionPortal;
     private List<AprilTagDetection> aprilTagDetections;
     private Location propLocation;
@@ -42,7 +42,7 @@ public class Vision extends SubsystemBase {
                 .setTrackerMinSize(VisionConstant.TRACKER_MIN_SIZE)
                 .build();
 
-        propProcessor = new ObjectProcessor();
+        propProcessor = new PropProcessor();
 
         this.visionPortal = new VisionPortal.Builder()
                 .setCamera(hardwareMap.get(WebcamName.class, VisionConstant.CAMERA_ID))
