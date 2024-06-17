@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.subsystems.chassis;
 
 import com.arcrobotics.ftclib.command.Command;
+import com.arcrobotics.ftclib.command.FunctionalCommand;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.RunCommand;
 import com.arcrobotics.ftclib.geometry.Rotation2d;
@@ -19,6 +20,16 @@ public class ChassisCommands {
                     double turnSpeed = turnSpeedSupplier.get();
                     Robot.getInstance().getChassis().fieldCentricDrive(strafeSpeed, forwardSpeed, turnSpeed);
                 },
+                Robot.getInstance().getChassis()
+        );
+    }
+
+    public static Command rotateToAngle(Rotation2d angle){
+        return new FunctionalCommand(
+                () -> Robot.getInstance().getChassis().setRotateSetPoint(angle),
+                () -> Robot.getInstance().getChassis().rotateToAngle(),
+                i -> {},
+                () -> Robot.getInstance().getChassis().isAtAngle(angle),
                 Robot.getInstance().getChassis()
         );
     }

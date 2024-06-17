@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.arcrobotics.ftclib.geometry.Rotation2d;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.gamepads.GamepadFunctions;
@@ -78,13 +79,15 @@ public class Bindings {
 
         Robot.getInstance().getChassis().setDefaultCommand(
                 ChassisCommands.fieldCentricDrive(
-                        () -> -mainGamepad.getLeftX(),
-                        () -> -mainGamepad.getLeftY(),
-                        () -> -mainGamepad.getRightX()
+                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftX()),
+                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftY()),
+                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getRightX())
                 )
         );
         mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());
         mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(ChassisCommands.stop());
+        mainGamepad.getGamepadButton(GamepadKeys.Button.A).whileHeld(ChassisCommands.rotateToAngle(Rotation2d.fromDegrees(90)));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.B).whileHeld(ChassisCommands.rotateToAngle(Rotation2d.fromDegrees(-90)));
     }
 
 }
