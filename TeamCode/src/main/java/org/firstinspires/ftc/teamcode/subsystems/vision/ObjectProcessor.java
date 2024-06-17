@@ -16,6 +16,9 @@ public class ObjectProcessor implements VisionProcessor {
     }
 
     private boolean isPixelOfObject(double[] pixel) {
+        if(pixel == null || pixel.length < 3) {
+            return false;
+        }
         if(isBlueAlliance) {
             return pixel[0]*VisionConstant.PERCENTAGE_OF_ALLIANCE_COLOR < pixel[2] &&
                    pixel[1]*VisionConstant.PERCENTAGE_OF_ALLIANCE_COLOR < pixel[2];
@@ -31,8 +34,8 @@ public class ObjectProcessor implements VisionProcessor {
         int avgY = 0;
         int pixelCount = 0;
 
-        for(int i = 0; i < frame.width(); i++)
-            for(int j = 0; j < frame.height(); j++)
+        for(int i = 0; i < frame.width(); i+=2)
+            for(int j = 0; j < frame.height(); j+=2)
                 if(isPixelOfObject(frame.get(i,j))) {
                     avgX += i;
                     avgY += j;

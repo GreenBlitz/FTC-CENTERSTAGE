@@ -47,7 +47,7 @@ public class Vision extends SubsystemBase {
                 .setTrackerMinSize(VisionConstant.TRACKER_MIN_SIZE)
                 .build();
 
-        objectProcessor = new ObjectProcessor(true);
+        objectProcessor = new ObjectProcessor(false);
 
         this.visionPortal = new VisionPortal.Builder()
                 .setCamera(hardwareMap.get(WebcamName.class, VisionConstant.CAMERA_ID))
@@ -87,6 +87,10 @@ public class Vision extends SubsystemBase {
             telemetry.addData("first tag x: ", poses.get(0).first.x);
             telemetry.addData("first tag y: ", poses.get(0).first.y);
             telemetry.addData("first tag z: ", poses.get(0).first.z);
+        }
+        if(teamObjectDetection != null) {
+            telemetry.addData("object X on screen: ", teamObjectDetection.x);
+            telemetry.addData("object Y on screen: ", teamObjectDetection.y);
         }
     }
 }
