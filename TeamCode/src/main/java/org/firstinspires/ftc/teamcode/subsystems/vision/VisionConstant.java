@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.subsystems.vision;
 
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.core.Size;
 import org.openftc.easyopencv.OpenCvWebcam;
 
 class VisionConstant {
@@ -23,4 +25,10 @@ class VisionConstant {
     protected static final Rect RED_CENTER_ZONE_AREA = new Rect(1365, 475, 125, 125);
     protected static final Rect BLUE_LEFT_ZONE_AREA = new Rect(240, 525, 175, 100);
     protected static final Rect BLUE_CENTER_ZONE_AREA = new Rect(925, 485, 125, 125);
+    protected static final Size BLUR_SIZE = new Size(5, 5);
+    protected static final Scalar WHITE_COLOR_RGB = new Scalar(255,255,255);
+    protected static final int AREA_RECTANGLE_THICKNESS = 10;
+    protected static final int RED_INDEX = 0;
+    protected static final int GREEN_INDEX = 1;
+    protected static final int BLUE_INDEX = 2;
 }

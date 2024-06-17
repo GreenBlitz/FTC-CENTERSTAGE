@@ -9,7 +9,6 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
-import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 public class ObjectProcessor implements VisionProcessor {
@@ -37,24 +36,24 @@ public class ObjectProcessor implements VisionProcessor {
         Mat leftZone = frame.submat(leftZoneArea);
         Mat centerZone = frame.submat(centerZoneArea);
 
-        Imgproc.blur(leftZone, leftZone, new Size(5, 5));
-        Imgproc.blur(centerZone, centerZone, new Size(5, 5));
+        Imgproc.blur(leftZone, leftZone, VisionConstant.BLUR_SIZE);
+        Imgproc.blur(centerZone, centerZone, VisionConstant.BLUR_SIZE);
 
         Scalar left = Core.mean(leftZone);
         Scalar center = Core.mean(centerZone);
 
         double threshold = RobotConstants.ALLIANCE == Alliance.RED ? VisionConstant.RED_THRESHOLD : VisionConstant.BLUE_THRESHOLD;
-        int idx = RobotConstants.ALLIANCE == Alliance.RED ? 0 : 2;
+        int idx = RobotConstants.ALLIANCE == Alliance.RED ? VisionConstant.RED_INDEX : VisionConstant.BLUE_INDEX;
 
         double leftColor = left.val[idx];
         double centerColor = center.val[idx];
 
-        if (leftColor > threshold && (left.val[0] + left.val[1] + left.val[2] - left.val[idx] < left.val[idx])) {
+        if (leftColor > threshold && (left.val[VisionConstant.RED_INDEX] + left.val[VisionConstant.GREEN_INDEX] + left.val[VisionConstant.BLUE_INDEX] - left.val[idx] < left.val[idx])) {
             this.location = Location.LEFT;
-            Imgproc.rectangle(frame, leftZoneArea, new Scalar(255, 255, 255), 10);
-        } else if (centerColor > threshold && (center.val[0] + center.val[1] + center.val[2] - center.val[idx] < center.val[idx])) {
+            Imgproc.rectangle(frame, leftZoneArea, VisionConstant.WHITE_COLOR_RGB, VisionConstant.AREA_RECTANGLE_THICKNESS);
+        } else if (centerColor > threshold && (center.val[VisionConstant.RED_INDEX] + center.val[VisionConstant.GREEN_INDEX] + center.val[VisionConstant.BLUE_INDEX] - center.val[idx] < center.val[idx])) {
             this.location = Location.CENTER;
-            Imgproc.rectangle(frame, centerZoneArea, new Scalar(255, 255, 255), 10);
+            Imgproc.rectangle(frame, centerZoneArea, VisionConstant.WHITE_COLOR_RGB, VisionConstant.AREA_RECTANGLE_THICKNESS);
         } else {
             this.location = Location.RIGHT;
         }
