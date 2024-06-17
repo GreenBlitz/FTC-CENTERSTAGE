@@ -13,6 +13,7 @@ public class VisionConstant {
     protected static final int MAX_NUM_RECOGNITIONS = 10;
 
     protected static final float TRACKER_MAX_OVERLAP = 0.2f;
+    protected static final float PERCENTAGE_OF_ALLIANCE_COLOR = 2f;
 
     protected static final VisionPortal.StreamFormat STREAM_FORMAT = VisionPortal.StreamFormat.YUY2;
 
