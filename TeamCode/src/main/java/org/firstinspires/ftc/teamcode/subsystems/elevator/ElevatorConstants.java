@@ -14,7 +14,7 @@ class ElevatorConstants {
     protected static final int POSITION_TOLERANCE_TICKS = 4;
     protected static final int VELOCITY_DEADBAND_TICKS_PER_SECOND = 4;
 
-    protected static final double KP = 0.05;
+    protected static final double KP = 0.01;
     protected static final double KI = 0;
     protected static final double KD = 0;
     protected static final PIDController PID_CONTROLLER = new PIDController(KP, KI, KD);
