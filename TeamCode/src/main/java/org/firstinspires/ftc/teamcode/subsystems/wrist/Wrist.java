@@ -14,6 +14,7 @@ public class Wrist extends SubsystemBase {
     public Wrist(HardwareMap hardwareMap) {
         this.servo = hardwareMap.servo.get(WristConstants.SERVO_HARDWARE_ID);
         this.targetState = WristState.INTAKE;
+        setPosition(1);
     }
 
     private void setPosition(double position) {
