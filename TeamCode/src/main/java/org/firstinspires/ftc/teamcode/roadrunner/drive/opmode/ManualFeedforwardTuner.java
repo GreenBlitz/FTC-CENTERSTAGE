@@ -52,7 +52,7 @@ public class ManualFeedforwardTuner extends LinearOpMode {
     private static MotionProfile generateProfile(boolean movingForward) {
         MotionState start = new MotionState(movingForward ? 0 : DISTANCE, 0, 0, 0);
         MotionState goal = new MotionState(movingForward ? DISTANCE : 0, 0, 0, 0);
-        return MotionProfileGenerator.generateSimpleMotionProfile(start, goal, DriveConstants.MAX_VEL, DriveConstants.MAX_ACCEL);
+        return MotionProfileGenerator.generateSimpleMotionProfile(start, goal, DriveConstants.MAX_VELOCITY, DriveConstants.MAX_ACCELERATION);
     }
 
     @Override
