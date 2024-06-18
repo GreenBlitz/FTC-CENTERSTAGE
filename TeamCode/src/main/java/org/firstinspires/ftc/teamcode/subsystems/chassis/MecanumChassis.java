@@ -19,10 +19,9 @@ public class MecanumChassis extends SubsystemBase {
 
     private final PIDController pidController;
 
-    private ChassisSpeeds a;
+    private ChassisSpeeds currentSpeeds;
 
     public MecanumChassis(HardwareMap hardwareMap) {
-        a = new ChassisSpeeds();
         Motor frontLeft = getConfiguredChassisMotor(hardwareMap, ChassisConstants.FRONT_LEFT_ID);
         Motor frontRight = getConfiguredChassisMotor(hardwareMap, ChassisConstants.FRONT_RIGHT_ID);
         Motor backLeft = getConfiguredChassisMotor(hardwareMap, ChassisConstants.BACK_LEFT_ID);
@@ -30,7 +29,8 @@ public class MecanumChassis extends SubsystemBase {
 
         this.mecanumDrive = new MecanumDrive(frontLeft, frontRight, backLeft, backRight);
         this.imu = new RevIMU(hardwareMap);
-        this.pidController = new PIDController(0.01, 0, 0);
+        this.pidController = ChassisConstants.PID_CONTROLLER;
+        this.currentSpeeds = new ChassisSpeeds();
         imu.init();
     }
 
@@ -45,21 +45,25 @@ public class MecanumChassis extends SubsystemBase {
         pidController.setSetPoint(angle.getDegrees());
     }
 
+    protected boolean isAtAngle(Rotation2d angle) {
+        return Math.abs(imu.getRotation2d().getDegrees() - angle.getDegrees()) <= ChassisConstants.ANGLE_TOLERANCE;
+    }
+
+    private void angleRelativeDrive(double strafeSpeed, double forwardSpeed, double turnSpeed, Rotation2d angle) {
+        currentSpeeds = new ChassisSpeeds(strafeSpeed, forwardSpeed, turnSpeed);
+        mecanumDrive.driveFieldCentric(strafeSpeed, forwardSpeed, turnSpeed, angle.getDegrees());
+    }
+
     protected void rotateToAngle() {
         fieldCentricDrive(0, 0, pidController.calculate(imu.getRotation2d().getDegrees()));
     }
 
-    protected boolean isAtAngle(Rotation2d angle){
-        return Math.abs(imu.getRotation2d().getDegrees() - angle.getDegrees()) <= 10;
-    }
-
     protected void fieldCentricDrive(double strafeSpeed, double forwardSpeed, double turnSpeed) {
-        a = new ChassisSpeeds(strafeSpeed, forwardSpeed, turnSpeed);
-        mecanumDrive.driveFieldCentric(strafeSpeed, forwardSpeed, turnSpeed, imu.getRotation2d().getDegrees());
+        angleRelativeDrive(strafeSpeed, forwardSpeed, turnSpeed, imu.getRotation2d());
     }
 
     protected void robotCentricDrive(double strafeSpeed, double forwardSpeed, double turnSpeed) {
-        mecanumDrive.driveRobotCentric(strafeSpeed, forwardSpeed, turnSpeed);
+        angleRelativeDrive(strafeSpeed, forwardSpeed, turnSpeed, new Rotation2d());
     }
 
     protected void stop() {
@@ -72,7 +76,9 @@ public class MecanumChassis extends SubsystemBase {
 
     public void telemetry(Telemetry telemetry) {
         telemetry.addData("Robot/Chassis angle degrees: ", imu.getRotation2d().getDegrees());
-        telemetry.addData("Robot/Chassis angle vel: ", a.omegaRadiansPerSecond);
+        telemetry.addData("Robot/Chassis x velocity: ", currentSpeeds.vxMetersPerSecond);
+        telemetry.addData("Robot/Chassis y velocity: ", currentSpeeds.vyMetersPerSecond);
+        telemetry.addData("Robot/Chassis omega: ", currentSpeeds.omegaRadiansPerSecond);
     }
 
 }
