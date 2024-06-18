@@ -85,6 +85,9 @@ public class Elevator extends SubsystemBase {
             case INTAKE:
                 pidController.setSetPoint(ElevatorConstants.INTAKE_TICKS);
                 break;
+            case IDLE:
+                pidController.setSetPoint(ElevatorConstants.IDLE_TICKS);
+                break;
             case STAND_IN_PLACE:
                 pidController.setSetPoint(rightMotor.getCurrentPosition());
                 break;

@@ -10,6 +10,7 @@ class ElevatorConstants {
     protected static final int DEFAULT_SCORE_TICKS = 100;
     protected static final int CLIMB_TICKS = 2000;
     protected static final int INTAKE_TICKS = 0;
+    protected static final int IDLE_TICKS = 0;
 
     protected static final int POSITION_TOLERANCE_TICKS = 4;
     protected static final int VELOCITY_DEADBAND_TICKS_PER_SECOND = 4;

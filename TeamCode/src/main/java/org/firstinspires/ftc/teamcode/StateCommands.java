@@ -50,7 +50,7 @@ public class StateCommands {
                 new ParallelCommandGroup(
                         WristCommands.moveToState(WristState.IDLE),
                         ArmCommands.goToState(ArmState.IDLE),
-                        ElevatorCommands.goToState(ElevatorState.INTAKE)
+                        ElevatorCommands.goToState(ElevatorState.IDLE)
                 )
         );
     }
