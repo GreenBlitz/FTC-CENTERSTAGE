@@ -11,6 +11,7 @@ import com.acmerobotics.roadrunner.profile.MotionState;
 import com.acmerobotics.roadrunner.util.NanoClock;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleMecanumDrive;
@@ -57,6 +58,7 @@ public class ManualFeedforwardTuner extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+        VoltageSensor voltageSensor = hardwareMap.voltageSensor.iterator().next();
         if (DriveConstants.RUN_USING_ENCODER) {
             RobotLog.setGlobalErrorMsg("Feedforward constants usually don't need to be tuned " +
                     "when using the built-in drive motor velocity PID.");
@@ -105,7 +107,7 @@ public class ManualFeedforwardTuner extends LinearOpMode {
                     MotionState motionState = activeProfile.get(profileTime);
                     double targetPower = Kinematics.calculateMotorFeedforward(motionState.getV(), motionState.getA(), DriveConstants.kV, DriveConstants.kA, DriveConstants.kStatic);
 
-                    drive.setDrivePower(new Pose2d(targetPower, 0, 0));
+                    drive.setDrivePower(new Pose2d(targetPower * DriveConstants.MAX_BATTERY_VOLTAGE / voltageSensor.getVoltage(), 0, 0));
                     drive.updatePoseEstimate();
 
                     Pose2d poseVelo = Objects.requireNonNull(drive.getPoseVelocity(), "poseVelocity() must not be null. Ensure that the getWheelVelocities() method has been overridden in your localizer.");
