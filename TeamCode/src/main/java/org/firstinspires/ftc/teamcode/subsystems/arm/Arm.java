@@ -13,10 +13,12 @@ public class Arm extends SubsystemBase {
     private final DcMotorEx motor;
     private final PIDController pidController;
     private ArmState currentState;
+    private ArmState lasState;
 
     public Arm(HardwareMap hardwareMap) {
         this.motor = hardwareMap.get(DcMotorEx.class, ArmConstants.ARM_MOTOR_ID);
         this.currentState = ArmState.STARTING;
+        this.lasState = currentState;
         this.pidController = ArmConstants.PID_CONTROLLER;
         configMotor();
         configPidController();
@@ -35,6 +37,7 @@ public class Arm extends SubsystemBase {
 
 
     protected void setState(ArmState targetState) {
+        lasState = currentState;
         currentState = targetState;
         updateTargetByState();
     }
@@ -63,6 +66,7 @@ public class Arm extends SubsystemBase {
 
     public void telemetry(Telemetry telemetry) {
         telemetry.addData("Arm Current State: ", currentState);
+        telemetry.addData("Arm Last State: ", lasState);
         telemetry.addData("Arm Is At State: ", isAtState());
         telemetry.addData("Arm Current Position: ", motor.getCurrentPosition());
         telemetry.addData("Arm Target Position: ", pidController.getSetPoint());
