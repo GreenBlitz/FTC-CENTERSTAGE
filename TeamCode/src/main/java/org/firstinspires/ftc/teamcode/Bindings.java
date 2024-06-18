@@ -50,6 +50,7 @@ public class Bindings {
         mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(ArmCommands.goToState(ArmState.SCORE));
         mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(ArmCommands.goToState(ArmState.INTAKE));
         mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(ArmCommands.goToState(ArmState.STARTING));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ArmCommands.goToState(ArmState.IDLE));
         mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(ArmCommands.goToState(ArmState.STAND_IN_PLACE));
     }
 
@@ -59,6 +60,7 @@ public class Bindings {
         mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(ElevatorCommands.goToState(ElevatorState.SCORE));
         mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ElevatorCommands.goToState(ElevatorState.CLIMB));
         mainGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(ElevatorCommands.goToState(ElevatorState.INTAKE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(ElevatorCommands.goToState(ElevatorState.IDLE));
         mainGamepad.getTriggerAsButton(GamepadKeys.Trigger.LEFT_TRIGGER).whenActive(
                 ElevatorCommands.humanControl(() -> {
                             double triggerValue = mainGamepad.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER);
@@ -80,6 +82,7 @@ public class Bindings {
 
         mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(WristCommands.moveToState(WristState.SCORE));
         mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(WristCommands.moveToState(WristState.INTAKE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(WristCommands.moveToState(WristState.IDLE));
     }
 
     public static void razChassisTest(Gamepad gamepad) {
