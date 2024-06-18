@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 
 @TeleOp(name = "Raz Robot State Test")
 public class RazRobotStateTest extends DefaultRaz {
+
     @Override
     public void initialize() {
 
@@ -23,4 +24,5 @@ public class RazRobotStateTest extends DefaultRaz {
     public void configureBindings() {
         Bindings.razRobotStateTest(gamepad1);
     }
+
 }
