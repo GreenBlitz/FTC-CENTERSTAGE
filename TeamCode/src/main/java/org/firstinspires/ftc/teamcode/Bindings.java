@@ -20,6 +20,15 @@ public class Bindings {
     private static GamepadWrapper mainGamepad;
     private static GamepadWrapper secondGamepad;
 
+    public static void razRobotStateTest(Gamepad gamepad){
+        mainGamepad = new GamepadWrapper(gamepad);
+
+        mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(Robot.getInstance().setState(RobotState.SCORE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(Robot.getInstance().setState(RobotState.INTAKE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(Robot.getInstance().setState(RobotState.CLIMB));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(Robot.getInstance().setState(RobotState.DRIVE));
+    }
+
     public static void razClawTest(Gamepad gamepad) {
         mainGamepad = new GamepadWrapper(gamepad);
 

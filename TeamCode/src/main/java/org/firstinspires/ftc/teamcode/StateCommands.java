@@ -13,21 +13,7 @@ import org.firstinspires.ftc.teamcode.subsystems.wrist.WristState;
 
 public class StateCommands {
 
-    public static SequentialCommandGroup setState(RobotState robotState) {
-        switch (robotState) {
-            case SCORE:
-                return scoreState();
-            case INTAKE:
-                return intakeState();
-            case CLIMB:
-                return climbState();
-            case DRIVE:
-            default:
-                return driveState();
-        }
-    }
-
-    private static SequentialCommandGroup scoreState() {
+    protected static SequentialCommandGroup scoreState() {
         return new SequentialCommandGroup(
                 new ParallelCommandGroup(
                         WristCommands.moveToState(WristState.SCORE),
@@ -37,7 +23,7 @@ public class StateCommands {
         );
     }
 
-    private static SequentialCommandGroup intakeState() {
+    protected static SequentialCommandGroup intakeState() {
         return new SequentialCommandGroup(
                 new ParallelCommandGroup(
                         WristCommands.moveToState(WristState.INTAKE),
@@ -48,7 +34,7 @@ public class StateCommands {
         );
     }
 
-    private static SequentialCommandGroup climbState() {
+    protected static SequentialCommandGroup climbState() {
         return new SequentialCommandGroup(
                 ClawCommands.closeBothFingers(),
                 new ParallelCommandGroup(
@@ -58,7 +44,7 @@ public class StateCommands {
         );
     }
 
-    private static SequentialCommandGroup driveState() {
+    protected static SequentialCommandGroup driveState() {
         return new SequentialCommandGroup(
                 ClawCommands.closeBothFingers(),
                 new ParallelCommandGroup(
