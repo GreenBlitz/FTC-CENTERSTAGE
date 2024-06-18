@@ -4,6 +4,7 @@ public enum ArmState {
 
     SCORE(ArmConstants.SCORE_TICKS),
     INTAKE(ArmConstants.INTAKE_TICKS),
+    CLIMB(ArmConstants.CLIMB_TICKS),
     IDLE(ArmConstants.INTAKE_TICKS),
     STARTING(ArmConstants.STARTING_TICKS),
     STAND_IN_PLACE(777); // will not use number

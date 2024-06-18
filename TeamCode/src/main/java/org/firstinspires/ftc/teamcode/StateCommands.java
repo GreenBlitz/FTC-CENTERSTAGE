@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.qualcomm.robotcore.robocol.Command;
 
 import org.firstinspires.ftc.teamcode.subsystems.arm.ArmCommands;
 import org.firstinspires.ftc.teamcode.subsystems.arm.ArmState;
@@ -16,17 +15,19 @@ public class StateCommands {
 
     public static SequentialCommandGroup setState(RobotState robotState) {
         switch (robotState) {
-            case SCORE_BOARD:
-                return scoreBoardState();
+            case SCORE:
+                return scoreState();
             case INTAKE:
                 return intakeState();
+            case CLIMB:
+                return climbState();
             case DRIVE:
             default:
                 return driveState();
         }
     }
 
-    private static SequentialCommandGroup scoreBoardState() {
+    private static SequentialCommandGroup scoreState() {
         return new SequentialCommandGroup(
                 new ParallelCommandGroup(
                         WristCommands.moveToState(WristState.SCORE),
@@ -44,6 +45,16 @@ public class StateCommands {
                         ElevatorCommands.goToState(ElevatorState.INTAKE)
                 ),
                 ClawCommands.openBothFingers()
+        );
+    }
+
+    private static SequentialCommandGroup climbState() {
+        return new SequentialCommandGroup(
+                ClawCommands.closeBothFingers(),
+                new ParallelCommandGroup(
+                        ArmCommands.goToState(ArmState.CLIMB),
+                        ElevatorCommands.goToState(ElevatorState.CLIMB)
+                )
         );
     }
 
