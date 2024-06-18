@@ -21,10 +21,10 @@ class VisionConstant {
 
     protected static final double BLUE_THRESHOLD = 70;
     protected static final double RED_THRESHOLD = 100;
-    protected static final Rect RED_LEFT_ZONE_AREA = new Rect(815, 550, 175, 100);
-    protected static final Rect RED_CENTER_ZONE_AREA = new Rect(1365, 475, 125, 125);
-    protected static final Rect BLUE_LEFT_ZONE_AREA = new Rect(240, 525, 175, 100);
-    protected static final Rect BLUE_CENTER_ZONE_AREA = new Rect(925, 485, 125, 125);
+    protected static final Rect RED_LEFT_ZONE_AREA = new Rect(271, 244, 58, 44);
+    protected static final Rect RED_CENTER_ZONE_AREA = new Rect(455, 211, 41, 55);
+    protected static final Rect BLUE_LEFT_ZONE_AREA = new Rect(80, 233, 58, 44);
+    protected static final Rect BLUE_CENTER_ZONE_AREA = new Rect(308, 215, 41, 55);
     protected static final Size BLUR_SIZE = new Size(5, 5);
     protected static final Scalar WHITE_COLOR_RGB = new Scalar(255,255,255);
     protected static final int AREA_RECTANGLE_THICKNESS = 10;
