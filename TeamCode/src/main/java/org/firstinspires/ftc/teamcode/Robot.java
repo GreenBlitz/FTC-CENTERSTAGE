@@ -33,12 +33,14 @@ public class Robot {
     private Wrist wrist;
 
     public void initSubsystems(HardwareMap hardwareMap) {
-        this.arm = new Arm(hardwareMap);
-        this.chassis = new MecanumChassis(hardwareMap);
-        this.claw = new Claw(hardwareMap);
-        this.elevator = new Elevator(hardwareMap);
-        this.launcher = new Launcher(hardwareMap);
-        this.wrist = new Wrist(hardwareMap);
+        if (arm == null) {
+            this.arm = new Arm(hardwareMap);
+            this.chassis = new MecanumChassis(hardwareMap);
+            this.claw = new Claw(hardwareMap);
+            this.elevator = new Elevator(hardwareMap);
+            this.launcher = new Launcher(hardwareMap);
+            this.wrist = new Wrist(hardwareMap);
+        }
     }
 
     public Arm getArm() {
