@@ -23,7 +23,6 @@ public class PropProcessor implements VisionProcessor {
 
     @Override
     public Object processFrame(Mat frame, long captureTimeNanos) {
-
         Mat leftZone = getLeftZoneMatrix(frame);
         Mat centerZone = getCenterZoneMatrix(frame);
 
