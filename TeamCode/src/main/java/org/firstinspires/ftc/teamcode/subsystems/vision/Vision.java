@@ -23,7 +23,6 @@ public class Vision extends SubsystemBase {
     private final VisionPortal visionPortal;
 
     public Vision(HardwareMap hardwareMap) {
-
         this.aprilTagProcessor = new AprilTagProcessor.Builder()
                 .setDrawTagID(true)
                 .setDrawTagOutline(true)
@@ -53,6 +52,7 @@ public class Vision extends SubsystemBase {
     public List<AprilTagDetection> getTagsDetections() {
         return aprilTagProcessor.getDetections();
     }
+
     public List<Pair<AprilTagPoseFtc,Integer>> getRelativeTagsPoses() {
         List<AprilTagDetection> temp = getTagsDetections();
         List<Pair<AprilTagPoseFtc,Integer>> poses = new ArrayList<>();

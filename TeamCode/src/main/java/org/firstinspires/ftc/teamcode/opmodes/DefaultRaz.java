@@ -10,7 +10,6 @@ public abstract class DefaultRaz extends OpMode {
 
     @Override
     public final void init() {
-        Robot.getInstance().setAlliance(setAlliance());
         Robot.init(hardwareMap);
         configureBindings();
         initialize();
@@ -20,10 +19,6 @@ public abstract class DefaultRaz extends OpMode {
     public final void loop() {
         CommandScheduler.getInstance().run();
         execute();
-    }
-
-    public Alliance setAlliance() {
-        return Alliance.RED;
     }
 
     public abstract void initialize();

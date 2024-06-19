@@ -23,4 +23,5 @@ public class RazVisionTest extends DefaultRaz {
     public void configureBindings() {
 
     }
+
 }

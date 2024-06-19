@@ -23,40 +23,20 @@ public class PropProcessor implements VisionProcessor {
 
     @Override
     public Object processFrame(Mat frame, long captureTimeNanos) {
-        Rect leftZoneArea;
-        Rect centerZoneArea;
 
-        if (Robot.getInstance().getAlliance() == Alliance.RED) {
-            leftZoneArea = VisionConstant.RED_LEFT_ZONE_AREA;
-            centerZoneArea = VisionConstant.RED_CENTER_ZONE_AREA;
-        } else {
-            leftZoneArea = VisionConstant.BLUE_LEFT_ZONE_AREA;
-            centerZoneArea = VisionConstant.BLUE_CENTER_ZONE_AREA;
-        }
+        Mat leftZone = getLeftZoneMatrix(frame);
+        Mat centerZone = getCenterZoneMatrix(frame);
 
-        Mat leftZone = frame.submat(leftZoneArea);
-        Mat centerZone = frame.submat(centerZoneArea);
+        Scalar left = getAvgColor(leftZone);
+        Scalar center = getAvgColor(centerZone);
 
-        Imgproc.blur(leftZone, leftZone, VisionConstant.BLUR_SIZE);
-        Imgproc.blur(centerZone, centerZone, VisionConstant.BLUR_SIZE);
-
-        Scalar left = Core.mean(leftZone);
-        Scalar center = Core.mean(centerZone);
-
-        double threshold = Robot.getInstance().getAlliance() == Alliance.RED ? VisionConstant.RED_THRESHOLD : VisionConstant.BLUE_THRESHOLD;
-        int idx = Robot.getInstance().getAlliance() == Alliance.RED ? VisionConstant.RED_INDEX : VisionConstant.BLUE_INDEX;
-
-        double leftColor = left.val[idx];
-        double centerColor = center.val[idx];
-
-
-        if (leftColor > threshold && (left.val[VisionConstant.RED_INDEX] + left.val[VisionConstant.GREEN_INDEX] + left.val[VisionConstant.BLUE_INDEX] < VisionConstant.AMOUNT_OF_COLOR * left.val[idx])) {
+        if (isPropPartOfAvgColor(left)) {
             this.location = Location.LEFT;
-            Imgproc.rectangle(frame, leftZoneArea, VisionConstant.WHITE_COLOR_RGB, VisionConstant.AREA_RECTANGLE_THICKNESS);
-        } else if (centerColor > threshold && (center.val[VisionConstant.RED_INDEX] + center.val[VisionConstant.GREEN_INDEX] + center.val[VisionConstant.BLUE_INDEX] < VisionConstant.AMOUNT_OF_COLOR * center.val[idx])) {
+        }
+        else if (isPropPartOfAvgColor(center)) {
             this.location = Location.CENTER;
-            Imgproc.rectangle(frame, centerZoneArea, VisionConstant.WHITE_COLOR_RGB, VisionConstant.AREA_RECTANGLE_THICKNESS);
-        } else {
+        }
+        else {
             this.location = Location.RIGHT;
         }
 
@@ -64,6 +44,41 @@ public class PropProcessor implements VisionProcessor {
         centerZone.release();
 
         return null;
+    }
+
+    public Mat getLeftZoneMatrix(Mat frame) {
+        if (Robot.getInstance().getAlliance() == Alliance.RED) {
+            return frame.submat(VisionConstant.RED_LEFT_ZONE_AREA);
+        }
+        else {
+            return frame.submat(VisionConstant.BLUE_LEFT_ZONE_AREA);
+        }
+    }
+
+    public Mat getCenterZoneMatrix(Mat frame) {
+        if (Robot.getInstance().getAlliance() == Alliance.RED) {
+            return frame.submat(VisionConstant.RED_CENTER_ZONE_AREA);
+        }
+        else {
+            return frame.submat(VisionConstant.BLUE_CENTER_ZONE_AREA);
+        }
+    }
+
+    public Scalar getAvgColor(Mat matrix) {
+        Imgproc.blur(matrix, matrix, VisionConstant.BLUR_SIZE);
+        return Core.mean(matrix);
+    }
+
+    public double getAllianceColorThreshold() {
+        return Robot.getInstance().getAlliance() == Alliance.RED ? VisionConstant.RED_THRESHOLD : VisionConstant.BLUE_THRESHOLD;
+    }
+
+    public boolean isPropPartOfAvgColor(Scalar color) {
+        int allianceColorIndex = Robot.getInstance().getAlliance() == Alliance.RED ? VisionConstant.RED_INDEX : VisionConstant.BLUE_INDEX;
+        double allianceColor = color.val[allianceColorIndex];
+        boolean allianceColorPassesThreshold = allianceColor > getAllianceColorThreshold();
+        double sumOfColor = color.val[VisionConstant.RED_INDEX] + color.val[VisionConstant.GREEN_INDEX] + color.val[VisionConstant.BLUE_INDEX];
+        return allianceColorPassesThreshold && sumOfColor < VisionConstant.AMOUNT_OF_COLOR * allianceColor;
     }
 
     @Override

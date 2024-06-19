@@ -17,11 +17,6 @@ public class RazRobotStateTest extends DefaultRaz {
     }
 
     @Override
-    public Alliance setAlliance() {
-        return Alliance.RED;
-    }
-
-    @Override
     public void execute() {
         telemetry.addData("Current Robot State: ", Robot.getInstance().getCurrentState());
     }
