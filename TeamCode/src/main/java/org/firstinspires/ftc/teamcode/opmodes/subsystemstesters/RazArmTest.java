@@ -16,11 +16,6 @@ public class RazArmTest extends DefaultRaz {
     }
 
     @Override
-    public Alliance setAlliance() {
-        return Alliance.RED;
-    }
-
-    @Override
     public void execute() {
         Robot.getInstance().getArm().telemetry(telemetry);
     }

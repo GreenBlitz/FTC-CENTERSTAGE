@@ -22,8 +22,11 @@ public abstract class DefaultRaz extends OpMode {
         execute();
     }
 
+    public Alliance setAlliance() {
+        return Alliance.RED;
+    }
+
     public abstract void initialize();
-    public abstract Alliance setAlliance();
     public abstract void execute();
     public abstract void configureBindings();
 

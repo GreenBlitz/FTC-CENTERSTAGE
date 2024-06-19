@@ -16,11 +16,6 @@ public class RazClawTest extends DefaultRaz {
     }
 
     @Override
-    public Alliance setAlliance() {
-        return Alliance.RED;
-    }
-
-    @Override
     public void execute() {
         Robot.getInstance().getClaw().telemetry(telemetry);
     }

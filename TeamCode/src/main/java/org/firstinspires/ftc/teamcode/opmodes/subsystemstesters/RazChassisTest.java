@@ -15,11 +15,6 @@ public class RazChassisTest extends DefaultRaz {
     }
 
     @Override
-    public Alliance setAlliance() {
-        return Alliance.RED;
-    }
-
-    @Override
     public void execute() {
         Robot.getInstance().getChassis().telemetry(telemetry);
     }
