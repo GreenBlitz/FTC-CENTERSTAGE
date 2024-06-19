@@ -80,9 +80,9 @@ public class Bindings {
     public static void razWristTest(Gamepad gamepad) {
         mainGamepad = new GamepadWrapper(gamepad);
 
-        mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(WristCommands.moveToState(WristState.SCORE));
-        mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(WristCommands.moveToState(WristState.INTAKE));
-        mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(WristCommands.moveToState(WristState.IDLE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(WristCommands.moveToState(WristState.SCORE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(WristCommands.moveToState(WristState.INTAKE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(WristCommands.moveToState(WristState.IDLE));
     }
 
     public static void razChassisTest(Gamepad gamepad) {

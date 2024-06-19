@@ -35,7 +35,7 @@ public class Robot {
     private Wrist wrist;
 
     private void initSubsystems(HardwareMap hardwareMap) {
-        if (currentState == null) {
+//        if (currentState == null) {
             this.currentState = RobotState.DRIVE;
 
             this.arm = new Arm(hardwareMap);
@@ -44,7 +44,7 @@ public class Robot {
             this.elevator = new Elevator(hardwareMap);
             this.launcher = new Launcher(hardwareMap);
             this.wrist = new Wrist(hardwareMap);
-        }
+//        }
     }
 
     public SequentialCommandGroup setState(RobotState robotState) {
