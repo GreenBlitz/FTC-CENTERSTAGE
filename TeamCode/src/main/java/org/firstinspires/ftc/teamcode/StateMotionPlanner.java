@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
-class StateMotionPlanner {
+public class StateMotionPlanner {
 
     private int robotStateIndex;
 

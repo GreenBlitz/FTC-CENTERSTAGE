@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.subsystems.chassis;
 
 import com.arcrobotics.ftclib.command.Command;
+import com.arcrobotics.ftclib.command.FunctionalCommand;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.RunCommand;
 import com.arcrobotics.ftclib.geometry.Rotation2d;
@@ -23,6 +24,16 @@ public class ChassisCommands {
         );
     }
 
+    public static Command rotateToAngle(Rotation2d angle){
+        return new FunctionalCommand(
+                () -> Robot.getInstance().getChassis().setRotateSetPoint(angle),
+                () -> Robot.getInstance().getChassis().rotateToAngle(),
+                interrupt -> {},
+                () -> Robot.getInstance().getChassis().isAtAngle(angle),
+                Robot.getInstance().getChassis()
+        );
+    }
+
     public static Command stop() {
         return new InstantCommand(() -> Robot.getInstance().getChassis().stop(), Robot.getInstance().getChassis());
     }
@@ -30,4 +41,5 @@ public class ChassisCommands {
     public static Command resetHeading() {
         return new InstantCommand(() -> Robot.getInstance().getChassis().resetHeading(), Robot.getInstance().getChassis());
     }
+
 }
