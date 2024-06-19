@@ -24,8 +24,8 @@ public class Robot {
         }
         return instance;
     }
-    
-    
+
+    private Alliance alliance;
     private RobotState currentState;
     private Arm arm;
     private MecanumChassis chassis;
@@ -35,8 +35,13 @@ public class Robot {
     private Vision vision;
     private Wrist wrist;
 
+    public void setAlliance(Alliance alliance) {
+        this.alliance = alliance;
+    }
+
     public void initSubsystems(HardwareMap hardwareMap) {
         this.currentState = RobotState.DRIVE;
+
         this.arm = new Arm(hardwareMap);
         this.chassis = new MecanumChassis(hardwareMap);
         this.claw = new Claw(hardwareMap);
@@ -63,6 +68,10 @@ public class Robot {
 
     public RobotState getCurrentState() {
         return currentState;
+    }
+
+    public Alliance getAlliance() {
+        return alliance;
     }
 
     public Arm getArm() {

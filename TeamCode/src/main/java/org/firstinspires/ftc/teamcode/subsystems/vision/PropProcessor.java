@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
 import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.Location;
-import org.firstinspires.ftc.teamcode.RobotConstants;
+import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.vision.VisionProcessor;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -26,7 +26,7 @@ public class PropProcessor implements VisionProcessor {
         Rect leftZoneArea;
         Rect centerZoneArea;
 
-        if (RobotConstants.ALLIANCE == Alliance.RED) {
+        if (Robot.getInstance().getAlliance() == Alliance.RED) {
             leftZoneArea = VisionConstant.RED_LEFT_ZONE_AREA;
             centerZoneArea = VisionConstant.RED_CENTER_ZONE_AREA;
         } else {
@@ -43,8 +43,8 @@ public class PropProcessor implements VisionProcessor {
         Scalar left = Core.mean(leftZone);
         Scalar center = Core.mean(centerZone);
 
-        double threshold = RobotConstants.ALLIANCE == Alliance.RED ? VisionConstant.RED_THRESHOLD : VisionConstant.BLUE_THRESHOLD;
-        int idx = RobotConstants.ALLIANCE == Alliance.RED ? VisionConstant.RED_INDEX : VisionConstant.BLUE_INDEX;
+        double threshold = Robot.getInstance().getAlliance() == Alliance.RED ? VisionConstant.RED_THRESHOLD : VisionConstant.BLUE_THRESHOLD;
+        int idx = Robot.getInstance().getAlliance() == Alliance.RED ? VisionConstant.RED_INDEX : VisionConstant.BLUE_INDEX;
 
         double leftColor = left.val[idx];
         double centerColor = center.val[idx];
