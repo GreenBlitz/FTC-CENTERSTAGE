@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmodes.testers;
+package org.firstinspires.ftc.teamcode.opmodes.subsystemstesters;
 
 import org.firstinspires.ftc.teamcode.Bindings;
 import org.firstinspires.ftc.teamcode.Robot;
@@ -21,7 +21,7 @@ public class RazLauncherTest extends DefaultRaz {
 
     @Override
     public void configureBindings() {
-        Bindings.razLauncherTest(gamepad1, gamepad2);
+        Bindings.razLauncherTest(gamepad1);
     }
 
 }
