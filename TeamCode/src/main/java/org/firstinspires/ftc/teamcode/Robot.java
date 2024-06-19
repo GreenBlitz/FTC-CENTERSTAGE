@@ -18,6 +18,10 @@ public class Robot {
         getInstance().initSubsystems(hardwareMap);
     }
 
+    private Robot() {
+        this.alliance = Alliance.RED;
+    }
+
     public static Robot getInstance() {
         if (instance == null) {
             instance = new Robot();
