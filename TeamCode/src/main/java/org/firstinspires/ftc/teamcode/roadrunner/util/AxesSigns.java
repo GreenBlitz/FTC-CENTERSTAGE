@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode.roadrunner.util;
  * IMU axes signs in the order XYZ (after remapping).
  */
 public enum AxesSigns {
+
     PPP(0b000),
     PPN(0b001),
     PNP(0b010),
@@ -42,4 +43,5 @@ public enum AxesSigns {
                 throw new IllegalStateException("Unexpected value for maskedVal: " + maskedVal);
         }
     }
+
 }

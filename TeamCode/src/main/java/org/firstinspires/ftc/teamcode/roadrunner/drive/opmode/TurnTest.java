@@ -12,6 +12,7 @@ import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleMecanumDrive;
 @Config
 @Autonomous(group = "drive")
 public class TurnTest extends LinearOpMode {
+
     public static double ANGLE = 90; // deg
 
     @Override
@@ -24,4 +25,5 @@ public class TurnTest extends LinearOpMode {
 
         drive.turn(Math.toRadians(ANGLE));
     }
+
 }
