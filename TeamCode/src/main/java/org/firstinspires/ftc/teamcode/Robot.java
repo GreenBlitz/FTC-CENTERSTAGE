@@ -22,7 +22,6 @@ public class Robot {
         return instance;
     }
 
-
     private Arm arm;
     private Elevator elevator;
     private Launcher launcher;
@@ -47,6 +46,7 @@ public class Robot {
     public Launcher getLauncher() {
         return launcher;
     }
+
     public Vision getVision() {
         return vision;
     }
