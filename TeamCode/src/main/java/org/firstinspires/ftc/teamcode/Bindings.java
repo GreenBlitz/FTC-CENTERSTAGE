@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.gamelayout.Field;
+import org.firstinspires.ftc.teamcode.gamelayout.FieldConstants;
 import org.firstinspires.ftc.teamcode.gamepads.GamepadFunctions;
 import org.firstinspires.ftc.teamcode.gamepads.GamepadWrapper;
 import org.firstinspires.ftc.teamcode.subsystems.arm.ArmCommands;
@@ -98,7 +98,7 @@ public class Bindings {
         );
         mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());
         mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(ChassisCommands.stop());
-        mainGamepad.getGamepadButton(GamepadKeys.Button.A).whileHeld(ChassisCommands.rotateToAngle(Field.getBoardAngle()));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.A).whileHeld(ChassisCommands.rotateToAngle(FieldConstants.getBoardAngle()));
     }
 
 }
