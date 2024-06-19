@@ -17,16 +17,12 @@ import java.util.List;
 
 public class Vision extends SubsystemBase {
 
-    private AprilTagProcessor aprilTagProcessor;
-    private TfodProcessor tfodProcessor;
-    private PropProcessor propProcessor;
-    private VisionPortal visionPortal;
-    private List<AprilTagDetection> aprilTagDetections;
-    private Location propLocation;
+    private final AprilTagProcessor aprilTagProcessor;
+    private final TfodProcessor tfodProcessor;
+    private final PropProcessor propProcessor;
+    private final VisionPortal visionPortal;
 
     public Vision(HardwareMap hardwareMap) {
-
-        aprilTagDetections = new ArrayList<>();
 
         this.aprilTagProcessor = new AprilTagProcessor.Builder()
                 .setDrawTagID(true)
@@ -54,18 +50,10 @@ public class Vision extends SubsystemBase {
                 .build();
     }
 
-    @Override
-    public void periodic() {
-
-        this.aprilTagDetections = aprilTagProcessor.getDetections();
-        this.propLocation = propProcessor.getLocation();
-
-    }
-
     public List<AprilTagDetection> getTagsDetections() {
-        return aprilTagDetections;
+        return aprilTagProcessor.getDetections();
     }
-    public List<Pair<AprilTagPoseFtc,Integer>> getTagsPoses() {
+    public List<Pair<AprilTagPoseFtc,Integer>> getRelativeTagsPoses() {
         List<AprilTagDetection> temp = getTagsDetections();
         List<Pair<AprilTagPoseFtc,Integer>> poses = new ArrayList<>();
         for(AprilTagDetection detection : temp)
@@ -75,7 +63,7 @@ public class Vision extends SubsystemBase {
     }
 
     public void telemetry(Telemetry telemetry) {
-        List<Pair<AprilTagPoseFtc,Integer>> poses = getTagsPoses();
+        List<Pair<AprilTagPoseFtc,Integer>> poses = getRelativeTagsPoses();
         if(!poses.isEmpty()) {
             telemetry.addData("detected: ", poses.size() + " AprilTags");
             telemetry.addData("the first tag is: ", poses.get(0).second);
@@ -83,6 +71,8 @@ public class Vision extends SubsystemBase {
             telemetry.addData("first tag y: ", poses.get(0).first.y);
             telemetry.addData("first tag z: ", poses.get(0).first.z);
         }
+        Location propLocation = propProcessor.getLocation();
+
         if(propLocation != null) {
             telemetry.addData("prop's location is: ", propLocation.toString());
         }

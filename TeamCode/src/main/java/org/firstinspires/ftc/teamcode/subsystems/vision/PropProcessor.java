@@ -48,6 +48,7 @@ public class PropProcessor implements VisionProcessor {
         double leftColor = left.val[idx];
         double centerColor = center.val[idx];
 
+
         if (leftColor > threshold && (left.val[VisionConstant.RED_INDEX] + left.val[VisionConstant.GREEN_INDEX] + left.val[VisionConstant.BLUE_INDEX] < VisionConstant.AMOUNT_OF_COLOR * left.val[idx])) {
             this.location = Location.LEFT;
             Imgproc.rectangle(frame, leftZoneArea, VisionConstant.WHITE_COLOR_RGB, VisionConstant.AREA_RECTANGLE_THICKNESS);
