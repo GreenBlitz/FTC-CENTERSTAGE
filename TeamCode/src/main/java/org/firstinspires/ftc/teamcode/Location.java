@@ -4,6 +4,6 @@ public enum Location {
 
     LEFT,
     CENTER,
-    RIGHT
+    RIGHT;
 
 }

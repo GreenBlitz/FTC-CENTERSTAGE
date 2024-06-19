@@ -153,4 +153,5 @@ public class RegressionUtil {
 
         return new AccelResult(Math.abs(accelReg.getSlope()), accelReg.getRSquare());
     }
+
 }
