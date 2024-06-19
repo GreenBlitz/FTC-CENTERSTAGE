@@ -73,4 +73,5 @@ public class PropProcessor implements VisionProcessor {
     public Location getLocation() {
         return location;
     }
+
 }

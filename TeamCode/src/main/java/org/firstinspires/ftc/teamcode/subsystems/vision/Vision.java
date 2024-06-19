@@ -11,7 +11,6 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagPoseFtc;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,4 +76,5 @@ public class Vision extends SubsystemBase {
             telemetry.addData("prop's location is: ", propLocation.toString());
         }
     }
+
 }
