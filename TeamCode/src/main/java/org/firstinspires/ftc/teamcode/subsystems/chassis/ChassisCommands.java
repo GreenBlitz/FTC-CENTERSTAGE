@@ -28,7 +28,7 @@ public class ChassisCommands {
         return new FunctionalCommand(
                 () -> Robot.getInstance().getChassis().setRotateSetPoint(angle),
                 () -> Robot.getInstance().getChassis().rotateToAngle(),
-                interrupted -> {},
+                interrupt -> {},
                 () -> Robot.getInstance().getChassis().isAtAngle(angle),
                 Robot.getInstance().getChassis()
         );
