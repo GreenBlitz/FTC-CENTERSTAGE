@@ -56,9 +56,11 @@ public class Vision extends SubsystemBase {
     public List<Pair<AprilTagPoseFtc,Integer>> getRelativeTagsPoses() {
         List<AprilTagDetection> temp = getTagsDetections();
         List<Pair<AprilTagPoseFtc,Integer>> poses = new ArrayList<>();
-        for(AprilTagDetection detection : temp)
-            if(detection.metadata != null)
-                poses.add(new Pair<>(detection.ftcPose,detection.id));
+        for(AprilTagDetection detection : temp) {
+            if (detection.metadata != null) {
+                poses.add(new Pair<>(detection.ftcPose, detection.id));
+            }
+        }
         return poses;
     }
 
