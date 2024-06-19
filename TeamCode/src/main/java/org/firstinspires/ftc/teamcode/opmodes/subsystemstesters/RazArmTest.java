@@ -1,14 +1,15 @@
-package org.firstinspires.ftc.teamcode.opmodes.testers;
+package org.firstinspires.ftc.teamcode.opmodes.subsystemstesters;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.Bindings;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 
-@TeleOp(name = "Raz Wrist Test")
-public class RazWristTest extends DefaultRaz {
-    
+@TeleOp(name = "Raz Arm Test")
+public class RazArmTest extends DefaultRaz {
+
     @Override
     public void initialize() {
 
@@ -16,12 +17,12 @@ public class RazWristTest extends DefaultRaz {
 
     @Override
     public void execute() {
-        Robot.getInstance().getWrist().telemetry(telemetry);
+        Robot.getInstance().getArm().telemetry(telemetry);
     }
 
     @Override
     public void configureBindings() {
-        Bindings.razWristTest(gamepad1);
+        Bindings.razArmTest(gamepad1);
     }
 
 }
