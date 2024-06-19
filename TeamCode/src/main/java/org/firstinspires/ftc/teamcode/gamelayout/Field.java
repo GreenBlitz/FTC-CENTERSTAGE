@@ -1,9 +1,8 @@
 package org.firstinspires.ftc.teamcode.gamelayout;
 
 import com.arcrobotics.ftclib.geometry.Rotation2d;
-
+import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.Info;
-import org.firstinspires.ftc.teamcode.gamelayout.Alliance;
 
 public class Field {
 
