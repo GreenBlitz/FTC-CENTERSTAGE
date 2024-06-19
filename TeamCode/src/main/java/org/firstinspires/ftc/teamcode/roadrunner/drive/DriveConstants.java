@@ -32,7 +32,7 @@ public class DriveConstants {
      * from DriveVelocityPIDTuner.
      */
     public static final boolean RUN_USING_ENCODER = false;
-    public static PIDFCoefficients MOTOR_VELOCITY_PID = new PIDFCoefficients(0, 0, 0,
+    public static PIDFCoefficients MOTOR_VELOCITY_PID = new PIDFCoefficients(1, 0, 0,
             getMotorVelocityF(MAX_RPM / 60 * TICKS_PER_REVOLUTION));
 
     /*
@@ -53,9 +53,9 @@ public class DriveConstants {
      * motor encoders or have elected not to use them for velocity control, these values should be
      * empirically tuned.
      */
-    public static double kV = 1.0 / rpmToVelocity(MAX_RPM);
-    public static double kA = 0;
-    public static double kStatic = 0;
+    public static double kV = 0.00095;
+    public static double kA = 0.0003;
+    public static double kStatic = -0.07;
 
     /*
      * These values are used to generate the trajectories for you robot. To ensure proper operation,
@@ -65,7 +65,7 @@ public class DriveConstants {
      * inches.
      */
     public static double MAX_VELOCITY = MAX_RPM/60 * WHEEL_RADIUS * GEAR_RATIO * 2*Math.PI * 0.8;
-    public static double MAX_ACCELERATION = MAX_VELOCITY;
+    public static double MAX_ACCELERATION = 500;
     public static double MAX_ANGULAR_VELOCITY = Math.toRadians(60);
     public static double MAX_ANGULAR_ACCELERATION = Math.toRadians(60);
 
