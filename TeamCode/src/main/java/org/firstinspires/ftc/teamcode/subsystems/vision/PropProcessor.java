@@ -25,7 +25,7 @@ public class PropProcessor implements VisionProcessor {
         Rect leftZoneArea;
         Rect centerZoneArea;
 
-        if (RobotConstants.ALLIANCE == Alliance.RED && RobotConstants.SIDE == Location.FAR || RobotConstants.ALLIANCE == Alliance.BLUE && RobotConstants.SIDE == Location.CLOSE) {
+        if (RobotConstants.ALLIANCE == Alliance.RED) {
             leftZoneArea = VisionConstant.RED_LEFT_ZONE_AREA;
             centerZoneArea = VisionConstant.RED_CENTER_ZONE_AREA;
         } else {
@@ -48,10 +48,10 @@ public class PropProcessor implements VisionProcessor {
         double leftColor = left.val[idx];
         double centerColor = center.val[idx];
 
-        if (leftColor > threshold && (left.val[VisionConstant.RED_INDEX] + left.val[VisionConstant.GREEN_INDEX] + left.val[VisionConstant.BLUE_INDEX] - left.val[idx] < left.val[idx])) {
+        if (leftColor > threshold && (left.val[VisionConstant.RED_INDEX] + left.val[VisionConstant.GREEN_INDEX] + left.val[VisionConstant.BLUE_INDEX] < VisionConstant.AMOUNT_OF_COLOR * left.val[idx])) {
             this.location = Location.LEFT;
             Imgproc.rectangle(frame, leftZoneArea, VisionConstant.WHITE_COLOR_RGB, VisionConstant.AREA_RECTANGLE_THICKNESS);
-        } else if (centerColor > threshold && (center.val[VisionConstant.RED_INDEX] + center.val[VisionConstant.GREEN_INDEX] + center.val[VisionConstant.BLUE_INDEX] - center.val[idx] < center.val[idx])) {
+        } else if (centerColor > threshold && (center.val[VisionConstant.RED_INDEX] + center.val[VisionConstant.GREEN_INDEX] + center.val[VisionConstant.BLUE_INDEX] < VisionConstant.AMOUNT_OF_COLOR * center.val[idx])) {
             this.location = Location.CENTER;
             Imgproc.rectangle(frame, centerZoneArea, VisionConstant.WHITE_COLOR_RGB, VisionConstant.AREA_RECTANGLE_THICKNESS);
         } else {
