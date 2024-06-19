@@ -1,10 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
-public class StateMotionPlanner {
+class StateMotionPlanner {
 
     private int robotStateIndex;
 
-    public StateMotionPlanner(RobotState startingState) {
+    protected StateMotionPlanner(RobotState startingState) {
         this.robotStateIndex = getStateIndex(startingState);
     }
 

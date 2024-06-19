@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 
 @TeleOp(name = "Raz Motion Planner Test")
 public class RazMotionPlannerTest extends DefaultRaz {
+
     @Override
     public void initialize() {
 
@@ -23,4 +24,5 @@ public class RazMotionPlannerTest extends DefaultRaz {
     public void configureBindings() {
         Bindings.razMotionPlannerTest(gamepad2);
     }
+
 }

@@ -37,15 +37,15 @@ public class Robot {
     private Wrist wrist;
 
     private void initSubsystems(HardwareMap hardwareMap) {
-            this.currentState = RobotState.DRIVE;
-            this.stateMotionPlanner = new StateMotionPlanner(currentState);
+        this.currentState = RobotState.DRIVE;
+        this.stateMotionPlanner = new StateMotionPlanner(currentState);
 
-            this.arm = new Arm(hardwareMap);
-            this.chassis = new MecanumChassis(hardwareMap);
-            this.claw = new Claw(hardwareMap);
-            this.elevator = new Elevator(hardwareMap);
-            this.launcher = new Launcher(hardwareMap);
-            this.wrist = new Wrist(hardwareMap);
+        this.arm = new Arm(hardwareMap);
+        this.chassis = new MecanumChassis(hardwareMap);
+        this.claw = new Claw(hardwareMap);
+        this.elevator = new Elevator(hardwareMap);
+        this.launcher = new Launcher(hardwareMap);
+        this.wrist = new Wrist(hardwareMap);
     }
 
     public SequentialCommandGroup setState(RobotState robotState) {
