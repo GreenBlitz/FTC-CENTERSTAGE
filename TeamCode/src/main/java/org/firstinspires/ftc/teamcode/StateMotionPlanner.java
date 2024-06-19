@@ -1,20 +1,22 @@
 package org.firstinspires.ftc.teamcode;
 
-class StateMotionPlanner {
+public class StateMotionPlanner {
+
+    private static final int NUMBER_OF_STATES = 3;
 
     private int robotStateIndex;
 
     protected StateMotionPlanner(RobotState startingState) {
-        this.robotStateIndex = getStateIndex(startingState);
+        this.robotStateIndex = startingState.index;
     }
 
     protected RobotState getLeftState() {
-        robotStateIndex = (robotStateIndex + 2) % 3;
+        robotStateIndex = (robotStateIndex + NUMBER_OF_STATES - 1) % NUMBER_OF_STATES;
         return getIndexState(robotStateIndex);
     }
 
     protected RobotState getRightState() {
-        robotStateIndex = (robotStateIndex + 1) % 3;
+        robotStateIndex = (robotStateIndex + 1) % NUMBER_OF_STATES;
         return getIndexState(robotStateIndex);
     }
 
@@ -22,21 +24,10 @@ class StateMotionPlanner {
         return robotStateIndex;
     }
 
-    private int getStateIndex(RobotState state) {
-        switch (state) {
-            case SCORE:
-                return 2;
-            case DRIVE:
-                return 1;
-            case INTAKE:
-                return 0;
-            default:
-                return 1;
-        }
-    }
-
     private RobotState getIndexState(int index) {
         switch (index) {
+            case 3:
+                return RobotState.CLIMB;
             case 2:
                 return RobotState.SCORE;
             case 1:
