@@ -71,6 +71,10 @@ public class Robot {
         return setState(stateMotionPlanner.getRightState());
     }
 
+    public StateMotionPlanner getStateMotionPlanner() {
+        return stateMotionPlanner;
+    }
+
     public RobotState getCurrentState() {
         return currentState;
     }

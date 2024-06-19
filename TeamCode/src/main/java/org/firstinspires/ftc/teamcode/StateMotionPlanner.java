@@ -9,7 +9,7 @@ public class StateMotionPlanner {
     }
 
     protected RobotState getLeftState() {
-        robotStateIndex = (robotStateIndex - 1) % 3;
+        robotStateIndex = (robotStateIndex + 2) % 3;
         return getIndexState(robotStateIndex);
     }
 
@@ -18,6 +18,9 @@ public class StateMotionPlanner {
         return getIndexState(robotStateIndex);
     }
 
+    public int getRobotStateIndex() {
+        return robotStateIndex;
+    }
 
     private int getStateIndex(RobotState state) {
         switch (state) {
