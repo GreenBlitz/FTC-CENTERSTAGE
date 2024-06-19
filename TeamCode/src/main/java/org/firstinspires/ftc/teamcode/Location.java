@@ -1,6 +1,7 @@
-package org.firstinspires.ftc.teamcode.subsystems.vision;
+package org.firstinspires.ftc.teamcode;
 
 public enum Location {
+
     LEFT, CENTER, RIGHT,
     FAR, CLOSE;
 
@@ -22,4 +23,5 @@ public enum Location {
             return "CLOSE";
         }
     }
+
 }

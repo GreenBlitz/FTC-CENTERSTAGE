@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.subsystems.vision;
 import android.graphics.Canvas;
 import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
 import org.firstinspires.ftc.teamcode.Alliance;
+import org.firstinspires.ftc.teamcode.Location;
 import org.firstinspires.ftc.teamcode.RobotConstants;
 import org.firstinspires.ftc.vision.VisionProcessor;
 import org.opencv.core.Core;
