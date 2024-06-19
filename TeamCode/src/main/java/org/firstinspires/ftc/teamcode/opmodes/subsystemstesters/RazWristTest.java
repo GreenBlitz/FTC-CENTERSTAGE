@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmodes.testers;
+package org.firstinspires.ftc.teamcode.opmodes.subsystemstesters;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -21,7 +21,7 @@ public class RazWristTest extends DefaultRaz {
 
     @Override
     public void configureBindings() {
-        Bindings.razWristTest(gamepad1);
+        Bindings.razWristTest(gamepad2);
     }
 
 }

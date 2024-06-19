@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.subsystems.arm.Arm;
@@ -25,6 +26,7 @@ public class Robot {
     }
 
 
+    private RobotState currentState;
     private Arm arm;
     private MecanumChassis chassis;
     private Claw claw;
@@ -32,15 +34,36 @@ public class Robot {
     private Launcher launcher;
     private Wrist wrist;
 
-    public void initSubsystems(HardwareMap hardwareMap) {
-        if (arm == null) {
+    private void initSubsystems(HardwareMap hardwareMap) {
+//        if (currentState == null) {
+            this.currentState = RobotState.DRIVE;
+
             this.arm = new Arm(hardwareMap);
             this.chassis = new MecanumChassis(hardwareMap);
             this.claw = new Claw(hardwareMap);
             this.elevator = new Elevator(hardwareMap);
             this.launcher = new Launcher(hardwareMap);
             this.wrist = new Wrist(hardwareMap);
+//        }
+    }
+
+    public SequentialCommandGroup setState(RobotState robotState) {
+        currentState = robotState;
+        switch (robotState) {
+            case SCORE:
+                return StateCommands.scoreState();
+            case INTAKE:
+                return StateCommands.intakeState();
+            case CLIMB:
+                return StateCommands.climbState();
+            case DRIVE:
+            default:
+                return StateCommands.driveState();
         }
+    }
+
+    public RobotState getCurrentState() {
+        return currentState;
     }
 
     public Arm getArm() {
