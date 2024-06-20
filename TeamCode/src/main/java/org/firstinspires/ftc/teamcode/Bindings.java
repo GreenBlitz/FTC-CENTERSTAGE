@@ -21,7 +21,15 @@ public class Bindings {
     private static GamepadWrapper mainGamepad;
     private static GamepadWrapper secondGamepad;
 
-    public static void razMotionPlannerTest(Gamepad gamepad){
+    public static void razClimbTest(Gamepad gamepad1, Gamepad gamepad2) {
+        razChassisTest(gamepad1);
+        secondGamepad = new GamepadWrapper(gamepad2);
+
+        secondGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(Robot.getInstance().setState(RobotState.CLIMB));
+        secondGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(ArmCommands.goToState(ArmState.INTAKE));
+    }
+
+    public static void razMotionPlannerTest(Gamepad gamepad) {
         secondGamepad = new GamepadWrapper(gamepad);
 
         secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(() ->
@@ -30,7 +38,7 @@ public class Bindings {
                 Robot.getInstance().setRightState().schedule());
     }
 
-    public static void razRobotStateTest(Gamepad gamepad){
+    public static void razRobotStateTest(Gamepad gamepad) {
         mainGamepad = new GamepadWrapper(gamepad);
 
         mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(Robot.getInstance().setState(RobotState.SCORE));
