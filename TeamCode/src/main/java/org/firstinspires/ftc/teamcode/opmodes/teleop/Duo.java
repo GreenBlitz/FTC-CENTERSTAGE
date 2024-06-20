@@ -7,6 +7,7 @@ import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 
 @TeleOp(name = "Duo")
 public class Duo extends DefaultRaz {
+
     @Override
     public void initialize() {
 
@@ -21,4 +22,5 @@ public class Duo extends DefaultRaz {
     public void configureBindings() {
         Bindings.teleopDuoBindings(gamepad1, gamepad2);
     }
+
 }
