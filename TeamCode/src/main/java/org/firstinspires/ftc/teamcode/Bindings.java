@@ -21,6 +21,66 @@ public class Bindings {
     private static GamepadWrapper mainGamepad;
     private static GamepadWrapper secondGamepad;
 
+    public static void teleopDuoBindings(Gamepad gamepad1, Gamepad gamepad2) {
+        mainDriver(gamepad1);
+        secondDriver(gamepad2);
+    }
+
+    private static void mainDriver(Gamepad gamepad) {
+        mainGamepad = new GamepadWrapper(gamepad);
+
+        // Launcher
+        mainGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(LauncherCommands.launchPlane());
+
+        // Chassis
+        mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());
+        mainGamepad.getGamepadButton(GamepadKeys.Button.A).whileHeld(ChassisCommands.rotateToAngle(FieldConstants.getBoardAngle()));
+        Robot.getInstance().getChassis().setDefaultCommand(
+                ChassisCommands.fieldCentricDrive(
+                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftX()),
+                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftY()),
+                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getRightX())
+                )
+        );
+    }
+
+    private static void secondDriver(Gamepad gamepad) {
+        secondGamepad = new GamepadWrapper(gamepad);
+
+        // State Change:
+        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(() ->
+                Robot.getInstance().setLeftState().schedule());
+        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(() ->
+                Robot.getInstance().setRightState().schedule());
+
+        // Elevator:
+        secondGamepad.getTriggerAsButton(GamepadKeys.Trigger.LEFT_TRIGGER).whenActive(
+                ElevatorCommands.humanControl(() -> {
+                            double triggerValue = secondGamepad.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER);
+                            return GamepadFunctions.getDeadZonedValue(triggerValue);
+                        }
+                )
+        );
+        secondGamepad.getTriggerAsButton(GamepadKeys.Trigger.RIGHT_TRIGGER).whenActive(
+                ElevatorCommands.humanControl(() -> {
+                            double triggerValue = -secondGamepad.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER);
+                            return GamepadFunctions.getDeadZonedValue(triggerValue);
+                        }
+                )
+        );
+
+        // Climb
+        secondGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(Robot.getInstance().setState(RobotState.CLIMB));
+        secondGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(ArmCommands.goToState(ArmState.INTAKE));
+
+        // Claw
+        secondGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(ClawCommands.toggleRightFinger());
+        secondGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(ClawCommands.toggleLeftFinger());
+        secondGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(ClawCommands.openBothFingers());
+        secondGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ClawCommands.closeBothFingers());
+    }
+
+
     public static void razClimbTest(Gamepad gamepad1, Gamepad gamepad2) {
         razChassisTest(gamepad1);
         secondGamepad = new GamepadWrapper(gamepad2);
@@ -58,7 +118,7 @@ public class Bindings {
         mainGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(ClawCommands.lockFingers());
         mainGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(ClawCommands.unlockFingers());
         mainGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_STICK_BUTTON).whenPressed(ClawCommands.switchFingers()
-            );
+        );
 
 
         mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(ClawCommands.testRightFinger(0.01));

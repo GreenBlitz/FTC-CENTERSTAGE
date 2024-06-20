@@ -11,7 +11,7 @@ public class StateMotionPlanner {
     }
 
     protected RobotState getLeftState() {
-        robotStateIndex = (robotStateIndex + NUMBER_OF_STATES - 1) % NUMBER_OF_STATES;
+        robotStateIndex = (robotStateIndex + (NUMBER_OF_STATES - 1)) % NUMBER_OF_STATES;
         return getIndexState(robotStateIndex);
     }
 
