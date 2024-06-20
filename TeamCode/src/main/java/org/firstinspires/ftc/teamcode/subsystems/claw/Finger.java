@@ -16,8 +16,10 @@ class Finger {
         this.isOpen = ClawConstants.FINGER_IS_OPEN_AT_START;
     }
 
-    private void setPosition(double position) {
-        servo.setPosition(position);
+    protected void setPosition(double position, boolean isLocked) {
+        if (isLocked) {
+            servo.setPosition(position);
+        }
     }
 
     protected double getPosition() {
@@ -28,22 +30,25 @@ class Finger {
         return isOpen;
     }
 
-    protected void open() {
-        setPosition(openPosition);
-        isOpen = true;
-    }
-
-    protected void close() {
-        setPosition(closePosition);
-        isOpen = false;
-    }
-
-    protected void toggleFinger() {
-        if (isOpen) {
-            close();
-        } else {
-            open();
+    protected void open(boolean isUnlocked) {
+        if (isUnlocked) {
+            setPosition(openPosition, isUnlocked);
+            isOpen = true;
         }
     }
 
+    protected void close(boolean isUnlocked) {
+        if (isUnlocked) {
+            setPosition(closePosition, isUnlocked);
+            isOpen = false;
+        }
+    }
+
+    protected void toggleFinger(boolean isUnlocked) {
+        if (isOpen) {
+            close(isUnlocked);
+        } else {
+            open(isUnlocked);
+        }
+    }
 }

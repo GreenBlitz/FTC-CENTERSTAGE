@@ -27,4 +27,19 @@ public class ClawCommands {
         return new InstantCommand(() -> Robot.getInstance().getClaw().switchFingers());
     }
 
+    public static Command lockFingers() {
+        return new InstantCommand(() -> Robot.getInstance().getClaw().lockFingers());
+    }
+
+    public static Command unlockFingers() {
+        return new InstantCommand(() -> Robot.getInstance().getClaw().unlockFingers());
+    }
+
+//    public static Command testRightFinger(double positionAdd) {
+//        return new InstantCommand(() -> Robot.getInstance().getClaw().testRightFinger(positionAdd));
+//    }
+//
+//    public static Command testLeftFinger(double positionAdd) {
+//        return new InstantCommand(() -> Robot.getInstance().getClaw().testLeftFinger(positionAdd));
+//    }
 }
