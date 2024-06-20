@@ -60,7 +60,7 @@ public class Claw extends SubsystemBase {
     public void telemetry(Telemetry telemetry) {
         telemetry.addData("RightFinger isOpen?: ", rightFinger.isOpen());
         telemetry.addData("LeftFinger isOpen?: ", leftFinger.isOpen());
-        telemetry.addData("isLocked?: ", isUnlocked);
+        telemetry.addData("isLocked?: ", !isUnlocked);
 
         telemetry.addData("RightFinger Position: ", rightFinger.getPosition());
         telemetry.addData("LeftFinger Position: ", leftFinger.getPosition());

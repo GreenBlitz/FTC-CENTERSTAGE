@@ -53,11 +53,11 @@ public class Bindings {
             );
 
 
-//        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(ClawCommands.testRightFinger(0.01));
-//        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(ClawCommands.testRightFinger(-0.01));
-//
-//        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(ClawCommands.testLeftFinger(0.01));
-//        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(ClawCommands.testLeftFinger(-0.01));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(ClawCommands.testRightFinger(0.01));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(ClawCommands.testRightFinger(-0.01));
+
+        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(ClawCommands.testLeftFinger(0.01));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(ClawCommands.testLeftFinger(-0.01));
     }
 
     public static void razLauncherTest(Gamepad gamepad) {
