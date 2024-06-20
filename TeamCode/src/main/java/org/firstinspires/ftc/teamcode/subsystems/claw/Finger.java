@@ -19,6 +19,7 @@ class Finger {
     protected void setPosition(double position, boolean isLocked) {
         if (isLocked) {
             servo.setPosition(position);
+            isOpen = !isOpen;
         }
     }
 
@@ -31,17 +32,11 @@ class Finger {
     }
 
     protected void open(boolean isUnlocked) {
-        if (isUnlocked) {
             setPosition(openPosition, isUnlocked);
-            isOpen = true;
-        }
     }
 
     protected void close(boolean isUnlocked) {
-        if (isUnlocked) {
             setPosition(closePosition, isUnlocked);
-            isOpen = false;
-        }
     }
 
     protected void toggleFinger(boolean isUnlocked) {
