@@ -121,4 +121,5 @@ public class LynxModuleUtil {
             throw new LynxFirmwareVersionException(msgBuilder.toString());
         }
     }
+
 }

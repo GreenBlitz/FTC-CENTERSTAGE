@@ -29,6 +29,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class TrajectorySequenceBuilder {
+
     private final double resolution = 0.25;
 
     private final TrajectoryVelocityConstraint baseVelConstraint;
@@ -708,4 +709,5 @@ public class TrajectorySequenceBuilder {
     private interface AddPathCallback {
         void run();
     }
+
 }
