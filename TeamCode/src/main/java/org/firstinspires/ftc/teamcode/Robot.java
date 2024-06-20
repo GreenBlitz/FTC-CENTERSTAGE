@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.subsystems.arm.Arm;
+import org.firstinspires.ftc.teamcode.subsystems.vision.Vision;
 import org.firstinspires.ftc.teamcode.subsystems.claw.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.elevator.Elevator;
 import org.firstinspires.ftc.teamcode.subsystems.wrist.Wrist;
@@ -26,7 +27,7 @@ public class Robot {
         return instance;
     }
 
-
+    private Alliance alliance;
     private StateMotionPlanner stateMotionPlanner;
     private RobotState currentState;
     private Arm arm;
@@ -34,9 +35,19 @@ public class Robot {
     private Claw claw;
     private Elevator elevator;
     private Launcher launcher;
+    private Vision vision;
     private Wrist wrist;
 
-    private void initSubsystems(HardwareMap hardwareMap) {
+
+    private Robot() {
+        this.alliance = Alliance.RED;
+    }
+
+    public void setAlliance(Alliance alliance) {
+        this.alliance = alliance;
+    }
+
+    public void initSubsystems(HardwareMap hardwareMap) {
         this.currentState = RobotState.DRIVE;
         this.stateMotionPlanner = new StateMotionPlanner(currentState);
 
@@ -45,6 +56,7 @@ public class Robot {
         this.claw = new Claw(hardwareMap);
         this.elevator = new Elevator(hardwareMap);
         this.launcher = new Launcher(hardwareMap);
+        this.vision = new Vision(hardwareMap);
         this.wrist = new Wrist(hardwareMap);
     }
 
@@ -79,6 +91,10 @@ public class Robot {
         return currentState;
     }
 
+    public Alliance getAlliance() {
+        return alliance;
+    }
+
     public Arm getArm() {
         return arm;
     }
@@ -97,6 +113,10 @@ public class Robot {
 
     public Launcher getLauncher() {
         return launcher;
+    }
+
+    public Vision getVision() {
+        return vision;
     }
 
     public Wrist getWrist() {

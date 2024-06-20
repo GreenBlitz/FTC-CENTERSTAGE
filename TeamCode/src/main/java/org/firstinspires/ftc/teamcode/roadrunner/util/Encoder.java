@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
  * slot's motor direction
  */
 public class Encoder {
+
     private final static int CPS_STEP = 0x10000;
 
     private static double inverseOverflow(double input, double estimate) {
@@ -95,4 +96,5 @@ public class Encoder {
     public double getCorrectedVelocity() {
         return inverseOverflow(getRawVelocity(), velocityEstimate);
     }
+
 }

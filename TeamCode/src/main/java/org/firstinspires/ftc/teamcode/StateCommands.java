@@ -15,6 +15,7 @@ public class StateCommands {
 
     protected static SequentialCommandGroup scoreState() {
         return new SequentialCommandGroup(
+                ClawCommands.closeBothFingers(),
                 new ParallelCommandGroup(
                         WristCommands.moveToState(WristState.SCORE),
                         ArmCommands.goToState(ArmState.SCORE),
