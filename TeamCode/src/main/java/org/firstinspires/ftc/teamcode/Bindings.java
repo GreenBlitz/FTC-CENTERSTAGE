@@ -21,6 +21,15 @@ public class Bindings {
     private static GamepadWrapper mainGamepad;
     private static GamepadWrapper secondGamepad;
 
+    public static void razMotionPlannerTest(Gamepad gamepad){
+        secondGamepad = new GamepadWrapper(gamepad);
+
+        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(() ->
+                Robot.getInstance().setLeftState().schedule());
+        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(() ->
+                Robot.getInstance().setRightState().schedule());
+    }
+
     public static void razRobotStateTest(Gamepad gamepad){
         mainGamepad = new GamepadWrapper(gamepad);
 

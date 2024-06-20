@@ -1,7 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
 import org.firstinspires.ftc.teamcode.subsystems.arm.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.vision.Vision;
 import org.firstinspires.ftc.teamcode.subsystems.claw.Claw;
@@ -26,6 +28,7 @@ public class Robot {
     }
 
     private Alliance alliance;
+    private StateMotionPlanner stateMotionPlanner;
     private RobotState currentState;
     private Arm arm;
     private MecanumChassis chassis;
@@ -34,6 +37,7 @@ public class Robot {
     private Launcher launcher;
     private Vision vision;
     private Wrist wrist;
+
 
     private Robot() {
         this.alliance = Alliance.RED;
@@ -45,6 +49,7 @@ public class Robot {
 
     public void initSubsystems(HardwareMap hardwareMap) {
         this.currentState = RobotState.DRIVE;
+        this.stateMotionPlanner = new StateMotionPlanner(currentState);
 
         this.arm = new Arm(hardwareMap);
         this.chassis = new MecanumChassis(hardwareMap);
@@ -68,6 +73,18 @@ public class Robot {
             default:
                 return StateCommands.driveState();
         }
+    }
+
+    public Command setLeftState() {
+        return setState(stateMotionPlanner.getLeftState());
+    }
+
+    public Command setRightState() {
+        return setState(stateMotionPlanner.getRightState());
+    }
+
+    public StateMotionPlanner getStateMotionPlanner() {
+        return stateMotionPlanner;
     }
 
     public RobotState getCurrentState() {
