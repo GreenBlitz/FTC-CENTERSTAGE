@@ -23,6 +23,7 @@ public class Bindings {
 
     public static void teleopDuoBindings(Gamepad gamepad1, Gamepad gamepad2) {
         mainDriver(gamepad1);
+        secondDriver(gamepad2);
     }
 
     private static void mainDriver(Gamepad gamepad) {
@@ -47,20 +48,22 @@ public class Bindings {
         secondGamepad = new GamepadWrapper(gamepad);
 
         // State Change:
-        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(Robot.getInstance().setRightState());
-        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(Robot.getInstance().setLeftState());
+        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(() ->
+                Robot.getInstance().setLeftState().schedule());
+        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(() ->
+                Robot.getInstance().setRightState().schedule());
 
         // Elevator:
         secondGamepad.getTriggerAsButton(GamepadKeys.Trigger.LEFT_TRIGGER).whenActive(
                 ElevatorCommands.humanControl(() -> {
-                            double triggerValue = mainGamepad.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER);
+                            double triggerValue = secondGamepad.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER);
                             return GamepadFunctions.getDeadZonedValue(triggerValue);
                         }
                 )
         );
         secondGamepad.getTriggerAsButton(GamepadKeys.Trigger.RIGHT_TRIGGER).whenActive(
                 ElevatorCommands.humanControl(() -> {
-                            double triggerValue = -mainGamepad.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER);
+                            double triggerValue = -secondGamepad.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER);
                             return GamepadFunctions.getDeadZonedValue(triggerValue);
                         }
                 )
