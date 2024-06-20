@@ -35,11 +35,11 @@ public class ClawCommands {
         return new InstantCommand(() -> Robot.getInstance().getClaw().unlockFingers());
     }
 
-//    public static Command testRightFinger(double positionAdd) {
-//        return new InstantCommand(() -> Robot.getInstance().getClaw().testRightFinger(positionAdd));
-//    }
-//
-//    public static Command testLeftFinger(double positionAdd) {
-//        return new InstantCommand(() -> Robot.getInstance().getClaw().testLeftFinger(positionAdd));
-//    }
+    public static Command testRightFinger(double positionAdd) {
+        return new InstantCommand(() -> Robot.getInstance().getClaw().testRightFinger(positionAdd));
+    }
+
+    public static Command testLeftFinger(double positionAdd) {
+        return new InstantCommand(() -> Robot.getInstance().getClaw().testLeftFinger(positionAdd));
+    }
 }

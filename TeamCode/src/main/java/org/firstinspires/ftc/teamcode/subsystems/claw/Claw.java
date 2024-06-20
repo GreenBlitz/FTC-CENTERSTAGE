@@ -35,13 +35,13 @@ public class Claw extends SubsystemBase {
         leftFinger.toggleFinger(isUnlocked);
     }
 
-//    protected void testRightFinger(double change) {
-//        rightFinger.setPosition(rightFinger.getPosition()+change);
-//    }
-//
-//    protected void testLeftFinger(double change) {
-//        leftFinger.setPosition(leftFinger.getPosition()+change);
-//    }
+    protected void testRightFinger(double change) {
+        rightFinger.setPosition(rightFinger.getPosition()+change, isUnlocked);
+    }
+
+    protected void testLeftFinger(double change) {
+        leftFinger.setPosition(leftFinger.getPosition() + change, isUnlocked);
+    }
 
     protected void lockFingers() {
         isUnlocked = true;
