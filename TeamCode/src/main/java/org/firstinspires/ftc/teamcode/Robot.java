@@ -28,6 +28,7 @@ public class Robot {
     }
 
     private Alliance alliance;
+    private FieldStartingLocation fieldStartingLocation;
     private StateMotionPlanner stateMotionPlanner;
     private RobotState currentState;
     private Arm arm;
@@ -45,6 +46,10 @@ public class Robot {
 
     public void setAlliance(Alliance alliance) {
         this.alliance = alliance;
+    }
+
+    public void setFieldStartingLocation(FieldStartingLocation fieldStartingLocation) {
+        this.fieldStartingLocation = fieldStartingLocation;
     }
 
     public void initSubsystems(HardwareMap hardwareMap) {
@@ -93,6 +98,10 @@ public class Robot {
 
     public Alliance getAlliance() {
         return alliance;
+    }
+
+    public FieldStartingLocation getFieldStartingLocation() {
+        return fieldStartingLocation;
     }
 
     public Arm getArm() {
