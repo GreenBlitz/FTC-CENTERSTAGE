@@ -9,20 +9,7 @@ import org.firstinspires.ftc.teamcode.Robot;
 
 public class AutoUtil {
 
-    private static AutoUtil instance;
-
-    private AutoUtil() {
-
-    }
-
-    public static AutoUtil getInstance() {
-        if(instance == null) {
-            instance = new AutoUtil();
-        }
-        return instance;
-    }
-
-    public Pose2d getAssignedYellowPose() {
+    public static Pose2d getAssignedYellowPose() {
         if(Robot.getInstance().getAlliance() == Alliance.RED) {
             return getRedAssignedYellowPose();
         }
@@ -31,7 +18,7 @@ public class AutoUtil {
         }
     }
 
-    private Pose2d getRedAssignedYellowPose() {
+    private static Pose2d getRedAssignedYellowPose() {
         switch (Robot.getInstance().getVision().getPropLocation()) {
             case LEFT:
                 return FieldConstants.BACKDROP_RED_LEFT;
@@ -42,7 +29,7 @@ public class AutoUtil {
         }
     }
 
-    private Pose2d getBlueAssignedYellowPose() {
+    private static Pose2d getBlueAssignedYellowPose() {
         switch (Robot.getInstance().getVision().getPropLocation()) {
             case LEFT:
                 return FieldConstants.BACKDROP_BLUE_LEFT;
@@ -53,7 +40,7 @@ public class AutoUtil {
         }
     }
 
-    public Pose2d getAssignedPurplePos() {
+    public static Pose2d getAssignedPurplePos() {
         if(Robot.getInstance().getFieldStartingLocation() == FieldStartingLocation.FAR) {
             return getFarAssignedPurplePos();
         }
@@ -62,7 +49,7 @@ public class AutoUtil {
         }
     }
 
-    private Pose2d getFarAssignedPurplePos() {
+    private static Pose2d getFarAssignedPurplePos() {
         if(Robot.getInstance().getAlliance() == Alliance.RED) {
             switch (Robot.getInstance().getVision().getPropLocation()) {
                 case LEFT:
@@ -85,7 +72,7 @@ public class AutoUtil {
         }
     }
 
-    private Pose2d getCloseAssignedPurplePos() {
+    private static Pose2d getCloseAssignedPurplePos() {
         if(Robot.getInstance().getAlliance() == Alliance.RED) {
             switch (Robot.getInstance().getVision().getPropLocation()) {
                 case LEFT:
