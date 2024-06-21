@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.arm.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.vision.Vision;
 import org.firstinspires.ftc.teamcode.subsystems.claw.Claw;
@@ -32,6 +33,7 @@ public class Robot {
     private RobotState currentState;
     private Arm arm;
     private MecanumChassis chassis;
+    private SampleMecanumDrive autoChassis;
     private Claw claw;
     private Elevator elevator;
     private Launcher launcher;
@@ -53,6 +55,7 @@ public class Robot {
 
         this.arm = new Arm(hardwareMap);
         this.chassis = new MecanumChassis(hardwareMap);
+        this.autoChassis = new SampleMecanumDrive(hardwareMap);
         this.claw = new Claw(hardwareMap);
         this.elevator = new Elevator(hardwareMap);
         this.launcher = new Launcher(hardwareMap);
@@ -101,6 +104,10 @@ public class Robot {
 
     public MecanumChassis getChassis() {
         return chassis;
+    }
+
+    public SampleMecanumDrive getAutoChassis() {
+        return autoChassis;
     }
 
     public Claw getClaw() {
