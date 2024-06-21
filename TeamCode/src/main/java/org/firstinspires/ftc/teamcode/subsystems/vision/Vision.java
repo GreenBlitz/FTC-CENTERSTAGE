@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.Location;
+import org.firstinspires.ftc.teamcode.PropLocation;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagPoseFtc;
@@ -73,11 +73,15 @@ public class Vision extends SubsystemBase {
             telemetry.addData("first tag y: ", poses.get(0).first.y);
             telemetry.addData("first tag z: ", poses.get(0).first.z);
         }
-        Location propLocation = propProcessor.getLocation();
+        PropLocation propLocation = propProcessor.getLocation();
 
         if(propLocation != null) {
             telemetry.addData("prop's location is: ", propLocation.toString());
         }
+    }
+
+    public PropLocation getPropLocation() {
+        return propProcessor.getLocation();
     }
 
 }
