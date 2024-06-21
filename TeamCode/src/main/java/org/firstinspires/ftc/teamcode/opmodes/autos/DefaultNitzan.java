@@ -75,4 +75,19 @@ public abstract class DefaultNitzan extends LinearOpMode {
         startingPose = new Pose2d(50, -35, 0);
         return trajectorySequence;
     }
+
+    public TrajectorySequence blueBackdropToPixelPile() {
+        TrajectorySequence trajectorySequence = drive.trajectorySequenceBuilder(startingPose)
+                .lineToSplineHeading(new Pose2d(20, 11, Math.PI))
+                .lineTo(new Vector2d(-55, 11))
+                .addTemporalMarker(() -> {})
+                .waitSeconds(0.5)
+                .lineTo(new Vector2d(20, 11))
+                .lineToSplineHeading(new Pose2d(50, 35, 0))
+                .addTemporalMarker(() -> {})
+                .waitSeconds(0.5)
+                .build();
+        startingPose = new Pose2d(50, -35, 0);
+        return trajectorySequence;
+    }
 }
