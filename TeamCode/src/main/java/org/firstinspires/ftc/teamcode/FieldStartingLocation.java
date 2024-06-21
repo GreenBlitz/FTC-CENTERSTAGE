@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
-public enum FieldLocation {
+public enum FieldStartingLocation {
 
     CLOSE,
     FAR;

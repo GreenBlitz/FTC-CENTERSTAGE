@@ -4,9 +4,8 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 
 import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.FieldConstants;
-import org.firstinspires.ftc.teamcode.FieldLocation;
+import org.firstinspires.ftc.teamcode.FieldStartingLocation;
 import org.firstinspires.ftc.teamcode.Robot;
-import org.firstinspires.ftc.teamcode.subsystems.vision.Vision;
 
 public class AutoUtil {
 
@@ -55,7 +54,7 @@ public class AutoUtil {
     }
 
     public Pose2d getAssignedPurplePos() {
-        if(Robot.getInstance().getFieldLocation() == FieldLocation.FAR) {
+        if(Robot.getInstance().getFieldLocation() == FieldStartingLocation.FAR) {
             return getFarAssignedPurplePos();
         }
         else {
