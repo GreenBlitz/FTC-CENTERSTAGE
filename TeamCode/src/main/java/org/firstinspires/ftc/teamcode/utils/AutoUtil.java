@@ -54,7 +54,7 @@ public class AutoUtil {
     }
 
     public Pose2d getAssignedPurplePos() {
-        if(Robot.getInstance().getFieldLocation() == FieldStartingLocation.FAR) {
+        if(Robot.getInstance().getFieldStartingLocation() == FieldStartingLocation.FAR) {
             return getFarAssignedPurplePos();
         }
         else {

@@ -11,12 +11,12 @@ public abstract class DefaultGil extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         Robot.getInstance().setAlliance(setAlliance());
-        Robot.getInstance().setFieldLocation(setFieldLocation());
+        Robot.getInstance().setFieldStartingLocation(setFieldStartingLocation());
         run();
     }
 
     public abstract Alliance setAlliance();
-    public abstract FieldStartingLocation setFieldLocation();
+    public abstract FieldStartingLocation setFieldStartingLocation();
     public abstract void run() throws InterruptedException;
 
 }
