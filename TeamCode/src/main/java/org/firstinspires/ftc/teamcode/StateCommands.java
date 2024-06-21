@@ -17,6 +17,7 @@ public class StateCommands {
         return new SequentialCommandGroup(
                 ClawCommands.closeBothFingers(),
                 new ParallelCommandGroup(
+                        ClawCommands.unlockFingers(),
                         WristCommands.moveToState(WristState.SCORE),
                         ArmCommands.goToState(ArmState.SCORE),
                         ElevatorCommands.goToState(ElevatorState.SCORE)
@@ -27,6 +28,7 @@ public class StateCommands {
     protected static SequentialCommandGroup intakeState() {
         return new SequentialCommandGroup(
                 new ParallelCommandGroup(
+                        ClawCommands.unlockFingers(),
                         WristCommands.moveToState(WristState.INTAKE),
                         ArmCommands.goToState(ArmState.INTAKE),
                         ElevatorCommands.goToState(ElevatorState.INTAKE)
@@ -39,6 +41,7 @@ public class StateCommands {
         return new SequentialCommandGroup(
                 ClawCommands.closeBothFingers(),
                 new ParallelCommandGroup(
+                        ClawCommands.unlockFingers(),
                         ArmCommands.goToState(ArmState.CLIMB),
                         ElevatorCommands.goToState(ElevatorState.CLIMB)
                 )
@@ -49,6 +52,7 @@ public class StateCommands {
         return new SequentialCommandGroup(
                 ClawCommands.closeBothFingers(),
                 new ParallelCommandGroup(
+                        ClawCommands.lockFingers(),
                         WristCommands.moveToState(WristState.IDLE),
                         ArmCommands.goToState(ArmState.IDLE),
                         ElevatorCommands.goToState(ElevatorState.IDLE)
