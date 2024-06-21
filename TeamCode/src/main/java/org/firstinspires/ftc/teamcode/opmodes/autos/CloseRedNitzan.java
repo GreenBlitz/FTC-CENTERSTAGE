@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.opmodes.autos;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 
 import org.firstinspires.ftc.teamcode.Alliance;
+import org.firstinspires.ftc.teamcode.FieldStartingLocation;
 
 public class CloseRedNitzan  extends DefaultNitzan {
 
@@ -13,7 +14,7 @@ public class CloseRedNitzan  extends DefaultNitzan {
 
     @Override
     public FieldStartingLocation getFieldStartingLocation() {
-        return null;
+        return FieldStartingLocation.CLOSE;
     }
 
     @Override
