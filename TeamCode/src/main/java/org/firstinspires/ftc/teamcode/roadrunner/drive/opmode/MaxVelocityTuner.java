@@ -26,6 +26,7 @@ import java.util.Objects;
 @Config
 @Autonomous(group = "drive")
 public class MaxVelocityTuner extends LinearOpMode {
+
     public static double RUNTIME = 2.0;
 
     private ElapsedTime timer;
@@ -79,4 +80,5 @@ public class MaxVelocityTuner extends LinearOpMode {
     private double veloInchesToTicks(double inchesPerSec) {
         return inchesPerSec / (2 * Math.PI * DriveConstants.WHEEL_RADIUS) / DriveConstants.GEAR_RATIO * DriveConstants.TICKS_PER_REVOLUTION;
     }
+
 }

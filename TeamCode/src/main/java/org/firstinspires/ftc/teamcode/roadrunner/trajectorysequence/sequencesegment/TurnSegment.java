@@ -8,6 +8,7 @@ import com.acmerobotics.roadrunner.util.Angle;
 import java.util.List;
 
 public final class TurnSegment extends SequenceSegment {
+
     private final double totalRotation;
     private final MotionProfile motionProfile;
 
@@ -33,4 +34,5 @@ public final class TurnSegment extends SequenceSegment {
     public final MotionProfile getMotionProfile() {
         return this.motionProfile;
     }
+
 }

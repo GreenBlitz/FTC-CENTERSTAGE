@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.ControlMode;
+import org.firstinspires.ftc.teamcode.systemcontrol.ControlMode;
 
 public class Elevator extends SubsystemBase {
 
@@ -15,6 +15,7 @@ public class Elevator extends SubsystemBase {
     private final DcMotor leftMotor;
     private final PIDController pidController;
     private ElevatorState currentState;
+    private ElevatorState lastState;
     private ControlMode currentControlMode;
     private int scoreTicks;
 
@@ -24,6 +25,7 @@ public class Elevator extends SubsystemBase {
         this.pidController = ElevatorConstants.PID_CONTROLLER;
         this.scoreTicks = ElevatorConstants.DEFAULT_SCORE_TICKS;
         this.currentState = ElevatorState.INTAKE;
+        this.lastState = currentState;
         this.currentControlMode = ControlMode.PID_CONTROL;
 
         configRightMotor();
@@ -33,17 +35,17 @@ public class Elevator extends SubsystemBase {
 
     private void configRightMotor() {
         rightMotor.resetDeviceConfigurationForOpMode();
-        rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     private void configLeftMotor() {
         leftMotor.resetDeviceConfigurationForOpMode();
-        leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     private void configPidController() {
@@ -67,6 +69,7 @@ public class Elevator extends SubsystemBase {
     }
 
     protected void setState(ElevatorState targetState) {
+        lastState = currentState;
         currentState = targetState;
         updateTargetByState();
     }
@@ -81,6 +84,9 @@ public class Elevator extends SubsystemBase {
                 break;
             case INTAKE:
                 pidController.setSetPoint(ElevatorConstants.INTAKE_TICKS);
+                break;
+            case IDLE:
+                pidController.setSetPoint(ElevatorConstants.IDLE_TICKS);
                 break;
             case STAND_IN_PLACE:
                 pidController.setSetPoint(rightMotor.getCurrentPosition());
@@ -101,7 +107,8 @@ public class Elevator extends SubsystemBase {
     }
 
     public void telemetry(Telemetry telemetry) {
-        telemetry.addData("Elevator state: ", currentState);
+        telemetry.addData("Elevator current state: ", currentState);
+        telemetry.addData("Elevator last state: ", lastState);
         telemetry.addData("Elevator control mode: ", currentControlMode);
         telemetry.addData("Elevator right motor position: ", rightMotor.getCurrentPosition());
         telemetry.addData("Elevator left motor position: ", leftMotor.getCurrentPosition());

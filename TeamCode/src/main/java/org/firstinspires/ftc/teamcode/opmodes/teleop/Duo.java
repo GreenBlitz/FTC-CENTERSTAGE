@@ -1,26 +1,26 @@
-package org.firstinspires.ftc.teamcode.opmodes.testers;
+package org.firstinspires.ftc.teamcode.opmodes.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Bindings;
-import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 
-@TeleOp(name = "Raz Drive Test")
-public class RazChassisTest extends DefaultRaz {
+@TeleOp(name = "Duo")
+public class Duo extends DefaultRaz {
 
     @Override
     public void initialize() {
+
     }
 
     @Override
     public void execute() {
-        Robot.getInstance().getChassis().telemetry(telemetry);
+
     }
 
     @Override
     public void configureBindings() {
-        Bindings.razChassisTest(gamepad1);
+        Bindings.teleopDuoBindings(gamepad1, gamepad2);
     }
 
 }

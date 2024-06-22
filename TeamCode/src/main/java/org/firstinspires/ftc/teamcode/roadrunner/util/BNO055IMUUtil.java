@@ -125,4 +125,5 @@ public class BNO055IMUUtil {
 
         swapThenFlipAxes(imu, adjustedAxesOrder, adjustedAxesSigns);
     }
+
 }

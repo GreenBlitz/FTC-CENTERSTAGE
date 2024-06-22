@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class TrajectorySequence {
+
     private final List<SequenceSegment> sequenceList;
 
     public TrajectorySequence(List<SequenceSegment> sequenceList) {
@@ -41,4 +42,5 @@ public class TrajectorySequence {
     public int size() {
         return sequenceList.size();
     }
+
 }

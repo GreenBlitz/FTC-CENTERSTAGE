@@ -8,6 +8,8 @@ class ArmConstants {
 
     protected static final int SCORE_TICKS = 100;
     protected static final int INTAKE_TICKS = -2020;
+    protected static final int CLIMB_TICKS = -200;
+    protected static final int IDLE_TICKS = -1800;
     protected static final int STARTING_TICKS = 0;
 
     protected static final int POSITION_TOLERANCE_TICKS = 4;

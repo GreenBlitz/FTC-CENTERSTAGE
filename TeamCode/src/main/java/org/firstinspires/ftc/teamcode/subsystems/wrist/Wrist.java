@@ -9,11 +9,13 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Wrist extends SubsystemBase {
 
     private final Servo servo;
-    private WristState targetState;
+    private WristState currentState;
+    private WristState lastState;
 
     public Wrist(HardwareMap hardwareMap) {
         this.servo = hardwareMap.servo.get(WristConstants.SERVO_HARDWARE_ID);
-        this.targetState = WristState.INTAKE;
+        this.currentState = WristState.INTAKE;
+        this.lastState = currentState;
         setPosition(1);
     }
 
@@ -26,12 +28,13 @@ public class Wrist extends SubsystemBase {
     }
 
     protected void setState(WristState state) {
-        targetState = state;
-        setPosition(targetState.targetPosition);
+        currentState = state;
+        setPosition(currentState.targetPosition);
     }
 
     public void telemetry(Telemetry telemetry) {
-        telemetry.addData("Wrist TargetState: ", targetState);
+        telemetry.addData("Wrist current state: ", currentState);
+        telemetry.addData("Wrist last state: ", lastState);
         telemetry.addData("Wrist CurrentPosition: ", getPosition());
     }
 

@@ -67,4 +67,5 @@ public class AssetsTrajectoryManager {
         }
         return builder.build();
     }
+
 }

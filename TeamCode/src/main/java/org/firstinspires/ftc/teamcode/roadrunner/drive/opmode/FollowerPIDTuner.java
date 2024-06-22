@@ -24,6 +24,7 @@ import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySe
 @Config
 @Autonomous(group = "drive")
 public class FollowerPIDTuner extends LinearOpMode {
+
     public static double DISTANCE = 48; // in
 
     @Override
@@ -52,4 +53,5 @@ public class FollowerPIDTuner extends LinearOpMode {
             drive.followTrajectorySequence(trajSeq);
         }
     }
+
 }
