@@ -6,16 +6,15 @@ import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.FieldStartingLocation;
 import org.firstinspires.ftc.teamcode.utils.AutoUtil;
 
-public class CloseNitzan extends DefaultNitzan {
-
+public class FarBlueNitzan extends DefaultNitzan {
     @Override
     public Alliance getAlliance() {
-        return Alliance.RED;
+        return Alliance.BLUE;
     }
 
     @Override
     public FieldStartingLocation getFieldStartingLocation() {
-        return FieldStartingLocation.CLOSE;
+        return FieldStartingLocation.FAR;
     }
 
     @Override
@@ -28,8 +27,7 @@ public class CloseNitzan extends DefaultNitzan {
         waitForStart();
 
         if (!isStopRequested()) {
-            drive.followTrajectorySequence(close());
-            drive.followTrajectorySequence(backdropToPixelPile());
+            drive.followTrajectorySequence(far());
             drive.followTrajectorySequence(backdropToPixelPile());
             drive.followTrajectorySequence(backdropToPixelPile());
         }

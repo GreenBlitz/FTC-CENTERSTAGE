@@ -12,14 +12,16 @@ import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySe
 import org.firstinspires.ftc.teamcode.utils.AutoUtil;
 
 public abstract class DefaultNitzan extends LinearOpMode {
-    protected Pose2d currentPose = new Pose2d();
-    protected SampleMecanumDrive drive = Robot.getInstance().getAutoChassis();
+    protected Pose2d currentPose;
+    protected SampleMecanumDrive drive;
 
     @Override
     public void runOpMode() throws InterruptedException {
         Robot.getInstance().setAlliance(getAlliance());
         Robot.getInstance().setFieldStartingLocation(getFieldStartingLocation());
         Robot.init(hardwareMap);
+        this.currentPose = new Pose2d();
+        this.drive = Robot.getInstance().getAutoChassis();
         run();
     }
 

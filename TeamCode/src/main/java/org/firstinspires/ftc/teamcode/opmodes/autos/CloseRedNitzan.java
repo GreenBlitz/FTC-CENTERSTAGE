@@ -1,12 +1,15 @@
 package org.firstinspires.ftc.teamcode.opmodes.autos;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.FieldStartingLocation;
 import org.firstinspires.ftc.teamcode.utils.AutoUtil;
 
-public class FarNitzan extends DefaultNitzan {
+@Autonomous(name = "CloseRedNitzan")
+public class CloseRedNitzan extends DefaultNitzan {
+
     @Override
     public Alliance getAlliance() {
         return Alliance.RED;
@@ -14,7 +17,7 @@ public class FarNitzan extends DefaultNitzan {
 
     @Override
     public FieldStartingLocation getFieldStartingLocation() {
-        return FieldStartingLocation.FAR;
+        return FieldStartingLocation.CLOSE;
     }
 
     @Override
@@ -27,7 +30,8 @@ public class FarNitzan extends DefaultNitzan {
         waitForStart();
 
         if (!isStopRequested()) {
-            drive.followTrajectorySequence(far());
+            drive.followTrajectorySequence(close());
+            drive.followTrajectorySequence(backdropToPixelPile());
             drive.followTrajectorySequence(backdropToPixelPile());
             drive.followTrajectorySequence(backdropToPixelPile());
         }
