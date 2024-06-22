@@ -40,59 +40,90 @@ public class AutoUtil {
         }
     }
 
-    public static Pose2d getAssignedPurplePos() {
+    public static Pose2d getAssignedPurplePose() {
         if(Robot.getInstance().getFieldStartingLocation() == FieldStartingLocation.FAR) {
-            return getFarAssignedPurplePos();
+            return getFarAssignedPurplePose();
         }
         else {
-            return getCloseAssignedPurplePos();
+            return getCloseAssignedPurplePose();
         }
     }
 
-    private static Pose2d getFarAssignedPurplePos() {
+    private static Pose2d getFarAssignedPurplePose() {
         if(Robot.getInstance().getAlliance() == Alliance.RED) {
             switch (Robot.getInstance().getVision().getPropLocation()) {
                 case LEFT:
-                    return FieldConstants.FAR_RED_LEFT_POS;
+                    return FieldConstants.FAR_RED_LEFT_POSE;
                 case CENTER:
-                    return FieldConstants.FAR_RED_CENTER_POS;
+                    return FieldConstants.FAR_RED_CENTER_POSE;
                 default:
-                    return FieldConstants.FAR_RED_RIGHT_POS;
+                    return FieldConstants.FAR_RED_RIGHT_POSE;
             }
         }
         else {
             switch (Robot.getInstance().getVision().getPropLocation()) {
                 case LEFT:
-                    return FieldConstants.FAR_BLUE_LEFT_POS;
+                    return FieldConstants.FAR_BLUE_LEFT_POSE;
                 case CENTER:
-                    return FieldConstants.FAR_BLUE_CENTER_POS;
+                    return FieldConstants.FAR_BLUE_CENTER_POSE;
                 default:
-                    return FieldConstants.FAR_BLUE_RIGHT_POS;
+                    return FieldConstants.FAR_BLUE_RIGHT_POSE;
             }
         }
     }
 
-    private static Pose2d getCloseAssignedPurplePos() {
+    private static Pose2d getCloseAssignedPurplePose() {
         if(Robot.getInstance().getAlliance() == Alliance.RED) {
             switch (Robot.getInstance().getVision().getPropLocation()) {
                 case LEFT:
-                    return FieldConstants.CLOSE_RED_LEFT_POS;
+                    return FieldConstants.CLOSE_RED_LEFT_POSE;
                 case CENTER:
-                    return FieldConstants.CLOSE_RED_CENTER_POS;
+                    return FieldConstants.CLOSE_RED_CENTER_POSE;
                 default:
-                    return FieldConstants.CLOSE_RED_RIGHT_POS;
+                    return FieldConstants.CLOSE_RED_RIGHT_POSE;
             }
         }
         else {
             switch (Robot.getInstance().getVision().getPropLocation()) {
                 case LEFT:
-                    return FieldConstants.CLOSE_BLUE_LEFT_POS;
+                    return FieldConstants.CLOSE_BLUE_LEFT_POSE;
                 case CENTER:
-                    return FieldConstants.CLOSE_BLUE_CENTER_POS;
+                    return FieldConstants.CLOSE_BLUE_CENTER_POSE;
                 default:
-                    return FieldConstants.CLOSE_BLUE_RIGHT_POS;
+                    return FieldConstants.CLOSE_BLUE_RIGHT_POSE;
             }
         }
+    }
+
+    public static Pose2d getAssignedStartingPose() {
+        if(Robot.getInstance().getFieldStartingLocation() == FieldStartingLocation.FAR) {
+            return getFarAssignedStartingPose();
+        }
+        else {
+            return getCloseAssignedStartingPose();
+        }
+    }
+
+    private static Pose2d getFarAssignedStartingPose() {
+        if (Robot.getInstance().getAlliance() == Alliance.RED) {
+            return FieldConstants.FAR_RED_START;
+        }
+        else {
+            return FieldConstants.FAR_BLUE_START;
+        }
+    }
+
+    private static Pose2d getCloseAssignedStartingPose() {
+        if (Robot.getInstance().getAlliance() == Alliance.RED) {
+            return FieldConstants.CLOSE_RED_START;
+        }
+        else {
+            return FieldConstants.CLOSE_BLUE_START;
+        }
+    }
+
+    public static double getAllianceYModifier() {
+        return Robot.getInstance().getAlliance() == Alliance.RED ? -1 : 1;
     }
 
 }

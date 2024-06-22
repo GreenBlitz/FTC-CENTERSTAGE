@@ -4,9 +4,9 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 
 import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.FieldStartingLocation;
+import org.firstinspires.ftc.teamcode.utils.AutoUtil;
 
-public class CloseRedNitzan  extends DefaultNitzan {
-
+public class FarNitzan extends DefaultNitzan {
     @Override
     public Alliance getAlliance() {
         return Alliance.RED;
@@ -14,22 +14,22 @@ public class CloseRedNitzan  extends DefaultNitzan {
 
     @Override
     public FieldStartingLocation getFieldStartingLocation() {
-        return FieldStartingLocation.CLOSE;
+        return FieldStartingLocation.FAR;
     }
 
     @Override
     public void run() throws InterruptedException {
 
-        Pose2d startPose = new Pose2d(12, -60, Math.PI/2);
+        Pose2d startPose = AutoUtil.getAssignedStartingPose();
 
         drive.setPoseEstimate(startPose);
 
         waitForStart();
 
         if (!isStopRequested()) {
-            drive.followTrajectorySequence(closeRed());
-            drive.followTrajectorySequence(redBackdropToPixelPile());
-            drive.followTrajectorySequence(redBackdropToPixelPile());
+            drive.followTrajectorySequence(far());
+            drive.followTrajectorySequence(backdropToPixelPile());
+            drive.followTrajectorySequence(backdropToPixelPile());
         }
     }
 }

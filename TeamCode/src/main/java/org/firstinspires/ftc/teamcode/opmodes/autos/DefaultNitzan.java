@@ -9,9 +9,10 @@ import org.firstinspires.ftc.teamcode.FieldStartingLocation;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.utils.AutoUtil;
 
 public abstract class DefaultNitzan extends LinearOpMode {
-    protected Pose2d startingPose = new Pose2d();
+    protected Pose2d currentPose = new Pose2d();
     protected SampleMecanumDrive drive = Robot.getInstance().getAutoChassis();
 
     @Override
@@ -26,68 +27,62 @@ public abstract class DefaultNitzan extends LinearOpMode {
     public abstract FieldStartingLocation getFieldStartingLocation();
     public abstract void run() throws InterruptedException;
 
-    public TrajectorySequence closeRed() {
-        TrajectorySequence trajectorySequence = drive.trajectorySequenceBuilder(startingPose)
-                .lineToSplineHeading(new Pose2d(14, -40, Math.toRadians(45)))
+    public TrajectorySequence close() {
+        double allianceModifier = AutoUtil.getAllianceYModifier();
+
+        TrajectorySequence trajectorySequence = drive.trajectorySequenceBuilder(currentPose)
+                .lineToSplineHeading(AutoUtil.getAssignedPurplePose())
                 .addTemporalMarker(() -> {})
                 .waitSeconds(0.5)
-                .splineToLinearHeading(new Pose2d(25, -55), 0)
-                .splineToSplineHeading(new Pose2d(40, -35, 0), 0)
-                .lineToLinearHeading(new Pose2d(50, -43))
+                .splineToLinearHeading(new Pose2d(25, 55 * allianceModifier), 0)
+                .splineToSplineHeading(new Pose2d(40, 35 * allianceModifier, 0), 0)
+                .lineToLinearHeading(AutoUtil.getAssignedYellowPose())
                 .addTemporalMarker(() -> {})
                 .waitSeconds(0.5)
                 .build();
-        startingPose = new Pose2d(50, -43);
+
+        currentPose = AutoUtil.getAssignedYellowPose();
         return trajectorySequence;
     }
 
-    public TrajectorySequence farRed() {
-        TrajectorySequence trajectorySequence = drive.trajectorySequenceBuilder(startingPose)
-                .lineToSplineHeading(new Pose2d(-38, -40, Math.toRadians(135)))
+    public TrajectorySequence far() {
+        double allianceModifier = AutoUtil.getAllianceYModifier();
+
+        TrajectorySequence trajectorySequence = drive.trajectorySequenceBuilder(currentPose)
+                .lineToSplineHeading(AutoUtil.getAssignedPurplePose())
                 .addTemporalMarker(() -> {})
                 .waitSeconds(0.5)
                 .strafeLeft(25)
-                .lineToLinearHeading(new Pose2d(-55, -35, Math.PI))
+                .lineToLinearHeading(new Pose2d(-55, 35 * allianceModifier, Math.PI))
                 .addTemporalMarker(() -> {})
                 .waitSeconds(0.5)
-                .lineTo(new Vector2d(-55, -11))
-                .lineTo(new Vector2d(20, -11))
-                .lineToSplineHeading(new Pose2d(40, -25, 0))
-                .lineToLinearHeading(new Pose2d(50, -43))
+                .lineTo(new Vector2d(-55, 11 * allianceModifier))
+                .lineTo(new Vector2d(20, 11 * allianceModifier))
+                .lineToSplineHeading(new Pose2d(40, 25 * allianceModifier, 0))
+                .lineToLinearHeading(AutoUtil.getAssignedYellowPose())
                 .addTemporalMarker(() -> {})
                 .waitSeconds(0.5)
                 .build();
-        startingPose = new Pose2d(50, -43);
+
+        currentPose = AutoUtil.getAssignedYellowPose();
         return trajectorySequence;
     }
 
-    public TrajectorySequence redBackdropToPixelPile() {
-        TrajectorySequence trajectorySequence = drive.trajectorySequenceBuilder(startingPose)
-                .lineToSplineHeading(new Pose2d(20, -11, Math.PI))
-                .lineTo(new Vector2d(-55, -11))
-                .addTemporalMarker(() -> {})
-                .waitSeconds(0.5)
-                .lineTo(new Vector2d(20, -11))
-                .lineToSplineHeading(new Pose2d(50, -35, 0))
-                .addTemporalMarker(() -> {})
-                .waitSeconds(0.5)
-                .build();
-        startingPose = new Pose2d(50, -35, 0);
-        return trajectorySequence;
-    }
+    public TrajectorySequence backdropToPixelPile() {
+        double allianceModifier = AutoUtil.getAllianceYModifier();
 
-    public TrajectorySequence blueBackdropToPixelPile() {
-        TrajectorySequence trajectorySequence = drive.trajectorySequenceBuilder(startingPose)
-                .lineToSplineHeading(new Pose2d(20, 11, Math.PI))
-                .lineTo(new Vector2d(-55, 11))
+        TrajectorySequence trajectorySequence = drive.trajectorySequenceBuilder(currentPose)
+                .lineToSplineHeading(new Pose2d(20, 11 * allianceModifier, Math.PI))
+                .lineTo(new Vector2d(-55, 11 * allianceModifier))
                 .addTemporalMarker(() -> {})
                 .waitSeconds(0.5)
-                .lineTo(new Vector2d(20, 11))
-                .lineToSplineHeading(new Pose2d(50, 35, 0))
+                .lineTo(new Vector2d(20, 11 * allianceModifier))
+                .lineToSplineHeading(new Pose2d(50, 35 * allianceModifier, 0))
                 .addTemporalMarker(() -> {})
                 .waitSeconds(0.5)
                 .build();
-        startingPose = new Pose2d(50, -35, 0);
+
+        currentPose = new Pose2d(50, 35 * allianceModifier, 0);
         return trajectorySequence;
     }
 }
