@@ -121,8 +121,7 @@ public class Bindings {
 
         mainGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(ClawCommands.lockFingers());
         mainGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(ClawCommands.unlockFingers());
-        mainGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_STICK_BUTTON).whenPressed(ClawCommands.switchFingers()
-        );
+        mainGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_STICK_BUTTON).whenPressed(ClawCommands.switchFingers());
 
 
         mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(ClawCommands.testRightFinger(0.01));
