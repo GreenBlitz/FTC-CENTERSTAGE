@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.utils;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-
 import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.gamelayout.FieldConstants;
 import org.firstinspires.ftc.teamcode.FieldStartingLocation;
@@ -21,22 +20,22 @@ public class AutoUtil {
     private static Pose2d getRedAssignedYellowPose() {
         switch (Robot.getInstance().getVision().getPropLocation()) {
             case LEFT:
-                return FieldConstants.BACKDROP_RED_LEFT;
+                return FieldConstants.BACKDROP_RED_LEFT_POSE;
             case CENTER:
-                return FieldConstants.BACKDROP_RED_CENTER;
+                return FieldConstants.BACKDROP_RED_CENTER_POSE;
             default:
-                return FieldConstants.BACKDROP_RED_RIGHT;
+                return FieldConstants.BACKDROP_RED_RIGHT_POSE;
         }
     }
 
     private static Pose2d getBlueAssignedYellowPose() {
         switch (Robot.getInstance().getVision().getPropLocation()) {
             case LEFT:
-                return FieldConstants.BACKDROP_BLUE_LEFT;
+                return FieldConstants.BACKDROP_BLUE_LEFT_POSE;
             case CENTER:
-                return FieldConstants.BACKDROP_BLUE_CENTER;
+                return FieldConstants.BACKDROP_BLUE_CENTER_POSE;
             default:
-                return FieldConstants.BACKDROP_BLUE_RIGHT;
+                return FieldConstants.BACKDROP_BLUE_RIGHT_POSE;
         }
     }
 
@@ -53,21 +52,21 @@ public class AutoUtil {
         if(Robot.getInstance().getAlliance() == Alliance.RED) {
             switch (Robot.getInstance().getVision().getPropLocation()) {
                 case LEFT:
-                    return FieldConstants.FAR_RED_LEFT_POS;
+                    return FieldConstants.FAR_RED_LEFT_POSE;
                 case CENTER:
-                    return FieldConstants.FAR_RED_CENTER_POS;
+                    return FieldConstants.FAR_RED_CENTER_POSE;
                 default:
-                    return FieldConstants.FAR_RED_RIGHT_POS;
+                    return FieldConstants.FAR_RED_RIGHT_POSE;
             }
         }
         else {
             switch (Robot.getInstance().getVision().getPropLocation()) {
                 case LEFT:
-                    return FieldConstants.FAR_BLUE_LEFT_POS;
+                    return FieldConstants.FAR_BLUE_LEFT_POSE;
                 case CENTER:
-                    return FieldConstants.FAR_BLUE_CENTER_POS;
+                    return FieldConstants.FAR_BLUE_CENTER_POSE;
                 default:
-                    return FieldConstants.FAR_BLUE_RIGHT_POS;
+                    return FieldConstants.FAR_BLUE_RIGHT_POSE;
             }
         }
     }
@@ -76,21 +75,21 @@ public class AutoUtil {
         if(Robot.getInstance().getAlliance() == Alliance.RED) {
             switch (Robot.getInstance().getVision().getPropLocation()) {
                 case LEFT:
-                    return FieldConstants.CLOSE_RED_LEFT_POS;
+                    return FieldConstants.CLOSE_RED_LEFT_POSE;
                 case CENTER:
-                    return FieldConstants.CLOSE_RED_CENTER_POS;
+                    return FieldConstants.CLOSE_RED_CENTER_POSE;
                 default:
-                    return FieldConstants.CLOSE_RED_RIGHT_POS;
+                    return FieldConstants.CLOSE_RED_RIGHT_POSE;
             }
         }
         else {
             switch (Robot.getInstance().getVision().getPropLocation()) {
                 case LEFT:
-                    return FieldConstants.CLOSE_BLUE_LEFT_POS;
+                    return FieldConstants.CLOSE_BLUE_LEFT_POSE;
                 case CENTER:
-                    return FieldConstants.CLOSE_BLUE_CENTER_POS;
+                    return FieldConstants.CLOSE_BLUE_CENTER_POSE;
                 default:
-                    return FieldConstants.CLOSE_BLUE_RIGHT_POS;
+                    return FieldConstants.CLOSE_BLUE_RIGHT_POSE;
             }
         }
     }
