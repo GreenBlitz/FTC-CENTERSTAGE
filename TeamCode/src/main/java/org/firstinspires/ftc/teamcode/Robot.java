@@ -72,6 +72,8 @@ public class Robot {
                 return StateCommands.scoreState();
             case INTAKE:
                 return StateCommands.intakeState();
+            case PRE_INTAKE:
+                return StateCommands.preIntakeState();
             case CLIMB:
                 return StateCommands.climbState();
             case DRIVE:
