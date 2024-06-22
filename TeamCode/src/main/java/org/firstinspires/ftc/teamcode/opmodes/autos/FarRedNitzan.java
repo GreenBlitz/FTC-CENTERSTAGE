@@ -7,8 +7,9 @@ import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.FieldStartingLocation;
 import org.firstinspires.ftc.teamcode.utils.AutoUtil;
 
-@Autonomous (name = "FarRedNitzan")
+@Autonomous(name = "FarRedNitzan")
 public class FarRedNitzan extends DefaultNitzan {
+
     @Override
     public Alliance getAlliance() {
         return Alliance.RED;
@@ -34,4 +35,5 @@ public class FarRedNitzan extends DefaultNitzan {
             drive.followTrajectorySequence(backdropToPixelPile());
         }
     }
+
 }

@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.FieldStartingLocation;
 import org.firstinspires.ftc.teamcode.utils.AutoUtil;
 
-@Autonomous (name = "CloseBlueNitzan")
+@Autonomous(name = "CloseBlueNitzan")
 public class CloseBlueNitzan extends DefaultNitzan {
 
     @Override
@@ -36,4 +36,5 @@ public class CloseBlueNitzan extends DefaultNitzan {
             drive.followTrajectorySequence(backdropToPixelPile());
         }
     }
+
 }

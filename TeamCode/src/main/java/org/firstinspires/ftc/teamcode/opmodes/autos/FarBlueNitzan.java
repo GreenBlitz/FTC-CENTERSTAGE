@@ -1,12 +1,15 @@
 package org.firstinspires.ftc.teamcode.opmodes.autos;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.FieldStartingLocation;
 import org.firstinspires.ftc.teamcode.utils.AutoUtil;
 
+@Autonomous(name = "FarBlueNitzan")
 public class FarBlueNitzan extends DefaultNitzan {
+
     @Override
     public Alliance getAlliance() {
         return Alliance.BLUE;
@@ -32,4 +35,5 @@ public class FarBlueNitzan extends DefaultNitzan {
             drive.followTrajectorySequence(backdropToPixelPile());
         }
     }
+
 }

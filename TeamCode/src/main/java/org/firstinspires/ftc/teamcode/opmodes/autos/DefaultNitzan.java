@@ -12,6 +12,7 @@ import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySe
 import org.firstinspires.ftc.teamcode.utils.AutoUtil;
 
 public abstract class DefaultNitzan extends LinearOpMode {
+
     protected Pose2d currentPose;
     protected SampleMecanumDrive drive;
 
@@ -26,7 +27,9 @@ public abstract class DefaultNitzan extends LinearOpMode {
     }
 
     public abstract Alliance getAlliance();
+
     public abstract FieldStartingLocation getFieldStartingLocation();
+
     public abstract void run() throws InterruptedException;
 
     public TrajectorySequence close() {
@@ -34,12 +37,14 @@ public abstract class DefaultNitzan extends LinearOpMode {
 
         TrajectorySequence trajectorySequence = drive.trajectorySequenceBuilder(currentPose)
                 .lineToSplineHeading(AutoUtil.getAssignedPurplePose())
-                .addTemporalMarker(() -> {})
+                .addTemporalMarker(() -> {
+                })
                 .waitSeconds(0.5)
                 .splineToLinearHeading(new Pose2d(25, 55 * allianceModifier), 0)
                 .splineToSplineHeading(new Pose2d(40, 35 * allianceModifier, 0), 0)
                 .lineToLinearHeading(AutoUtil.getAssignedYellowPose())
-                .addTemporalMarker(() -> {})
+                .addTemporalMarker(() -> {
+                })
                 .waitSeconds(0.5)
                 .build();
 
@@ -52,17 +57,20 @@ public abstract class DefaultNitzan extends LinearOpMode {
 
         TrajectorySequence trajectorySequence = drive.trajectorySequenceBuilder(currentPose)
                 .lineToSplineHeading(AutoUtil.getAssignedPurplePose())
-                .addTemporalMarker(() -> {})
+                .addTemporalMarker(() -> {
+                })
                 .waitSeconds(0.5)
                 .strafeLeft(25)
                 .lineToLinearHeading(new Pose2d(-55, 35 * allianceModifier, Math.PI))
-                .addTemporalMarker(() -> {})
+                .addTemporalMarker(() -> {
+                })
                 .waitSeconds(0.5)
                 .lineTo(new Vector2d(-55, 11 * allianceModifier))
                 .lineTo(new Vector2d(20, 11 * allianceModifier))
                 .lineToSplineHeading(new Pose2d(40, 25 * allianceModifier, 0))
                 .lineToLinearHeading(AutoUtil.getAssignedYellowPose())
-                .addTemporalMarker(() -> {})
+                .addTemporalMarker(() -> {
+                })
                 .waitSeconds(0.5)
                 .build();
 
@@ -76,15 +84,18 @@ public abstract class DefaultNitzan extends LinearOpMode {
         TrajectorySequence trajectorySequence = drive.trajectorySequenceBuilder(currentPose)
                 .lineToSplineHeading(new Pose2d(20, 11 * allianceModifier, Math.PI))
                 .lineTo(new Vector2d(-55, 11 * allianceModifier))
-                .addTemporalMarker(() -> {})
+                .addTemporalMarker(() -> {
+                })
                 .waitSeconds(0.5)
                 .lineTo(new Vector2d(20, 11 * allianceModifier))
                 .lineToSplineHeading(new Pose2d(50, 35 * allianceModifier, 0))
-                .addTemporalMarker(() -> {})
+                .addTemporalMarker(() -> {
+                })
                 .waitSeconds(0.5)
                 .build();
 
         currentPose = new Pose2d(50, 35 * allianceModifier, 0);
         return trajectorySequence;
     }
+
 }

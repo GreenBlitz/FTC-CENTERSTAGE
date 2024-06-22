@@ -36,4 +36,5 @@ public class CloseRedNitzan extends DefaultNitzan {
             drive.followTrajectorySequence(backdropToPixelPile());
         }
     }
+
 }
