@@ -32,7 +32,6 @@ public class FarBlueNitzan extends DefaultNitzan {
         if (!isStopRequested()) {
             drive.followTrajectorySequence(far());
             drive.followTrajectorySequence(backdropToPixelPile());
-            drive.followTrajectorySequence(backdropToPixelPile());
         }
     }
 

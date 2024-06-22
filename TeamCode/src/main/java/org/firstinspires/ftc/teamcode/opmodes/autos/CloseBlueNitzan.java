@@ -33,7 +33,6 @@ public class CloseBlueNitzan extends DefaultNitzan {
             drive.followTrajectorySequence(close());
             drive.followTrajectorySequence(backdropToPixelPile());
             drive.followTrajectorySequence(backdropToPixelPile());
-            drive.followTrajectorySequence(backdropToPixelPile());
         }
     }
 
