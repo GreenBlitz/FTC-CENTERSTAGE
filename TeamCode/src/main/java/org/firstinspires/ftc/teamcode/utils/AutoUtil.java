@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.utils;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 
 import org.firstinspires.ftc.teamcode.Alliance;
-import org.firstinspires.ftc.teamcode.FieldConstants;
+import org.firstinspires.ftc.teamcode.gamelayout.FieldConstants;
 import org.firstinspires.ftc.teamcode.FieldStartingLocation;
 import org.firstinspires.ftc.teamcode.Robot;
 
