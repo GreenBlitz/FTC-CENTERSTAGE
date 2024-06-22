@@ -1,9 +1,8 @@
 package org.firstinspires.ftc.teamcode.utils;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-
 import org.firstinspires.ftc.teamcode.Alliance;
-import org.firstinspires.ftc.teamcode.FieldConstants;
+import org.firstinspires.ftc.teamcode.gamelayout.FieldConstants;
 import org.firstinspires.ftc.teamcode.FieldStartingLocation;
 import org.firstinspires.ftc.teamcode.Robot;
 
@@ -21,22 +20,22 @@ public class AutoUtil {
     private static Pose2d getRedAssignedYellowPose() {
         switch (Robot.getInstance().getVision().getPropLocation()) {
             case LEFT:
-                return FieldConstants.BACKDROP_RED_LEFT;
+                return FieldConstants.RED_LEFT_BACKDROP_POSE;
             case CENTER:
-                return FieldConstants.BACKDROP_RED_CENTER;
+                return FieldConstants.RED_CENTER_BACKDROP_POSE;
             default:
-                return FieldConstants.BACKDROP_RED_RIGHT;
+                return FieldConstants.RED_RIGHT_BACKDROP_POSE;
         }
     }
 
     private static Pose2d getBlueAssignedYellowPose() {
         switch (Robot.getInstance().getVision().getPropLocation()) {
             case LEFT:
-                return FieldConstants.BACKDROP_BLUE_LEFT;
+                return FieldConstants.BLUE_LEFT_BACKDROP_POSE;
             case CENTER:
-                return FieldConstants.BACKDROP_BLUE_CENTER;
+                return FieldConstants.BLUE_CENTER_BACKDROP_POSE;
             default:
-                return FieldConstants.BACKDROP_BLUE_RIGHT;
+                return FieldConstants.BLUE_RIGHT_BACKDROP_POSE;
         }
     }
 
