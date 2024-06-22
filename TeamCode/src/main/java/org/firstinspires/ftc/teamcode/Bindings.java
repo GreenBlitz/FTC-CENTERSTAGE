@@ -53,7 +53,7 @@ public class Bindings {
         secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(
                 Robot.getInstance().setState(RobotState.DRIVE));
         secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(
-                Robot.getInstance().setState(RobotState.DRIVE));
+                Robot.getInstance().setState(RobotState.PRE_INTAKE));
         secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(
                 Robot.getInstance().setState(RobotState.INTAKE));
 
