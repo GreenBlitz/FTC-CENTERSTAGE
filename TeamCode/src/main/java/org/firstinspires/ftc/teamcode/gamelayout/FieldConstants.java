@@ -20,12 +20,12 @@ public class FieldConstants {
     public static final Pose2d CLOSE_BLUE_CENTER_POSE = null;
     public static final Pose2d CLOSE_BLUE_RIGHT_POSE = null;
 
-    public static final Pose2d BACKDROP_RED_LEFT_POSE = null;
-    public static final Pose2d BACKDROP_RED_CENTER_POSE = null;
-    public static final Pose2d BACKDROP_RED_RIGHT_POSE = null;
-    public static final Pose2d BACKDROP_BLUE_LEFT_POSE = null;
-    public static final Pose2d BACKDROP_BLUE_CENTER_POSE = null;
-    public static final Pose2d BACKDROP_BLUE_RIGHT_POSE = null;
+    public static final Pose2d RED_LEFT_BACKDROP_POSE = null;
+    public static final Pose2d RED_CENTER_BACKDROP_POSE = null;
+    public static final Pose2d RED_RIGHT_BACKDROP_POSE = null;
+    public static final Pose2d BLUE_LEFT_BACKDROP_POSE = null;
+    public static final Pose2d BLUE_CENTER_BACKDROP_POSE = null;
+    public static final Pose2d BLUE_RIGHT_BACKDROP_POSE = null;
 
     private static final Rotation2d BOARD_ANGLE = Rotation2d.fromDegrees(90);
 

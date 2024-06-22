@@ -20,35 +20,35 @@ public class AutoUtil {
     private static Pose2d getRedAssignedYellowPose() {
         switch (Robot.getInstance().getVision().getPropLocation()) {
             case LEFT:
-                return FieldConstants.BACKDROP_RED_LEFT_POSE;
+                return FieldConstants.RED_LEFT_BACKDROP_POSE;
             case CENTER:
-                return FieldConstants.BACKDROP_RED_CENTER_POSE;
+                return FieldConstants.RED_CENTER_BACKDROP_POSE;
             default:
-                return FieldConstants.BACKDROP_RED_RIGHT_POSE;
+                return FieldConstants.RED_RIGHT_BACKDROP_POSE;
         }
     }
 
     private static Pose2d getBlueAssignedYellowPose() {
         switch (Robot.getInstance().getVision().getPropLocation()) {
             case LEFT:
-                return FieldConstants.BACKDROP_BLUE_LEFT_POSE;
+                return FieldConstants.BLUE_LEFT_BACKDROP_POSE;
             case CENTER:
-                return FieldConstants.BACKDROP_BLUE_CENTER_POSE;
+                return FieldConstants.BLUE_CENTER_BACKDROP_POSE;
             default:
-                return FieldConstants.BACKDROP_BLUE_RIGHT_POSE;
+                return FieldConstants.BLUE_RIGHT_BACKDROP_POSE;
         }
     }
 
-    public static Pose2d getAssignedPurplePos() {
+    public static Pose2d getAssignedPurplePose() {
         if(Robot.getInstance().getFieldStartingLocation() == FieldStartingLocation.FAR) {
-            return getFarAssignedPurplePos();
+            return getFarAssignedPurplePose();
         }
         else {
-            return getCloseAssignedPurplePos();
+            return getCloseAssignedPurplePose();
         }
     }
 
-    private static Pose2d getFarAssignedPurplePos() {
+    private static Pose2d getFarAssignedPurplePose() {
         if(Robot.getInstance().getAlliance() == Alliance.RED) {
             switch (Robot.getInstance().getVision().getPropLocation()) {
                 case LEFT:
@@ -71,7 +71,7 @@ public class AutoUtil {
         }
     }
 
-    private static Pose2d getCloseAssignedPurplePos() {
+    private static Pose2d getCloseAssignedPurplePose() {
         if(Robot.getInstance().getAlliance() == Alliance.RED) {
             switch (Robot.getInstance().getVision().getPropLocation()) {
                 case LEFT:
