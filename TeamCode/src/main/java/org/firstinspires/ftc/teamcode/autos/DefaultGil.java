@@ -26,8 +26,7 @@ public  class DefaultGil extends LinearOpMode {
         drive.setPoseEstimate(new Pose2d(10, 60, Math.PI/2));
 
         TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(new Pose2d(10, 60, Math.PI/2))
-                .lineTo(new Vector2d(10, 40))
-                .turn(Math.toRadians(-45))
+                .lineToLinearHeading(new Pose2d(10, 40, Math.toRadians(-135)))
                 .addTemporalMarker(() -> {})
                 .waitSeconds(0.5)
                 .lineTo(new Vector2d(50, 40))
