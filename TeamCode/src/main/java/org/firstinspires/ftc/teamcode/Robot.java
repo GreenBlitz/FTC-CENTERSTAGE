@@ -31,6 +31,7 @@ public class Robot {
     private FieldStartingLocation fieldStartingLocation;
     private StateMotionPlanner stateMotionPlanner;
     private RobotState currentState;
+    private PropLocation propLocation;
     private Arm arm;
     private MecanumChassis chassis;
     private Claw claw;
@@ -41,7 +42,7 @@ public class Robot {
 
 
     private Robot() {
-        this.alliance = Alliance.RED;
+        this.alliance = Alliance.BLUE;
     }
 
     public void setAlliance(Alliance alliance) {
@@ -53,20 +54,24 @@ public class Robot {
     }
 
     public void initSubsystems(HardwareMap hardwareMap) {
-        this.currentState = RobotState.DRIVE;
-        this.stateMotionPlanner = new StateMotionPlanner(currentState);
+        if (currentState == null) {
+            this.currentState = RobotState.DRIVE;
+            this.stateMotionPlanner = new StateMotionPlanner(currentState);
 
-        this.arm = new Arm(hardwareMap);
-        this.chassis = new MecanumChassis(hardwareMap);
-        this.claw = new Claw(hardwareMap);
-        this.elevator = new Elevator(hardwareMap);
-        this.launcher = new Launcher(hardwareMap);
-        this.vision = new Vision(hardwareMap);
-        this.wrist = new Wrist(hardwareMap);
+            this.arm = new Arm(hardwareMap);
+            this.chassis = new MecanumChassis(hardwareMap);
+            this.claw = new Claw(hardwareMap);
+            this.elevator = new Elevator(hardwareMap);
+            this.launcher = new Launcher(hardwareMap);
+            this.vision = new Vision(hardwareMap);
+            this.wrist = new Wrist(hardwareMap);
+
+            Robot.getInstance().setState(RobotState.DRIVE).schedule();
+        }
     }
 
     public SequentialCommandGroup setState(RobotState robotState) {
-        currentState = robotState;
+        this.currentState = robotState;
         switch (robotState) {
             case SCORE:
                 return StateCommands.scoreState();
@@ -80,6 +85,10 @@ public class Robot {
             default:
                 return StateCommands.driveState();
         }
+    }
+
+    public void setPropLocation(PropLocation propLocation) {
+        this.propLocation = propLocation;
     }
 
     public Command setLeftState() {
@@ -96,6 +105,10 @@ public class Robot {
 
     public RobotState getCurrentState() {
         return currentState;
+    }
+
+    public PropLocation getPropLocation() {
+        return propLocation;
     }
 
     public Alliance getAlliance() {
