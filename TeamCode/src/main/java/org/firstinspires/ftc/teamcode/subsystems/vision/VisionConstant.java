@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.subsystems.vision;
 
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 
 class VisionConstant {
@@ -22,10 +21,10 @@ class VisionConstant {
     protected static final double RED_THRESHOLD = 100;
     protected static final double AMOUNT_OF_COLOR = 2.8;
 
-    protected static final Rect RED_LEFT_ZONE_AREA = new Rect(0, 330, 100, 150);
-    protected static final Rect RED_CENTER_ZONE_AREA = new Rect(320, 330, 320, 150);
-    protected static final Rect BLUE_LEFT_ZONE_AREA = new Rect(0, 330, 320, 150);
-    protected static final Rect BLUE_CENTER_ZONE_AREA = new Rect(380, 330, 100, 150);
+    protected static final Rect RED_RIGHT_ZONE_AREA = new Rect(400, 400, 100, 80);
+    protected static final Rect RED_CENTER_ZONE_AREA = new Rect(20, 330, 80, 150);
+    protected static final Rect BLUE_RIGHT_ZONE_AREA = new Rect(400, 400, 100, 80);
+    protected static final Rect BLUE_CENTER_ZONE_AREA = new Rect(20, 330, 80, 150);
 
     protected static final Size BLUR_SIZE = new Size(5, 5);
 
