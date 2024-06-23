@@ -48,10 +48,14 @@ public class Bindings {
         secondGamepad = new GamepadWrapper(gamepad);
 
         // State Change:
-        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(() ->
-                Robot.getInstance().setLeftState().schedule());
-        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(() ->
-                Robot.getInstance().setRightState().schedule());
+        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(
+                Robot.getInstance().setState(RobotState.SCORE));
+        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(
+                Robot.getInstance().setState(RobotState.DRIVE));
+        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(
+                Robot.getInstance().setState(RobotState.PRE_INTAKE));
+        secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(
+                Robot.getInstance().setState(RobotState.INTAKE));
 
         // Elevator:
         secondGamepad.getTriggerAsButton(GamepadKeys.Trigger.LEFT_TRIGGER).whenActive(
@@ -78,6 +82,10 @@ public class Bindings {
         secondGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(ClawCommands.toggleLeftFinger());
         secondGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(ClawCommands.openBothFingers());
         secondGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ClawCommands.closeBothFingers());
+
+        // Emergency Wrist Calibration
+        secondGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_STICK_BUTTON).whenPressed(WristCommands.addToOffset());
+        secondGamepad.getGamepadButton(GamepadKeys.Button.LEFT_STICK_BUTTON).whenPressed(WristCommands.reduceFromOffset());
     }
 
 
