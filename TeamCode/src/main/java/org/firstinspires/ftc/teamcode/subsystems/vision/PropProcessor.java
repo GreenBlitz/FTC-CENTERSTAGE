@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.subsystems.vision;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
+
 import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
 import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.PropLocation;
@@ -81,7 +83,6 @@ public class PropProcessor implements VisionProcessor {
 
     @Override
     public void onDrawFrame(Canvas canvas, int onscreenWidth, int onscreenHeight, float scaleBmpPxToCanvasPx, float scaleCanvasDensity, Object userContext) {
-
     }
 
     public PropLocation getLocation() {
