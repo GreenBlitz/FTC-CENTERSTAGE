@@ -31,6 +31,7 @@ public class Robot {
     private FieldStartingLocation fieldStartingLocation;
     private StateMotionPlanner stateMotionPlanner;
     private RobotState currentState;
+    private PropLocation propLocation;
     private Arm arm;
     private MecanumChassis chassis;
     private Claw claw;
@@ -86,6 +87,10 @@ public class Robot {
         }
     }
 
+    public void setPropLocation(PropLocation propLocation) {
+        this.propLocation = propLocation;
+    }
+
     public Command setLeftState() {
         return setState(stateMotionPlanner.getLeftState());
     }
@@ -100,6 +105,10 @@ public class Robot {
 
     public RobotState getCurrentState() {
         return currentState;
+    }
+
+    public PropLocation getPropLocation() {
+        return propLocation;
     }
 
     public Alliance getAlliance() {
