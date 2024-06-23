@@ -9,8 +9,7 @@ import org.firstinspires.ftc.teamcode.subsystems.claw.ClawCommands;
 public class AutoCommands {
 
     public static Command scoreAutonomous(Boolean isAtRightFinger, RobotState robotState) {
-        Command clawCommand;
-        clawCommand = isAtRightFinger ? ClawCommands.toggleRightFinger() : ClawCommands.toggleLeftFinger();
+        Command clawCommand = isAtRightFinger ? ClawCommands.toggleRightFinger() : ClawCommands.toggleLeftFinger();
         return new SequentialCommandGroup(
                 Robot.getInstance().setState(robotState),
                 clawCommand
