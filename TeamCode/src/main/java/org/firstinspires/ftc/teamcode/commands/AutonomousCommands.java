@@ -15,11 +15,8 @@ public class AutonomousCommands {
     public static Command scoreAutonomous(Boolean isAtRightClaw, ArmState armState, WristState wristState) {
         Command command;
 
-        if (isAtRightClaw) {
-            command = ClawCommands.toggleRightFinger();
-        } else {
-            command = ClawCommands.toggleLeftFinger();
-        }
+        command = isAtRightClaw ? ClawCommands.toggleRightFinger() : ClawCommands.toggleLeftFinger();
+
         return new SequentialCommandGroup(
                 new ParallelCommandGroup(
                         ArmCommands.goToState(armState),
