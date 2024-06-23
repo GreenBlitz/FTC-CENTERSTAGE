@@ -6,7 +6,7 @@ class WristConstants {
     protected static double SCORE_POSITION = 0.8;
     protected static double IDLE_POSITION = 0.8;
     protected static double INTAKE_POSITION = 0.05;
-    protected static double OFFSET_CHANGE = 0.02;
+    protected static double OFFSET_CHANGE = 0.01;
     protected static double MAX_OFFSET = 1 - SCORE_POSITION;
     protected static double MIN_OFFSET = -INTAKE_POSITION;
 
