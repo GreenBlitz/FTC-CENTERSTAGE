@@ -2,13 +2,16 @@ package org.firstinspires.ftc.teamcode.opmodes.autos;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
+import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.FieldStartingLocation;
 import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.RobotState;
 import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.subsystems.claw.ClawCommands;
 import org.firstinspires.ftc.teamcode.utils.AutoUtil;
 
 public abstract class DefaultNitzan extends LinearOpMode {
@@ -38,12 +41,22 @@ public abstract class DefaultNitzan extends LinearOpMode {
         TrajectorySequence trajectorySequence = drive.trajectorySequenceBuilder(currentPose)
                 .lineToSplineHeading(AutoUtil.getAssignedPurplePose())
                 .addTemporalMarker(() -> {
+                    new SequentialCommandGroup(
+                            Robot.getInstance().setState(RobotState.INTAKE),
+                            ClawCommands.toggleLeftFinger(),
+                            Robot.getInstance().setState(RobotState.DRIVE)
+                    ).schedule();
                 })
                 .waitSeconds(0.5)
                 .splineToLinearHeading(new Pose2d(25, 55 * allianceModifier), 0)
                 .splineToSplineHeading(new Pose2d(40, 35 * allianceModifier, 0), 0)
                 .lineToLinearHeading(AutoUtil.getAssignedYellowPose())
                 .addTemporalMarker(() -> {
+                    new SequentialCommandGroup(
+                            Robot.getInstance().setState(RobotState.SCORE),
+                            ClawCommands.openBothFingers(),
+                            Robot.getInstance().setState(RobotState.DRIVE)
+                    ).schedule();
                 })
                 .waitSeconds(0.5)
                 .build();
@@ -58,6 +71,11 @@ public abstract class DefaultNitzan extends LinearOpMode {
         TrajectorySequence trajectorySequence = drive.trajectorySequenceBuilder(currentPose)
                 .lineToSplineHeading(AutoUtil.getAssignedPurplePose())
                 .addTemporalMarker(() -> {
+                    new SequentialCommandGroup(
+                        Robot.getInstance().setState(RobotState.INTAKE),
+                        ClawCommands.toggleLeftFinger(),
+                        Robot.getInstance().setState(RobotState.DRIVE)
+                    ).schedule();
                 })
                 .waitSeconds(0.5)
                 .strafeLeft(25)
@@ -70,6 +88,11 @@ public abstract class DefaultNitzan extends LinearOpMode {
                 .lineToSplineHeading(new Pose2d(40, 25 * allianceModifier, 0))
                 .lineToLinearHeading(AutoUtil.getAssignedYellowPose())
                 .addTemporalMarker(() -> {
+                    new SequentialCommandGroup(
+                            Robot.getInstance().setState(RobotState.SCORE),
+                            ClawCommands.openBothFingers(),
+                            Robot.getInstance().setState(RobotState.DRIVE)
+                    ).schedule();
                 })
                 .waitSeconds(0.5)
                 .build();
@@ -90,6 +113,11 @@ public abstract class DefaultNitzan extends LinearOpMode {
                 .lineTo(new Vector2d(20, 11 * allianceModifier))
                 .lineToSplineHeading(new Pose2d(50, 35 * allianceModifier, 0))
                 .addTemporalMarker(() -> {
+                    new SequentialCommandGroup(
+                            Robot.getInstance().setState(RobotState.SCORE),
+                            ClawCommands.openBothFingers(),
+                            Robot.getInstance().setState(RobotState.DRIVE)
+                    ).schedule();
                 })
                 .waitSeconds(0.5)
                 .build();
