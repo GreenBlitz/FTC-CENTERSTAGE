@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
-
 import org.firstinspires.ftc.teamcode.gamelayout.FieldConstants;
 import org.firstinspires.ftc.teamcode.gamepads.GamepadFunctions;
 import org.firstinspires.ftc.teamcode.gamepads.GamepadWrapper;
@@ -49,13 +48,13 @@ public class Bindings {
 
         // State Change:
         secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(
-                Robot.getInstance().setState(RobotState.SCORE));
+                Robot.getInstance().setState(() -> RobotState.SCORE));
         secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(
-                Robot.getInstance().setState(RobotState.DRIVE));
+                Robot.getInstance().setState(() -> RobotState.DRIVE));
         secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(
-                Robot.getInstance().setState(RobotState.PRE_INTAKE));
+                Robot.getInstance().setState(() -> RobotState.PRE_INTAKE));
         secondGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(
-                Robot.getInstance().setState(RobotState.INTAKE));
+                Robot.getInstance().setState(() -> RobotState.INTAKE));
 
         // Elevator:
         secondGamepad.getTriggerAsButton(GamepadKeys.Trigger.LEFT_TRIGGER).whenActive(
@@ -74,7 +73,7 @@ public class Bindings {
         );
 
         // Climb
-        secondGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(Robot.getInstance().setState(RobotState.CLIMB));
+        secondGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(Robot.getInstance().setState(() -> RobotState.CLIMB));
         secondGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(ArmCommands.goToState(ArmState.INTAKE));
 
         // Claw
@@ -93,7 +92,7 @@ public class Bindings {
         razChassisTest(gamepad1);
         secondGamepad = new GamepadWrapper(gamepad2);
 
-        secondGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(Robot.getInstance().setState(RobotState.CLIMB));
+        secondGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(Robot.getInstance().setState(() -> RobotState.CLIMB));
         secondGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(ArmCommands.goToState(ArmState.INTAKE));
     }
 
@@ -109,10 +108,10 @@ public class Bindings {
     public static void razRobotStateTest(Gamepad gamepad) {
         mainGamepad = new GamepadWrapper(gamepad);
 
-        mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(Robot.getInstance().setState(RobotState.SCORE));
-        mainGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(Robot.getInstance().setState(RobotState.INTAKE));
-        mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(Robot.getInstance().setState(RobotState.CLIMB));
-        mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(Robot.getInstance().setState(RobotState.DRIVE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(Robot.getInstance().setState(() -> RobotState.SCORE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(Robot.getInstance().setState(() -> RobotState.INTAKE));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(Robot.getInstance().setState(() -> RobotState.CLIMB));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(Robot.getInstance().setState(() -> RobotState.DRIVE));
     }
 
     public static void razClawTest(Gamepad gamepad) {

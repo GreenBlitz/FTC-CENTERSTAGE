@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.subsystems.elevator.Elevator;
 import org.firstinspires.ftc.teamcode.subsystems.wrist.Wrist;
 import org.firstinspires.ftc.teamcode.subsystems.launcher.Launcher;
 import org.firstinspires.ftc.teamcode.subsystems.chassis.MecanumChassis;
+import org.firstinspires.ftc.teamcode.utils.RobotStateSupplier;
 
 public class Robot {
 
@@ -65,9 +66,9 @@ public class Robot {
         this.wrist = new Wrist(hardwareMap);
     }
 
-    public SequentialCommandGroup setState(RobotState robotState) {
-        currentState = robotState;
-        switch (robotState) {
+    public SequentialCommandGroup setState(RobotStateSupplier robotStateSupplier) {
+        currentState = robotStateSupplier.getRobotState();
+        switch (robotStateSupplier.getRobotState()) {
             case SCORE:
                 return StateCommands.scoreState();
             case INTAKE:
@@ -83,11 +84,11 @@ public class Robot {
     }
 
     public Command setLeftState() {
-        return setState(stateMotionPlanner.getLeftState());
+        return setState(() -> stateMotionPlanner.getLeftState());
     }
 
     public Command setRightState() {
-        return setState(stateMotionPlanner.getRightState());
+        return setState(() -> stateMotionPlanner.getRightState());
     }
 
     public StateMotionPlanner getStateMotionPlanner() {

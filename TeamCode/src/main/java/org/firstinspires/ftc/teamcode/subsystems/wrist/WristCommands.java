@@ -15,14 +15,14 @@ public class WristCommands {
     public static Command addToOffset() {
         return new SequentialCommandGroup(
                 new InstantCommand(() -> Robot.getInstance().getWrist().addToOffset(), Robot.getInstance().getWrist()),
-                Robot.getInstance().setState(Robot.getInstance().getCurrentState())
+                Robot.getInstance().setState(() -> Robot.getInstance().getCurrentState())
         );
     }
 
     public static Command reduceFromOffset() {
         return new SequentialCommandGroup(
                 new InstantCommand(() -> Robot.getInstance().getWrist().reduceFromOffset(), Robot.getInstance().getWrist()),
-                Robot.getInstance().setState(Robot.getInstance().getCurrentState())
+                Robot.getInstance().setState(() -> Robot.getInstance().getCurrentState())
         );
     }
 
