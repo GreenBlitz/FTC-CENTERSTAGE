@@ -33,6 +33,11 @@ public class Elevator extends SubsystemBase {
         configPidController();
     }
 
+    public void configDirections(){
+        rightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+    }
+
     private void configRightMotor() {
         rightMotor.resetDeviceConfigurationForOpMode();
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
