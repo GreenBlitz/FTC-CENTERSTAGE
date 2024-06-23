@@ -64,7 +64,7 @@ public class DriveConstants {
      * small and gradually increase them later after everything is working. All distance units are
      * inches.
      */
-    public static double MAX_VELOCITY = MAX_RPM/60 * WHEEL_RADIUS * GEAR_RATIO * 2*Math.PI * 0.8;
+    public static double MAX_VELOCITY = 900;
     public static double MAX_ACCELERATION = 500;
     public static double MAX_ANGULAR_VELOCITY = 18.016340020937598;
     public static double MAX_ANGULAR_ACCELERATION = Math.toRadians(60);
