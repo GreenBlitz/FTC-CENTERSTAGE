@@ -66,7 +66,7 @@ public class Robot {
     }
 
     public SequentialCommandGroup setState(RobotState robotState) {
-        currentState = robotState;
+        this.currentState = robotState;
         switch (robotState) {
             case SCORE:
                 return StateCommands.scoreState();
