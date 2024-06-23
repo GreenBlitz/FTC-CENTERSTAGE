@@ -17,7 +17,7 @@ public class Arm extends SubsystemBase {
 
     public Arm(HardwareMap hardwareMap) {
         this.motor = hardwareMap.get(DcMotorEx.class, ArmConstants.ARM_MOTOR_ID);
-        this.currentState = ArmState.INTAKE;
+        this.currentState = ArmState.STARTING;
         this.lastState = currentState;
         this.pidController = ArmConstants.PID_CONTROLLER;
         configMotor();
