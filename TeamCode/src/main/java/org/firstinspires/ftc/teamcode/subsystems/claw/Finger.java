@@ -9,7 +9,7 @@ class Finger {
     private final Servo servo;
     private boolean isOpen;
 
-    protected Finger(Servo fingerServo, double fingerOpenPosition, double fingerClosePosition) {
+    protected   Finger(Servo fingerServo, double fingerOpenPosition, double fingerClosePosition) {
         this.servo = fingerServo;
         this.openPosition = fingerOpenPosition;
         this.closePosition = fingerClosePosition;
