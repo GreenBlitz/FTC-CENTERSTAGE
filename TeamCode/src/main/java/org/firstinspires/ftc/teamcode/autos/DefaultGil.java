@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.autos;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -22,17 +23,17 @@ public  class DefaultGil extends LinearOpMode {
 
         Pose2d startPose = new Pose2d(0, 0, 0);
 
-        drive.setPoseEstimate(startPose);
+        drive.setPoseEstimate(new Pose2d(10, -60, -Math.PI/2));
 
-        TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(new Pose2d(0, 0, 0))
-                .forward(30)
-                .turn(Math.toRadians(90))
-                .forward(30)
-                .turn(Math.toRadians(90))
-                .forward(30)
-                .turn(Math.toRadians(90))
-                .forward(30)
-                .turn(Math.toRadians(90))
+        TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(new Pose2d(10, -60, -Math.PI/2))
+                .lineToLinearHeading(new Pose2d(15, -40, Math.toRadians(225)))
+                .addTemporalMarker(() -> {})
+                .waitSeconds(0.5)
+                .lineTo(new Vector2d(25, -55))
+                .lineToLinearHeading(new Pose2d(40, -35, 0))
+                .lineToLinearHeading(new Pose2d(50, -40))
+                .addTemporalMarker(() -> {})
+                .waitSeconds(0.5)
                 .build();
 
         waitForStart();
