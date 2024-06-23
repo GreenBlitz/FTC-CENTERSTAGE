@@ -82,6 +82,10 @@ public class Bindings {
         secondGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(ClawCommands.toggleLeftFinger());
         secondGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(ClawCommands.openBothFingers());
         secondGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ClawCommands.closeBothFingers());
+
+        // Emergency Wrist Calibration
+        secondGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_STICK_BUTTON).whenPressed(WristCommands.addToOffset());
+        secondGamepad.getGamepadButton(GamepadKeys.Button.LEFT_STICK_BUTTON).whenPressed(WristCommands.reduceFromOffset());
     }
 
 
