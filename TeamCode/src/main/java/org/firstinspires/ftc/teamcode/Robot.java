@@ -42,7 +42,7 @@ public class Robot {
 
 
     private Robot() {
-        this.alliance = Alliance.BLUE;
+        this.alliance = Alliance.RED;
     }
 
     public void setAlliance(Alliance alliance) {
