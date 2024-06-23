@@ -23,15 +23,16 @@ public  class DefaultGil extends LinearOpMode {
 
         Pose2d startPose = new Pose2d(0, 0, 0);
 
-        drive.setPoseEstimate(new Pose2d(10, -60, -Math.PI/2));
+        drive.setPoseEstimate(new Pose2d(10, 60, Math.PI/2));
 
-        TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(new Pose2d(10, -60, -Math.PI/2))
-                .lineToLinearHeading(new Pose2d(15, -40, Math.toRadians(225)))
+        TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(new Pose2d(10, 60, Math.PI/2))
+                .lineTo(new Vector2d(10, 40))
+                .turn(Math.toRadians(-45))
                 .addTemporalMarker(() -> {})
                 .waitSeconds(0.5)
-                .lineTo(new Vector2d(25, -55))
-                .lineToLinearHeading(new Pose2d(40, -35, 0))
-                .lineToLinearHeading(new Pose2d(50, -40))
+                .lineTo(new Vector2d(50, 40))
+//                .lineToLinearHeading(new Pose2d(40, 35, 0))
+//                .lineToLinearHeading(new Pose2d(50,  40))
                 .addTemporalMarker(() -> {})
                 .waitSeconds(0.5)
                 .build();
