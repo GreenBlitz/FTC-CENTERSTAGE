@@ -37,6 +37,17 @@ public class StateCommands {
         );
     }
 
+    protected static SequentialCommandGroup preIntakeState() {
+        return new SequentialCommandGroup(
+                new ParallelCommandGroup(
+                        ClawCommands.unlockFingers(),
+                        WristCommands.moveToState(WristState.INTAKE),
+                        ArmCommands.goToState(ArmState.IDLE),
+                        ElevatorCommands.goToState(ElevatorState.INTAKE)
+                )
+        );
+    }
+
     protected static SequentialCommandGroup climbState() {
         return new SequentialCommandGroup(
                 ClawCommands.closeBothFingers(),

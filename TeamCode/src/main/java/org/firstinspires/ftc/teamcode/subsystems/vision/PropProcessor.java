@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.subsystems.vision;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
+
 import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
 import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.PropLocation;
@@ -22,43 +24,43 @@ public class PropProcessor implements VisionProcessor {
 
     @Override
     public Object processFrame(Mat frame, long captureTimeNanos) {
-        Mat leftZone = getLeftZoneMatrix(frame);
+        Mat rightZone = getRightZoneMatrix(frame);
         Mat centerZone = getCenterZoneMatrix(frame);
 
-        Scalar left = getAvgColor(leftZone);
-        Scalar center = getAvgColor(centerZone);
+        Scalar avgRightColor = getAvgColor(rightZone);
+        Scalar avgCenterColor = getAvgColor(centerZone);
 
-        if (isPropPartOfAvgColor(left)) {
-            this.location = PropLocation.LEFT;
+        if (isPropPartOfAvgColor(avgRightColor)) {
+            this.location = PropLocation.RIGHT;
         }
-        else if (isPropPartOfAvgColor(center)) {
+        else if (isPropPartOfAvgColor(avgCenterColor)) {
             this.location = PropLocation.CENTER;
         }
         else {
-            this.location = PropLocation.RIGHT;
+            this.location = PropLocation.LEFT;
         }
 
-        leftZone.release();
+        rightZone.release();
         centerZone.release();
 
         return null;
     }
 
-    public Mat getLeftZoneMatrix(Mat frame) {
+    public Mat getRightZoneMatrix(Mat frame) {
         if (Robot.getInstance().getAlliance() == Alliance.RED) {
-            return frame.submat(VisionConstant.RED_LEFT_ZONE_AREA);
+            return frame.submat(VisionConstant.RED_RIGHT_ZONE);
         }
         else {
-            return frame.submat(VisionConstant.BLUE_LEFT_ZONE_AREA);
+            return frame.submat(VisionConstant.BLUE_RIGHT_ZONE);
         }
     }
 
     public Mat getCenterZoneMatrix(Mat frame) {
         if (Robot.getInstance().getAlliance() == Alliance.RED) {
-            return frame.submat(VisionConstant.RED_CENTER_ZONE_AREA);
+            return frame.submat(VisionConstant.RED_CENTER_ZONE);
         }
         else {
-            return frame.submat(VisionConstant.BLUE_CENTER_ZONE_AREA);
+            return frame.submat(VisionConstant.BLUE_CENTER_ZONE);
         }
     }
 
@@ -81,7 +83,6 @@ public class PropProcessor implements VisionProcessor {
 
     @Override
     public void onDrawFrame(Canvas canvas, int onscreenWidth, int onscreenHeight, float scaleBmpPxToCanvasPx, float scaleCanvasDensity, Object userContext) {
-
     }
 
     public PropLocation getLocation() {
