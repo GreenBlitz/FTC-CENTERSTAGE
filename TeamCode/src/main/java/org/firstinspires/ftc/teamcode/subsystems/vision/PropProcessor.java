@@ -46,19 +46,19 @@ public class PropProcessor implements VisionProcessor {
 
     public Mat getRightZoneMatrix(Mat frame) {
         if (Robot.getInstance().getAlliance() == Alliance.RED) {
-            return frame.submat(VisionConstant.RED_RIGHT_ZONE_AREA);
+            return frame.submat(VisionConstant.RED_RIGHT_ZONE);
         }
         else {
-            return frame.submat(VisionConstant.BLUE_RIGHT_ZONE_AREA);
+            return frame.submat(VisionConstant.BLUE_RIGHT_ZONE);
         }
     }
 
     public Mat getCenterZoneMatrix(Mat frame) {
         if (Robot.getInstance().getAlliance() == Alliance.RED) {
-            return frame.submat(VisionConstant.RED_CENTER_ZONE_AREA);
+            return frame.submat(VisionConstant.RED_CENTER_ZONE);
         }
         else {
-            return frame.submat(VisionConstant.BLUE_CENTER_ZONE_AREA);
+            return frame.submat(VisionConstant.BLUE_CENTER_ZONE);
         }
     }
 
