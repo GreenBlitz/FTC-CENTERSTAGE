@@ -15,46 +15,22 @@ public class MeepMeepTesting {
                 .setDimensions(15.5, 15.5)
                 .followTrajectorySequence(drive ->
                         // add your trajectory here:
-                        drive.trajectorySequenceBuilder(new Pose2d(-35, 60, -Math.PI / 2))
-                                .lineToSplineHeading(new Pose2d(-38, 40, Math.toRadians(-135)))
-                                .addTemporalMarker(() -> {
-                                })
+                        drive.trajectorySequenceBuilder(new Pose2d(12, -70, -Math.PI / 2))
+                                .lineTo(new Vector2d(12, -50))
+                                .turn(Math.toRadians(-45))//make object angle
+//                                .addTemporalMarker(() -> Robot.getInstance().setState(RobotState.INTAKE).schedule())
+                                .waitSeconds(2)
+//                                .addTemporalMarker(() -> Robot.getInstance().getClaw().openRight())
                                 .waitSeconds(0.5)
-                                .strafeRight(25)
-                                .lineToLinearHeading(new Pose2d(-55, 35, Math.PI))
-                                .addTemporalMarker(() -> {
-                                })
-                                .waitSeconds(0.5)
-                                .lineTo(new Vector2d(-55, 11))
-                                .lineTo(new Vector2d(20, 11))
-                                .lineToSplineHeading(new Pose2d(40, 25, 0))
-                                .lineToLinearHeading(new Pose2d(50, 43))
-                                .addTemporalMarker(() -> {
-                                })
-                                .waitSeconds(0.5)
-                                //pick up whites
-                                .lineToSplineHeading(new Pose2d(20, 11, Math.PI))
-                                .lineTo(new Vector2d(-55, 11))
-                                .addTemporalMarker(() -> {
-                                })
-                                .waitSeconds(0.5)
-                                .lineTo(new Vector2d(20, 11))
-                                .lineToSplineHeading(new Pose2d(50, 35, 0))
-                                .addTemporalMarker(() -> {
-                                })
-                                .waitSeconds(0.5)
-                                .lineToSplineHeading(new Pose2d(20, 11, Math.PI))
-                                .lineTo(new Vector2d(-55, 11))
-                                .addTemporalMarker(() -> {
-                                })
-                                .waitSeconds(0.5)
-                                .lineTo(new Vector2d(20, 11))
-                                .lineToSplineHeading(new Pose2d(50, 35, 0))
+                                .turn(Math.toRadians(45))
+                                .waitSeconds(1)
+//                                .addTemporalMarker(() -> Robot.getInstance().setState(RobotState.DRIVE).schedule())
+                                .waitSeconds(1)
+                                .lineTo(new Vector2d(12, -60))
                                 .addTemporalMarker(() -> {
                                 })
                                 .waitSeconds(0.5)
                                 .build()
-
 
                 );
 

@@ -32,8 +32,9 @@ public class StateCommands {
                         WristCommands.moveToState(WristState.INTAKE),
                         ArmCommands.goToState(ArmState.INTAKE),
                         ElevatorCommands.goToState(ElevatorState.INTAKE)
-                ),
-                ClawCommands.openBothFingers()
+                )
+//                ,
+//                ClawCommands.openBothFingers()
         );
     }
 

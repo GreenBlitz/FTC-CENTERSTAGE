@@ -22,6 +22,13 @@ public class Claw extends SubsystemBase {
         leftFinger.open(isUnlocked);
     }
 
+    public void openLeft(){
+        leftFinger.open(isUnlocked);
+    }
+    public void openRight(){
+        rightFinger.open(isUnlocked);
+    }
+
     protected void closeBothFingers() {
         rightFinger.close(isUnlocked);
         leftFinger.close(isUnlocked);

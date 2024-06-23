@@ -23,6 +23,14 @@ public class ClawCommands {
         return new InstantCommand(() -> Robot.getInstance().getClaw().toggleLeftFinger());
     }
 
+    public static Command openLeftFinger() {
+        return new InstantCommand(() -> Robot.getInstance().getClaw().openLeft());
+    }
+
+    public static Command openRightFinger() {
+        return new InstantCommand(() -> Robot.getInstance().getClaw().openRight());
+    }
+
     public static Command switchFingers() {
         return new InstantCommand(() -> Robot.getInstance().getClaw().switchFingers());
     }
