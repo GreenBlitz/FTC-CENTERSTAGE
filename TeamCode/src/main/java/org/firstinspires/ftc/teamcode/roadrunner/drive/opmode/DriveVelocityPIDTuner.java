@@ -9,6 +9,7 @@ import com.acmerobotics.roadrunner.profile.MotionProfileGenerator;
 import com.acmerobotics.roadrunner.profile.MotionState;
 import com.acmerobotics.roadrunner.util.NanoClock;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.RobotLog;
@@ -42,6 +43,7 @@ import java.util.List;
  * user to reset the position of the bot in the event that it drifts off the path.
  * Pressing B/O (Xbox/PS4) will cede control back to the tuning process.
  */
+@Disabled
 @Config
 @Autonomous(group = "drive")
 public class DriveVelocityPIDTuner extends LinearOpMode {
@@ -56,7 +58,7 @@ public class DriveVelocityPIDTuner extends LinearOpMode {
     private static MotionProfile generateProfile(boolean movingForward) {
         MotionState start = new MotionState(movingForward ? 0 : DISTANCE, 0, 0, 0);
         MotionState goal = new MotionState(movingForward ? DISTANCE : 0, 0, 0, 0);
-        return MotionProfileGenerator.generateSimpleMotionProfile(start, goal, DriveConstants.MAX_VEL, DriveConstants.MAX_ACCEL);
+        return MotionProfileGenerator.generateSimpleMotionProfile(start, goal, DriveConstants.MAX_VELOCITY, DriveConstants.MAX_ACCELERATION);
     }
 
     @Override
@@ -72,12 +74,12 @@ public class DriveVelocityPIDTuner extends LinearOpMode {
 
         Mode mode = Mode.TUNING_MODE;
 
-        double lastKp = DriveConstants.MOTOR_VELO_PID.p;
-        double lastKi = DriveConstants.MOTOR_VELO_PID.i;
-        double lastKd = DriveConstants.MOTOR_VELO_PID.d;
-        double lastKf = DriveConstants.MOTOR_VELO_PID.f;
+        double lastKp = DriveConstants.MOTOR_VELOCITY_PID.p;
+        double lastKi = DriveConstants.MOTOR_VELOCITY_PID.i;
+        double lastKd = DriveConstants.MOTOR_VELOCITY_PID.d;
+        double lastKf = DriveConstants.MOTOR_VELOCITY_PID.f;
 
-        drive.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, DriveConstants.MOTOR_VELO_PID);
+        drive.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, DriveConstants.MOTOR_VELOCITY_PID);
 
         NanoClock clock = NanoClock.system();
 
@@ -150,14 +152,14 @@ public class DriveVelocityPIDTuner extends LinearOpMode {
                     break;
             }
 
-            if (lastKp != DriveConstants.MOTOR_VELO_PID.p || lastKd != DriveConstants.MOTOR_VELO_PID.d
-                    || lastKi != DriveConstants.MOTOR_VELO_PID.i || lastKf != DriveConstants.MOTOR_VELO_PID.f) {
-                drive.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, DriveConstants.MOTOR_VELO_PID);
+            if (lastKp != DriveConstants.MOTOR_VELOCITY_PID.p || lastKd != DriveConstants.MOTOR_VELOCITY_PID.d
+                    || lastKi != DriveConstants.MOTOR_VELOCITY_PID.i || lastKf != DriveConstants.MOTOR_VELOCITY_PID.f) {
+                drive.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, DriveConstants.MOTOR_VELOCITY_PID);
 
-                lastKp = DriveConstants.MOTOR_VELO_PID.p;
-                lastKi = DriveConstants.MOTOR_VELO_PID.i;
-                lastKd = DriveConstants.MOTOR_VELO_PID.d;
-                lastKf = DriveConstants.MOTOR_VELO_PID.f;
+                lastKp = DriveConstants.MOTOR_VELOCITY_PID.p;
+                lastKi = DriveConstants.MOTOR_VELOCITY_PID.i;
+                lastKd = DriveConstants.MOTOR_VELOCITY_PID.d;
+                lastKf = DriveConstants.MOTOR_VELOCITY_PID.f;
             }
 
             telemetry.update();

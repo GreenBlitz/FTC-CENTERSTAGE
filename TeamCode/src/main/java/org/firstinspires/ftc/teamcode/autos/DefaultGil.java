@@ -17,7 +17,9 @@ public abstract class DefaultGil extends LinearOpMode {
     }
 
     public abstract Alliance getAlliance();
+
     public abstract FieldStartingLocation getFieldStartingLocation();
+
     public abstract void run() throws InterruptedException;
 
 }
