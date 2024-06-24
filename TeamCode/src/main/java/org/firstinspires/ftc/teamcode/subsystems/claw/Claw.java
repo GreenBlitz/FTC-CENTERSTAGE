@@ -44,11 +44,11 @@ public class Claw extends SubsystemBase {
     }
 
     protected void lockFingers() {
-        isUnlocked = true;
+        isUnlocked = false;
     }
 
     protected void unlockFingers() {
-        isUnlocked = false;
+        isUnlocked = true;
     }
 
     protected void switchFingers() {

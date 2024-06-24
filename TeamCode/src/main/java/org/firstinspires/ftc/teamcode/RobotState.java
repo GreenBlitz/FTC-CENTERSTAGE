@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 public enum RobotState {
 
+    PRE_INTAKE(4),
     CLIMB(3),
     SCORE(2),
     DRIVE(1),

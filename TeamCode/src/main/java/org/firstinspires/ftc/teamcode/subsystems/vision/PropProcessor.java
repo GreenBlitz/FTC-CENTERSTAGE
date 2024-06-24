@@ -3,18 +3,17 @@ package org.firstinspires.ftc.teamcode.subsystems.vision;
 import android.graphics.Canvas;
 import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
 import org.firstinspires.ftc.teamcode.Alliance;
-import org.firstinspires.ftc.teamcode.Location;
+import org.firstinspires.ftc.teamcode.PropLocation;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.vision.VisionProcessor;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 public class PropProcessor implements VisionProcessor {
 
-    private Location location;
+    private PropLocation location;
 
     @Override
     public void init(int width, int height, CameraCalibration calibration) {
@@ -30,13 +29,13 @@ public class PropProcessor implements VisionProcessor {
         Scalar center = getAvgColor(centerZone);
 
         if (isPropPartOfAvgColor(left)) {
-            this.location = Location.LEFT;
+            this.location = PropLocation.LEFT;
         }
         else if (isPropPartOfAvgColor(center)) {
-            this.location = Location.CENTER;
+            this.location = PropLocation.CENTER;
         }
         else {
-            this.location = Location.RIGHT;
+            this.location = PropLocation.RIGHT;
         }
 
         leftZone.release();
@@ -85,7 +84,7 @@ public class PropProcessor implements VisionProcessor {
 
     }
 
-    public Location getLocation() {
+    public PropLocation getLocation() {
         return location;
     }
 

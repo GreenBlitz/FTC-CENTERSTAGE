@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
-public enum Location {
+public enum PropLocation {
 
     LEFT,
     CENTER,

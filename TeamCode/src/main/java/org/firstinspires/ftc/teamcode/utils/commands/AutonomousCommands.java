@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands;
+package org.firstinspires.ftc.teamcode.utils.commands;
 
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
@@ -12,17 +12,25 @@ import org.firstinspires.ftc.teamcode.subsystems.wrist.WristState;
 
 public class AutonomousCommands {
 
-    public static Command scoreAutonomous(Boolean isAtRightClaw, ArmState armState, WristState wristState) {
-        Command command;
+    public static Command scoreYellow(boolean isAtRightClaw) {
+        return scoreAutonomous(isAtRightClaw, ArmState.SCORE, WristState.SCORE);
+    }
 
-        command = isAtRightClaw ? ClawCommands.toggleRightFinger() : ClawCommands.toggleLeftFinger();
+    public static Command scorePurple(boolean isAtRightClaw) {
+        return scoreAutonomous(isAtRightClaw, ArmState.INTAKE, WristState.INTAKE);
+    }
+
+    public static Command scoreAutonomous(boolean isAtRightClaw, ArmState armState, WristState wristState) {
+        Command clawCommand;
+
+        clawCommand = isAtRightClaw ? ClawCommands.toggleRightFinger() : ClawCommands.toggleLeftFinger();
 
         return new SequentialCommandGroup(
                 new ParallelCommandGroup(
                         ArmCommands.goToState(armState),
                         WristCommands.moveToState(wristState)
                 ),
-                command
+                clawCommand
         );
     }
 
