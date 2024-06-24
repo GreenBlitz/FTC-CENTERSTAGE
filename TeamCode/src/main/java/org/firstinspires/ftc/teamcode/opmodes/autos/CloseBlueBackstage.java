@@ -1,26 +1,19 @@
 package org.firstinspires.ftc.teamcode.opmodes.autos;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
-import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.BasicOpMode_Iterative;
 import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.FieldStartingLocation;
-import org.firstinspires.ftc.teamcode.R;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.RobotState;
 import org.firstinspires.ftc.teamcode.gamelayout.FieldConstants;
 import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySequence;
-import org.firstinspires.ftc.teamcode.subsystems.claw.ClawCommands;
 
-@Autonomous(name = "Backstage")
-public class Backstage extends DefaultRaz {
+@Autonomous(name = "CloseBlueBackstage")
+public class CloseBlueBackstage extends DefaultRaz {
 
     private SampleMecanumDrive drive;
     private Pose2d startPose;
@@ -56,7 +49,7 @@ public class Backstage extends DefaultRaz {
         drive.setPoseEstimate(FieldConstants.CLOSE_RED_START);
 
         TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(FieldConstants.CLOSE_RED_START)
-                .strafeRight(45)
+                .strafeLeft(45)
                 .addTemporalMarker(() ->
                         Robot.getInstance().setState(RobotState.INTAKE)
                 )
