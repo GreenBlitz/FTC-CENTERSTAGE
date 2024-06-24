@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
+
 import org.firstinspires.ftc.teamcode.gamelayout.FieldConstants;
 import org.firstinspires.ftc.teamcode.gamepads.GamepadFunctions;
 import org.firstinspires.ftc.teamcode.gamepads.GamepadWrapper;
@@ -34,6 +35,14 @@ public class Bindings {
         // Chassis
         mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());
         mainGamepad.getGamepadButton(GamepadKeys.Button.A).whileHeld(ChassisCommands.rotateToAngle(FieldConstants.getBoardAngle()));
+        // Slow Drive
+        mainGamepad.getTriggerAsButton(GamepadKeys.Trigger.LEFT_TRIGGER).whileActiveContinuous(
+                ChassisCommands.fieldCentricDrive(
+                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftX()) / 2,
+                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftY()) / 2,
+                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getRightX()) / 2
+                )
+        );
         Robot.getInstance().getChassis().setDefaultCommand(
                 ChassisCommands.fieldCentricDrive(
                         () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftX()),
