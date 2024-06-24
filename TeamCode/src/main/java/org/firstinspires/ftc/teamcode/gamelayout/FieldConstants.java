@@ -2,6 +2,9 @@ package org.firstinspires.ftc.teamcode.gamelayout;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.geometry.Rotation2d;
+import com.arcrobotics.ftclib.geometry.Translation2d;
+import com.arcrobotics.ftclib.geometry.Vector2d;
+
 import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.Robot;
 
@@ -31,6 +34,16 @@ public class FieldConstants {
     public static final Pose2d CLOSE_RED_START = new Pose2d(10, -60, Math.toRadians(90));
     public static final Pose2d FAR_BLUE_START = new Pose2d(-35, 60, Math.toRadians(270));
     public static final Pose2d CLOSE_BLUE_START = new Pose2d(10, 60, Math.toRadians(270));
+
+    public static final Vector2d PRE_PURPLE_BLUE_CLOSE = new Translation2d(12, 48);
+    public static final Vector2d PRE_PURPLE_BLUE_FAR = new Translation2d(-12, 48);
+    public static final Vector2d PRE_PURPLE_RED_CLOSE = new Translation2d(12, -48);
+    public static final Vector2d PRE_PURPLE_RED_FAR = new Translation2d(-12, -48);
+
+    public static final Vector2d AFTER_PURPLE_BLUE_CLOSE = new Translation2d(12, 55);
+    public static final Vector2d AFTER_PURPLE_BLUE_FAR = new Translation2d(-12, 55);
+    public static final Vector2d AFTER_PURPLE_RED_CLOSE = new Translation2d(12, -55);
+    public static final Vector2d AFTER_PURPLE_RED_FAR = new Translation2d(-12, -55);
 
     private static final Rotation2d BOARD_ANGLE = Rotation2d.fromDegrees(-90);
 

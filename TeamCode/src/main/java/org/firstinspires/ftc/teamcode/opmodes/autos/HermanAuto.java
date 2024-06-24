@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.FieldStartingLocation;
 import org.firstinspires.ftc.teamcode.R;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.RobotState;
+import org.firstinspires.ftc.teamcode.gamelayout.FieldConstants;
 import org.firstinspires.ftc.teamcode.opmodes.DefaultRaz;
 import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySequence;
@@ -52,10 +53,10 @@ public class HermanAuto extends DefaultRaz {
     }
 
     public void executeCool() {
-        drive.setPoseEstimate(new Pose2d(14, -70, -Math.PI / 2));
+        drive.setPoseEstimate(FieldConstants.CLOSE_RED_START);
 
-        TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(new Pose2d(12, -70, -Math.PI / 2))
-                .lineTo(new Vector2d(12, -48))
+        TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(FieldConstants.CLOSE_RED_START)
+                .lineTo(FieldConstants.PRE_PURPLE_RED_CLOSE)
                 .turn(Math.toRadians(-45))//make object angle
                 .addTemporalMarker(() -> Robot.getInstance().setState(RobotState.INTAKE).schedule())
                 .waitSeconds(2)
@@ -64,11 +65,6 @@ public class HermanAuto extends DefaultRaz {
                 .turn(Math.toRadians(45))
                 .waitSeconds(1)
                 .addTemporalMarker(() -> Robot.getInstance().setState(RobotState.DRIVE).schedule())
-                .waitSeconds(1)
-                .lineTo(new Vector2d(12, -60))
-                .addTemporalMarker(() -> {
-                })
-                .waitSeconds(0.5)
                 .build();
 
         drive.followTrajectorySequence(trajSeq);
