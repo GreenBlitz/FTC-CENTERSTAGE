@@ -19,8 +19,8 @@ import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.subsystems.claw.ClawCommands;
 
-@Autonomous(name = "Herman")
-public class HermanAuto extends DefaultRaz {
+@Autonomous(name = "Backstage")
+public class Backstage extends DefaultRaz {
 
     private SampleMecanumDrive drive;
     private Pose2d startPose;
@@ -56,15 +56,10 @@ public class HermanAuto extends DefaultRaz {
         drive.setPoseEstimate(FieldConstants.CLOSE_RED_START);
 
         TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(FieldConstants.CLOSE_RED_START)
-                .lineTo(FieldConstants.PRE_PURPLE_RED_CLOSE)
-                .turn(Math.toRadians(-45))//make object angle
-                .addTemporalMarker(() -> Robot.getInstance().setState(RobotState.PRE_INTAKE).schedule())
-                .waitSeconds(2)
-                .addTemporalMarker(() -> Robot.getInstance().getClaw().openRight())
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> Robot.getInstance().setState(RobotState.DRIVE).schedule())
-                .waitSeconds(1)
-                .turn(Math.toRadians(45))
+                .strafeRight(45)
+                .addTemporalMarker(() ->
+                        Robot.getInstance().setState(RobotState.INTAKE)
+                )
                 .build();
 
         drive.followTrajectorySequence(trajSeq);
