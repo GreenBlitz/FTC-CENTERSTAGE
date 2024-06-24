@@ -53,11 +53,18 @@ public class HermanAuto extends DefaultRaz {
     }
 
     public void executeCool() {
+        while (Robot.getInstance().getVision().getPropLocation() == null) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
         drive.setPoseEstimate(FieldConstants.CLOSE_RED_START);
-
+        Robot.getInstance().setPropLocation(Robot.getInstance().getVision().getPropLocation());
         TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(FieldConstants.CLOSE_RED_START)
                 .lineTo(FieldConstants.PRE_PURPLE_RED_CLOSE)
-                .turn(Math.toRadians(-45))//make object angle
+                .turn(Math.toRadians(Robot.getInstance().getPropLocation().angle))
                 .addTemporalMarker(() -> Robot.getInstance().setState(RobotState.PRE_INTAKE).schedule())
                 .waitSeconds(2)
                 .addTemporalMarker(() -> Robot.getInstance().getClaw().openRight())

@@ -36,7 +36,7 @@ public class FieldConstants {
 
     public static final Vector2d PRE_PURPLE_BLUE_CLOSE = new Vector2d(10, 45);
     public static final Vector2d PRE_PURPLE_BLUE_FAR = new Vector2d(-35, 45);
-    public static final Vector2d PRE_PURPLE_RED_CLOSE = new Vector2d(10, -45);
+    public static final Vector2d PRE_PURPLE_RED_CLOSE = new Vector2d(10, -35);
     public static final Vector2d PRE_PURPLE_RED_FAR = new Vector2d(-35, -45);
 
     public static final Vector2d AFTER_PURPLE_BLUE_CLOSE = new Vector2d(10, 55);
