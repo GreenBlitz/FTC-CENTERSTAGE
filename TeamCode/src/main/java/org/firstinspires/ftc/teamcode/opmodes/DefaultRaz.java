@@ -5,12 +5,14 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.RobotState;
 
 public abstract class DefaultRaz extends OpMode {
 
     @Override
     public final void init() {
         Robot.init(hardwareMap);
+        Robot.getInstance().setState(RobotState.DRIVE).schedule();
         configureBindings();
         initialize();
     }

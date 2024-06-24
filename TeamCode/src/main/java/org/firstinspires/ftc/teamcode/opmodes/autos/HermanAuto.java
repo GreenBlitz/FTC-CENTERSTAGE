@@ -58,7 +58,7 @@ public class HermanAuto extends DefaultRaz {
         TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(FieldConstants.CLOSE_RED_START)
                 .lineTo(FieldConstants.PRE_PURPLE_RED_CLOSE)
                 .turn(Math.toRadians(-45))//make object angle
-                .addTemporalMarker(() -> Robot.getInstance().setState(RobotState.INTAKE).schedule())
+                .addTemporalMarker(() -> Robot.getInstance().setState(RobotState.PRE_INTAKE).schedule())
                 .waitSeconds(2)
                 .addTemporalMarker(() -> Robot.getInstance().getClaw().openRight())
                 .waitSeconds(0.5)

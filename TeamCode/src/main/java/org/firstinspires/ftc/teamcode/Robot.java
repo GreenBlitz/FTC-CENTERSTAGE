@@ -68,8 +68,6 @@ public class Robot {
             this.launcher = new Launcher(hardwareMap);
             this.vision = new Vision(hardwareMap);
             this.wrist = new Wrist(hardwareMap);
-
-            Robot.getInstance().setState(RobotState.DRIVE).schedule();
         }
     }
 
