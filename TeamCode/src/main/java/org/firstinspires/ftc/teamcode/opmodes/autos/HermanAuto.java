@@ -35,7 +35,7 @@ public class HermanAuto extends DefaultRaz {
     }
 
     public Alliance getAlliance() {
-        return Alliance.RED;
+        return Alliance.BLUE;
     }
 
     public FieldStartingLocation getFieldStartingLocation() {
@@ -60,11 +60,11 @@ public class HermanAuto extends DefaultRaz {
                 throw new RuntimeException(e);
             }
         }
-        drive.setPoseEstimate(FieldConstants.CLOSE_RED_START);
+        drive.setPoseEstimate(FieldConstants.CLOSE_BLUE_START);
         Robot.getInstance().setPropLocation(Robot.getInstance().getVision().getPropLocation());
-        TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(FieldConstants.CLOSE_RED_START)
-                .forward(25)
-//                .lineTo(FieldConstants.PRE_PURPLE_RED_CLOSE)
+        TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(FieldConstants.CLOSE_BLUE_START)
+                .back(15)
+//                .lineTo(FieldConstants.PRE_PURPLE_BLUE_CLOSE)
                 .turn(Math.toRadians(Robot.getInstance().getPropLocation().angle))
                 .addTemporalMarker(() -> Robot.getInstance().setState(RobotState.PRE_INTAKE).schedule())
                 .waitSeconds(2)

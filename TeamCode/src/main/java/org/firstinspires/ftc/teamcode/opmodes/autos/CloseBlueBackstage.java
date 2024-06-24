@@ -49,10 +49,11 @@ public class CloseBlueBackstage extends DefaultRaz {
         drive.setPoseEstimate(FieldConstants.CLOSE_RED_START);
 
         TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(FieldConstants.CLOSE_RED_START)
-                .strafeLeft(45)
+                .strafeRight(45)
                 .addTemporalMarker(() ->
                         Robot.getInstance().setState(RobotState.INTAKE)
                 )
+//                .setReversed(true)
                 .build();
 
         drive.followTrajectorySequence(trajSeq);
