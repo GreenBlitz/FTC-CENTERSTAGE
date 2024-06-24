@@ -32,7 +32,7 @@ public class FieldConstants {
     public static final Pose2d FAR_BLUE_START = new Pose2d(-35, 60, Math.toRadians(270));
     public static final Pose2d CLOSE_BLUE_START = new Pose2d(10, 60, Math.toRadians(270));
 
-    private static final Rotation2d BOARD_ANGLE = Rotation2d.fromDegrees(90);
+    private static final Rotation2d BOARD_ANGLE = Rotation2d.fromDegrees(-90);
 
     public static Rotation2d getBoardAngle() {
         return Robot.getInstance().getAlliance() == Alliance.RED ? BOARD_ANGLE.unaryMinus() : BOARD_ANGLE;
