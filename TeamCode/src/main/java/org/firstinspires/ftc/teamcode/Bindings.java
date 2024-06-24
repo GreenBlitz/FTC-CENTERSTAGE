@@ -45,9 +45,9 @@ public class Bindings {
         );
         Robot.getInstance().getChassis().setDefaultCommand(
                 ChassisCommands.fieldCentricDrive(
-                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftX()),
-                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftY()),
-                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getRightX())
+                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftX()) * 0.8,
+                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftY()) * 0.8,
+                        () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getRightX()) * 0.8
                 )
         );
     }
