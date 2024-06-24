@@ -36,7 +36,7 @@ public class Bindings {
         mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());
         mainGamepad.getGamepadButton(GamepadKeys.Button.A).whileHeld(ChassisCommands.rotateToAngle(FieldConstants.getBoardAngle()));
         // Slow Drive
-        mainGamepad.getTriggerAsButton(GamepadKeys.Trigger.LEFT_TRIGGER).whileActiveContinuous(
+        mainGamepad.getTriggerAsButton(GamepadKeys.Trigger.RIGHT_TRIGGER).whileActiveContinuous(
                 ChassisCommands.fieldCentricDrive(
                         () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftX()) / 2,
                         () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftY()) / 2,

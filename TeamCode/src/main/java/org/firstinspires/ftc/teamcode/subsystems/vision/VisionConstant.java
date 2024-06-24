@@ -22,9 +22,9 @@ class VisionConstant {
     protected static final double AMOUNT_OF_COLOR = 2.8;
 
     protected static final Rect RED_RIGHT_ZONE = new Rect(380, 400, 150, 80);
-    protected static final Rect RED_CENTER_ZONE = new Rect(30, 370, 100, 110);
+    protected static final Rect RED_CENTER_ZONE = new Rect(60, 290, 100, 90);
     protected static final Rect BLUE_RIGHT_ZONE = new Rect(380, 400, 150, 80);
-    protected static final Rect BLUE_CENTER_ZONE = new Rect(30, 370, 100, 110);
+    protected static final Rect BLUE_CENTER_ZONE = new Rect(60, 280, 100, 90);
 
     protected static final Size BLUR_SIZE = new Size(5, 5);
 

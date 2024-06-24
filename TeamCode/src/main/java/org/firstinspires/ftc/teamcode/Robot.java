@@ -44,7 +44,7 @@ public class Robot {
 
 
     private Robot() {
-        this.alliance = Alliance.BLUE;
+        this.alliance = Alliance.RED;
     }
 
     public void setAlliance(Alliance alliance) {
@@ -66,9 +66,10 @@ public class Robot {
             this.claw = new Claw(hardwareMap);
             this.elevator = new Elevator(hardwareMap);
             this.launcher = new Launcher(hardwareMap);
-            this.vision = new Vision(hardwareMap);
             this.wrist = new Wrist(hardwareMap);
         }
+        this.vision = new Vision(hardwareMap);
+
     }
 
     public SequentialCommandGroup setState(RobotState robotState) {
