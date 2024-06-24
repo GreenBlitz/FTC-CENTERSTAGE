@@ -35,6 +35,9 @@ public class Bindings {
         // Chassis
         mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());
         mainGamepad.getGamepadButton(GamepadKeys.Button.A).whileHeld(ChassisCommands.rotateToAngle(FieldConstants.getBoardAngle()));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(LauncherCommands.setPosition(-0.01));
+        mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(LauncherCommands.setPosition(0.01));
+
         Robot.getInstance().getChassis().setDefaultCommand(
                 ChassisCommands.fieldCentricDrive(
                         () -> -GamepadFunctions.getDeadZonedSensitiveValue(mainGamepad.getLeftX()),

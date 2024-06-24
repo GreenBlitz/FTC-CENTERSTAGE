@@ -19,6 +19,11 @@ public class Launcher extends SubsystemBase {
         return servo.getPosition();
     }
 
+    protected void setPositionForTest(double position) {
+        servo.setPosition(position);
+    }
+
+
     protected void launchPlane() {
         servo.setPosition(LauncherConstants.LAUNCH_POSITION);
     }
