@@ -29,7 +29,7 @@ public class Bindings {
         mainGamepad = new GamepadWrapper(gamepad);
 
         // Launcher
-        mainGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(LauncherCommands.launchPlane());
+        mainGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(LauncherCommands.setTestPosition(0.1));
 
         // Chassis
         mainGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(ChassisCommands.resetHeading());

@@ -11,4 +11,8 @@ public class LauncherCommands {
         return new InstantCommand(() -> Robot.getInstance().getLauncher().launchPlane(), Robot.getInstance().getLauncher());
     }
 
+    public static Command setTestPosition(double position) {
+        return new InstantCommand(() -> Robot.getInstance().getLauncher().setTestPosition(position), Robot.getInstance().getLauncher());
+    }
+
 }
