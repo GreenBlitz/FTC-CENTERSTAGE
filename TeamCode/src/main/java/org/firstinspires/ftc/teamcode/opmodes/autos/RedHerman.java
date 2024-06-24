@@ -19,8 +19,8 @@ import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.subsystems.claw.ClawCommands;
 
-@Autonomous(name = "BlueHerman")
-public class HermanAuto extends DefaultRaz {
+@Autonomous(name = "RedHerman")
+public class RedHerman extends DefaultRaz {
 
     private SampleMecanumDrive drive;
     private Pose2d startPose;
@@ -35,7 +35,7 @@ public class HermanAuto extends DefaultRaz {
     }
 
     public Alliance getAlliance() {
-        return Alliance.BLUE;
+        return Alliance.RED;
     }
 
     public FieldStartingLocation getFieldStartingLocation() {
@@ -60,9 +60,9 @@ public class HermanAuto extends DefaultRaz {
                 throw new RuntimeException(e);
             }
         }
-        drive.setPoseEstimate(FieldConstants.CLOSE_BLUE_START);
+        drive.setPoseEstimate(FieldConstants.CLOSE_RED_START);
         Robot.getInstance().setPropLocation(Robot.getInstance().getVision().getPropLocation());
-        TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(FieldConstants.CLOSE_BLUE_START)
+        TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(FieldConstants.CLOSE_RED_START)
                 .back(15)
 //                .lineTo(FieldConstants.PRE_PURPLE_BLUE_CLOSE)
                 .turn(Math.toRadians(Robot.getInstance().getPropLocation().angle))
