@@ -63,7 +63,8 @@ public class HermanAuto extends DefaultRaz {
         drive.setPoseEstimate(FieldConstants.CLOSE_RED_START);
         Robot.getInstance().setPropLocation(Robot.getInstance().getVision().getPropLocation());
         TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(FieldConstants.CLOSE_RED_START)
-                .lineTo(FieldConstants.PRE_PURPLE_RED_CLOSE)
+                .forward(25)
+//                .lineTo(FieldConstants.PRE_PURPLE_RED_CLOSE)
                 .turn(Math.toRadians(Robot.getInstance().getPropLocation().angle))
                 .addTemporalMarker(() -> Robot.getInstance().setState(RobotState.PRE_INTAKE).schedule())
                 .waitSeconds(2)
