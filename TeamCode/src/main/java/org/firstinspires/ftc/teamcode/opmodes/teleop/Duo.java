@@ -13,6 +13,7 @@ public class Duo extends DefaultRaz {
     @Override
     public void initialize() {
         Robot.getInstance().getElevator().configDirections();
+        Robot.getInstance().getChassis().setInvert(true);
     }
 
     @Override

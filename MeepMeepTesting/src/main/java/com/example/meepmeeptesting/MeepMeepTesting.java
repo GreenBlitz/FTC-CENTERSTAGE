@@ -15,14 +15,14 @@ public class MeepMeepTesting {
                 .setDimensions(15.5, 15.5)
                 .followTrajectorySequence(drive ->
                         // add your trajectory here:
-                        drive.trajectorySequenceBuilder(new Pose2d(10, -60, Math.toRadians(90)))
-                                .lineTo(new Vector2d(10, -35))
+                                drive.trajectorySequenceBuilder(new Pose2d(10, 60, Math.toRadians(270)))
+                                .forward(20)
 //                                .turn(Math.toRadians(Robot.getInstance().getPropLocation().angle))
 //                                .addTemporalMarker(() -> Robot.getInstance().setState(RobotState.PRE_INTAKE).schedule())
                                 .waitSeconds(2)
 //                                .addTemporalMarker(() -> Robot.getInstance().getClaw().openRight())
                                 .waitSeconds(0.5)
-                                .turn(Math.toRadians(45))
+                                .turn(Math.toRadians(0))
                                 .waitSeconds(1)
 //                                .addTemporalMarker(() -> Robot.getInstance().setState(RobotState.DRIVE).schedule())
                                 .build()

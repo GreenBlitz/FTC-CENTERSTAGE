@@ -53,7 +53,7 @@ public class HermanAuto extends DefaultRaz {
     }
 
     public void executeCool() {
-        while (Robot.getInstance().getVision().getPropLocation() == null) {
+        while (Robot.getInstance().getVision().getPropLocation() == null ) {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {

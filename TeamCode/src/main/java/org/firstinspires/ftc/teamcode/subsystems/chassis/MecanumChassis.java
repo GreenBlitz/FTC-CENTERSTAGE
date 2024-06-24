@@ -21,13 +21,16 @@ public class MecanumChassis extends SubsystemBase {
 
     private ChassisSpeeds currentSpeeds;
 
+    private boolean invert;
+
     public MecanumChassis(HardwareMap hardwareMap) {
         Motor frontLeft = getConfiguredChassisMotor(hardwareMap, ChassisConstants.FRONT_LEFT_ID);
         Motor frontRight = getConfiguredChassisMotor(hardwareMap, ChassisConstants.FRONT_RIGHT_ID);
         Motor backLeft = getConfiguredChassisMotor(hardwareMap, ChassisConstants.BACK_LEFT_ID);
         Motor backRight = getConfiguredChassisMotor(hardwareMap, ChassisConstants.BACK_RIGHT_ID);
 
-        this.mecanumDrive = new MecanumDrive(frontLeft, frontRight, backLeft, backRight);
+        this.invert = true;
+        this.mecanumDrive = new MecanumDrive(invert, frontLeft, frontRight, backLeft, backRight);
         this.imu = new RevIMU(hardwareMap);
         this.pidController = ChassisConstants.PID_CONTROLLER;
         this.currentSpeeds = new ChassisSpeeds();
@@ -72,6 +75,10 @@ public class MecanumChassis extends SubsystemBase {
 
     protected void resetHeading() {
         imu.reset();
+    }
+
+    public void setInvert(boolean invert) {
+        mecanumDrive.setRightSideInverted(invert);
     }
 
     public void telemetry(Telemetry telemetry) {
