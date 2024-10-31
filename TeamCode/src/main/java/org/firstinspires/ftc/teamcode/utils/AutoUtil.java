@@ -5,6 +5,7 @@ import org.firstinspires.ftc.teamcode.Alliance;
 import org.firstinspires.ftc.teamcode.gamelayout.FieldConstants;
 import org.firstinspires.ftc.teamcode.FieldStartingLocation;
 import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.subsystems.vision.Vision;
 
 public class AutoUtil {
 
@@ -18,7 +19,7 @@ public class AutoUtil {
     }
 
     private static Pose2d getRedAssignedYellowPose() {
-        switch (Robot.getInstance().getVision().getPropLocation()) {
+        switch (Robot.getInstance().getPropLocation()) {
             case LEFT:
                 return FieldConstants.RED_LEFT_BACKDROP_POSE;
             case CENTER:
@@ -29,7 +30,7 @@ public class AutoUtil {
     }
 
     private static Pose2d getBlueAssignedYellowPose() {
-        switch (Robot.getInstance().getVision().getPropLocation()) {
+        switch (Robot.getInstance().getPropLocation()) {
             case LEFT:
                 return FieldConstants.BLUE_LEFT_BACKDROP_POSE;
             case CENTER:
@@ -40,6 +41,7 @@ public class AutoUtil {
     }
 
     public static Pose2d getAssignedPurplePose() {
+        Robot.getInstance().setPropLocation(Robot.getInstance().getVision().getPropLocation());
         if(Robot.getInstance().getFieldStartingLocation() == FieldStartingLocation.FAR) {
             return getFarAssignedPurplePose();
         }
@@ -50,7 +52,7 @@ public class AutoUtil {
 
     private static Pose2d getFarAssignedPurplePose() {
         if(Robot.getInstance().getAlliance() == Alliance.RED) {
-            switch (Robot.getInstance().getVision().getPropLocation()) {
+            switch (Robot.getInstance().getPropLocation()) {
                 case LEFT:
                     return FieldConstants.FAR_RED_LEFT_POSE;
                 case CENTER:
@@ -60,7 +62,7 @@ public class AutoUtil {
             }
         }
         else {
-            switch (Robot.getInstance().getVision().getPropLocation()) {
+            switch (Robot.getInstance().getPropLocation()) {
                 case LEFT:
                     return FieldConstants.FAR_BLUE_LEFT_POSE;
                 case CENTER:
@@ -73,7 +75,7 @@ public class AutoUtil {
 
     private static Pose2d getCloseAssignedPurplePose() {
         if(Robot.getInstance().getAlliance() == Alliance.RED) {
-            switch (Robot.getInstance().getVision().getPropLocation()) {
+            switch (Robot.getInstance().getPropLocation()) {
                 case LEFT:
                     return FieldConstants.CLOSE_RED_LEFT_POSE;
                 case CENTER:
@@ -83,7 +85,7 @@ public class AutoUtil {
             }
         }
         else {
-            switch (Robot.getInstance().getVision().getPropLocation()) {
+            switch (Robot.getInstance().getPropLocation()) {
                 case LEFT:
                     return FieldConstants.CLOSE_BLUE_LEFT_POSE;
                 case CENTER:

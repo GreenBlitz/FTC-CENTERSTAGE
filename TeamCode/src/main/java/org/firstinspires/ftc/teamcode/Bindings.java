@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
-
 import org.firstinspires.ftc.teamcode.gamelayout.FieldConstants;
 import org.firstinspires.ftc.teamcode.gamepads.GamepadFunctions;
 import org.firstinspires.ftc.teamcode.gamepads.GamepadWrapper;
@@ -125,8 +124,7 @@ public class Bindings {
 
         mainGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(ClawCommands.lockFingers());
         mainGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(ClawCommands.unlockFingers());
-        mainGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_STICK_BUTTON).whenPressed(ClawCommands.switchFingers()
-        );
+        mainGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_STICK_BUTTON).whenPressed(ClawCommands.switchFingers());
 
 
         mainGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(ClawCommands.testRightFinger(0.01));
